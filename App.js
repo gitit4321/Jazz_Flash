@@ -1,21 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, Platform, View } from 'react-native';
+import {
+    useDimensions,
+    useDeviceOrientation,
+} from '@react-native-community/hooks';
+import Constants from 'expo-constants';
+import CardFront from './components/CardFront';
+import CardBack from './components/CardBack';
+import TonicBar from './components/TonicBar';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <SafeAreaView style={styles.container}>
+            <TonicBar />
+            {/* <CardFront /> */}
+            <CardBack />
+        </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        display: 'flex',
+        backgroundColor: 'rgb(57,96,58)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100%',
+        width: '100%',
+        paddingTop: Platform.OS === 'android' ? Constants.statusBarHeight : 0,
+    },
 });
