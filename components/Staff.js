@@ -10,7 +10,7 @@ const Staff = props => {
     // console.log(tonic);
 
     const [context, stave] = useScore({
-        contextSize: { x: 260, y: 300 }, // this determine the canvas size
+        contextSize: { x: 260, y: 110 }, // this determine the canvas size
         staveOffset: { x: 5, y: 5 }, // this determine the starting point of the staff relative to top-right corner of canvas
         staveWidth: 250, // ofc, stave width
         clef: 'treble', // clef

@@ -13,88 +13,60 @@ const TonicBar = props => {
         <View style={styles.barContainer}>
             <ScrollView horizontal>
                 <View style={styles.naturalTonicContainer}>
-                    <Button
-                        style={styles.tonic}
-                        color="black"
-                        title="C"
-                    ></Button>
+                    <Button style={styles.btn} color="black" title="C"></Button>
                 </View>
                 <View style={styles.accidentalTonicContainer}>
                     <Button
-                        style={styles.tonic}
+                        style={styles.btn}
                         color="black"
                         title="C#/Db"
                     ></Button>
                 </View>
                 <View style={styles.naturalTonicContainer}>
-                    <Button
-                        style={styles.tonic}
-                        color="black"
-                        title="D"
-                    ></Button>
+                    <Button style={styles.btn} color="black" title="D"></Button>
                 </View>
                 <View style={styles.accidentalTonicContainer}>
                     <Button
-                        style={styles.tonic}
+                        style={styles.btn}
                         color="black"
                         title="D#/Eb"
                     ></Button>
                 </View>
                 <View style={styles.naturalTonicContainer}>
-                    <Button
-                        style={styles.tonic}
-                        color="black"
-                        title="E"
-                    ></Button>
+                    <Button style={styles.btn} color="black" title="E"></Button>
                 </View>
                 <View style={styles.naturalTonicContainer}>
-                    <Button
-                        style={styles.tonic}
-                        color="black"
-                        title="F"
-                    ></Button>
+                    <Button style={styles.btn} color="black" title="F"></Button>
                 </View>
                 <View style={styles.accidentalTonicContainer}>
                     <Button
-                        style={styles.tonic}
+                        style={styles.btn}
                         color="black"
                         title="F#/Gb"
                     ></Button>
                 </View>
                 <View style={styles.naturalTonicContainer}>
-                    <Button
-                        style={styles.tonic}
-                        color="black"
-                        title="G"
-                    ></Button>
+                    <Button style={styles.btn} color="black" title="G"></Button>
                 </View>
                 <View style={styles.accidentalTonicContainer}>
                     <Button
-                        style={styles.tonic}
+                        style={styles.btn}
                         color="black"
                         title="G#/Ab"
                     ></Button>
                 </View>
                 <View style={styles.naturalTonicContainer}>
-                    <Button
-                        style={styles.tonic}
-                        color="black"
-                        title="A"
-                    ></Button>
+                    <Button style={styles.btn} color="black" title="A"></Button>
                 </View>
                 <View style={styles.accidentalTonicContainer}>
                     <Button
-                        style={styles.tonic}
+                        style={styles.btn}
                         color="black"
                         title="A#/Bb"
                     ></Button>
                 </View>
                 <View style={styles.naturalTonicContainer}>
-                    <Button
-                        style={styles.tonic}
-                        color="black"
-                        title="B"
-                    ></Button>
+                    <Button style={styles.btn} color="black" title="B"></Button>
                 </View>
             </ScrollView>
         </View>
@@ -118,8 +90,8 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0,0,0,0.4)',
         borderStyle: 'solid',
         borderWidth: 1,
-        borderRadius: 10,
-        marginHorizontal: 10,
+        borderRadius: 20,
+        marginHorizontal: 4,
         paddingHorizontal: 10,
     },
     accidentalTonicContainer: {
@@ -127,10 +99,10 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0,0,0,0.4)',
         borderStyle: 'solid',
         borderWidth: 1,
-        borderRadius: 10,
+        borderRadius: 20,
         marginHorizontal: 10,
     },
-    tonic: {
+    btn: {
         color: 'black',
         width: '100%',
     },
