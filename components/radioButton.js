@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
-const RadioButtons = () => {
+const RadioButtons = props => {
     const [checked, setChecked] = useState(0);
-    var clef = ['Treble', 'Bass'];
+    let clefArr = props.clefArr;
+
     return (
         <View>
             <View style={styles.btn}>
-                {clef.map((clef, key) => {
+                {clefArr.map((clef, key) => {
                     return (
                         <View key={clef}>
                             {checked == key ? (
@@ -22,6 +23,7 @@ const RadioButtons = () => {
                                 <TouchableOpacity
                                     onPress={() => {
                                         setChecked(key);
+                                        props.handleClefChange(clef);
                                     }}
                                     style={styles.btn}
                                 >

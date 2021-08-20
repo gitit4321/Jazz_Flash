@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, SafeAreaView, Platform, View } from 'react-native';
 import {
     useDimensions,
@@ -8,12 +8,29 @@ import {
 import Constants from 'expo-constants';
 import CardFront from './components/CardFront';
 import CardBack from './components/CardBack';
-import TonicBar from './components/TonicBar';
+import KeyBar from './components/KeyBar';
+import Main from './components/Main';
 
 export default function App() {
+    const keyArray = [
+        'C',
+        'C#/Db',
+        'D',
+        'D#/Eb',
+        'E',
+        'F',
+        'F#/GB',
+        'G',
+        'G#/Ab',
+        'A',
+        'A#/Bb',
+        'B',
+    ];
+    const [curKey, setCurKey] = useState(keyArray[0]);
+
     return (
         <SafeAreaView style={styles.container}>
-            <TonicBar />
+            <KeyBar />
             {/* <CardFront /> */}
             <CardBack />
         </SafeAreaView>

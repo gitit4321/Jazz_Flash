@@ -1,13 +1,25 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import RadioButton from './radioButton';
-import ListenButton from './ListenBtn';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import RadioButton from './RadioButton';
 import Staff from './Staff';
 
 const CardBack = props => {
+    const [clef, setClef] = useState('Treble');
+    const [clefArr, setClefArr] = useState(['Treble', 'Bass']);
+
+    const handleClefChange = c => {
+        setClef(c);
+    };
+
     return (
         <View style={styles.container}>
             <Text style={styles.chordSymbol}>Cmi7</Text>
+            <View style={{ paddingBottom: 15 }}>
+                <RadioButton
+                    clefArr={clefArr}
+                    handleClefChange={handleClefChange}
+                />
+            </View>
             <View style={styles.chordSpellingContainer}>
                 <View style={styles.subHeaderContainer}>
                     <View>
@@ -15,7 +27,7 @@ const CardBack = props => {
                     </View>
                 </View>
                 <View style={styles.staffContainer}>
-                    <Staff tonic="C" type="chordSpelling" />
+                    <Staff tonic="C" clef={clef} type="chordSpelling" />
 
                     <View style={styles.pitchNameContainer}>
                         <View>
@@ -36,11 +48,50 @@ const CardBack = props => {
                     </View>
                 </View>
                 <View style={styles.radioListenContainer}>
-                    <View>
-                        <RadioButton />
-                    </View>
                     <View style={styles.listenBtnContainer}>
-                        <ListenButton></ListenButton>
+                        <Button color="black" title="Listen"></Button>
+                    </View>
+                </View>
+            </View>
+            <View style={styles.chordScaleContainer}>
+                <View style={styles.subHeaderContainer}>
+                    <View>
+                        <Text style={styles.subHeaderText}>Chord/Scale</Text>
+                    </View>
+                </View>
+                <View style={styles.staffContainer}>
+                    <Staff tonic="C" clef={clef} type="chordScale" />
+
+                    <View style={styles.pitchNameContainer}>
+                        <View>
+                            <Text style={styles.pitchName}>C</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.pitchName}>D</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.pitchName}>Eb</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.pitchName}>F</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.pitchName}>G</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.pitchName}>A</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.pitchName}>Bb</Text>
+                        </View>
+                        <View>
+                            <Text style={styles.pitchName}>C</Text>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.radioListenContainer}>
+                    <View style={styles.listenBtnContainer}>
+                        <Button color="black" title="Listen"></Button>
                     </View>
                 </View>
             </View>

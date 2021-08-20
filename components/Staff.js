@@ -8,12 +8,13 @@ const Staff = props => {
     // console.log(type);
     const tonic = props.tonic;
     // console.log(tonic);
+    console.log('staff clef', props.clef);
 
     const [context, stave] = useScore({
         contextSize: { x: 260, y: 110 }, // this determine the canvas size
         staveOffset: { x: 5, y: 5 }, // this determine the starting point of the staff relative to top-right corner of canvas
         staveWidth: 250, // ofc, stave width
-        clef: 'treble', // clef
+        clef: `${props.clef.toLowerCase()}`, // clef
         timeSig: '4/4', // time signiture
     });
 
