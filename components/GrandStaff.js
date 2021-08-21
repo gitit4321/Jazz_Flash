@@ -79,7 +79,7 @@ const GrandStaff = props => {
     let voice2 = new VF.Voice({ num_beats: 4, beat_value: 4 });
     voice2.addTickable(notesBass).setStave(stave[1]);
 
-    // // // Format and justify the notes to 200 pixels.
+    // Format and justify the notes to 200 pixels.
     let formatter = new VF.Formatter();
 
     var startX = Math.max(stave[0].getNoteStartX(), stave[1].getNoteStartX());

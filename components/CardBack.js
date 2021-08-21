@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
-import RadioButton from './RadioButton';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import RadioButtons from './RadioButtons';
 import ChordSpelling from './ChordSpelling';
 import ChordScale from './ChordScale';
 import GrandStaff from './GrandStaff';
@@ -45,7 +45,7 @@ const CardBack = props => {
                         <Text style={styles.sectionHeader}>
                             Rootless CED Voicing
                         </Text>
-                        <GrandStaff tonic={'C'} />
+                        <GrandStaff tonic={'C'} voicingType="CED" />
                         <ListenBtn title="listen" />
                     </View>
                 </View>
