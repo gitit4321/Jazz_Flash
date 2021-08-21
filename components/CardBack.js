@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import RadioButton from './RadioButton';
-import Staff from './Staff';
+import ChordSpelling from './ChordSpelling';
+import ChordScale from './ChordScale';
+import PlaneVoicing59 from './PlaneVoicing59';
 
 const CardBack = props => {
+    let tonic = props.tonic;
     const [clef, setClef] = useState('Treble');
     const [clefArr, setClefArr] = useState(['Treble', 'Bass']);
 
@@ -13,88 +16,105 @@ const CardBack = props => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.chordSymbol}>Cmi7</Text>
+            <Text style={styles.chordSymbol}>{tonic}mi7</Text>
             <View style={{ paddingBottom: 15 }}>
                 <RadioButton
                     clefArr={clefArr}
                     handleClefChange={handleClefChange}
                 />
             </View>
-            <View style={styles.chordSpellingContainer}>
-                <View style={styles.subHeaderContainer}>
-                    <View>
-                        <Text style={styles.subHeaderText}>Chord Spelling</Text>
+            <ScrollView>
+                <View style={styles.chordSpellingContainer}>
+                    <View style={styles.subHeaderContainer}>
+                        <View>
+                            <Text style={styles.subHeaderText}>
+                                Chord Spelling
+                            </Text>
+                        </View>
                     </View>
-                </View>
-                <View style={styles.staffContainer}>
-                    <Staff tonic="C" clef={clef} type="chordSpelling" />
+                    <View style={styles.staffContainer}>
+                        <ChordSpelling
+                            tonic={tonic}
+                            clef={clef}
+                            type="chordSpelling"
+                        />
 
-                    <View style={styles.pitchNameContainer}>
-                        <View>
-                            <Text style={styles.pitchName}>C</Text>
+                        <View style={styles.pitchNameContainer}>
+                            <View>
+                                <Text style={styles.pitchName}>C</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>Eb</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>G</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>Bb</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>D</Text>
+                            </View>
                         </View>
-                        <View>
-                            <Text style={styles.pitchName}>Eb</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.pitchName}>G</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.pitchName}>Bb</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.pitchName}>D</Text>
+                    </View>
+                    <View style={styles.radioListenContainer}>
+                        <View style={styles.listenBtnContainer}>
+                            <Button color="black" title="Listen"></Button>
                         </View>
                     </View>
                 </View>
-                <View style={styles.radioListenContainer}>
-                    <View style={styles.listenBtnContainer}>
-                        <Button color="black" title="Listen"></Button>
+                <View style={styles.chordScaleContainer}>
+                    <View style={styles.subHeaderContainer}>
+                        <View>
+                            <Text style={styles.subHeaderText}>
+                                Chord/Scale
+                            </Text>
+                        </View>
                     </View>
-                </View>
-            </View>
-            <View style={styles.chordScaleContainer}>
-                <View style={styles.subHeaderContainer}>
-                    <View>
-                        <Text style={styles.subHeaderText}>Chord/Scale</Text>
-                    </View>
-                </View>
-                <View style={styles.staffContainer}>
-                    <Staff tonic="C" clef={clef} type="chordScale" />
+                    <View style={styles.staffContainer}>
+                        <ChordScale
+                            tonic={tonic}
+                            clef={clef}
+                            type="chordScale"
+                        />
 
-                    <View style={styles.pitchNameContainer}>
-                        <View>
-                            <Text style={styles.pitchName}>C</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.pitchName}>D</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.pitchName}>Eb</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.pitchName}>F</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.pitchName}>G</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.pitchName}>A</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.pitchName}>Bb</Text>
-                        </View>
-                        <View>
-                            <Text style={styles.pitchName}>C</Text>
+                        <View style={styles.pitchNameContainer}>
+                            <View>
+                                <Text style={styles.pitchName}>C</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>D</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>Eb</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>F</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>G</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>A</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>Bb</Text>
+                            </View>
+                            <View>
+                                <Text style={styles.pitchName}>C</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
-                <View style={styles.radioListenContainer}>
-                    <View style={styles.listenBtnContainer}>
-                        <Button color="black" title="Listen"></Button>
+                    <View style={styles.radioListenContainer}>
+                        <View style={styles.listenBtnContainer}>
+                            <Button color="black" title="Listen"></Button>
+                        </View>
+                    </View>
+                    <View style={styles.fullVoiceContainer}>
+                        <PlaneVoicing59 />
                     </View>
                 </View>
-            </View>
+            </ScrollView>
         </View>
     );
 };
@@ -106,7 +126,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-start',
         height: '90%',
-        width: '90%',
+        width: '95%',
         borderRadius: 10,
     },
     chordSymbol: {
@@ -135,7 +155,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: '90%',
+        width: '100%',
     },
     pitchNameContainer: {
         display: 'flex',
@@ -161,6 +181,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 120,
         marginHorizontal: 18,
+    },
+    fullVoiceContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        width: '50%',
     },
 });
 

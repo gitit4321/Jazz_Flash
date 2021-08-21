@@ -12,7 +12,7 @@ import KeyBar from './components/KeyBar';
 import Main from './components/Main';
 
 export default function App() {
-    const keyArray = [
+    const tonicArray = [
         'C',
         'C#/Db',
         'D',
@@ -26,13 +26,13 @@ export default function App() {
         'A#/Bb',
         'B',
     ];
-    const [curKey, setCurKey] = useState(keyArray[0]);
+    const [curTonic, setCurTonic] = useState(tonicArray[0]);
 
     return (
         <SafeAreaView style={styles.container}>
             <KeyBar />
             {/* <CardFront /> */}
-            <CardBack />
+            <CardBack tonic={curTonic} />
         </SafeAreaView>
     );
 }

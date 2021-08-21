@@ -5,7 +5,7 @@ export const barContainer = {
     alignItems: 'center',
     justifyContent: 'center',
     height: '8%',
-    width: '90%',
+    width: '95%',
     marginBottom: '2%',
     borderRadius: 10,
 };
