@@ -2,9 +2,9 @@ import React from 'react';
 import { View } from 'react-native';
 import { useScore } from 'react-native-vexflow';
 import Vex from 'vexflow';
-import { chordData } from './chord_data/cmi7';
+import { spellingData } from './chord_data/cmi7';
 
-const Staff = props => {
+const ChordSpelling = props => {
     const type = props.type;
     const tonic = props.tonic;
     let clef = `${props.clef.toLowerCase()}`;
@@ -18,7 +18,7 @@ const Staff = props => {
 
     const VF = Vex.Flow;
     let notes = [];
-    let cd = chordData[clef];
+    let cd = spellingData[clef];
 
     for (let i = 0; i < cd.pitchCount; i++) {
         if (cd.pitches[i][1] == 1) {
@@ -28,6 +28,10 @@ const Staff = props => {
                     keys: [cd.pitches[i][0]],
                     duration: 'w',
                 }).addAccidental(0, new VF.Accidental('b'))
+                // .addAnnotation(
+                //     0,
+                //     new VF.Annotation('C').setVerticalJustification()
+                // )
             );
         } else {
             notes.push(
@@ -51,4 +55,4 @@ const Staff = props => {
     return <View>{context.render()}</View>;
 };
 
-export default Staff;
+export default ChordSpelling;

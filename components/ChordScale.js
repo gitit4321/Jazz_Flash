@@ -4,7 +4,7 @@ import { useScore } from 'react-native-vexflow';
 import Vex from 'vexflow';
 import { scaleData } from './chord_data/cmi7';
 
-const Staff = props => {
+const ChordScale = props => {
     const type = props.type;
     const tonic = props.tonic;
     let clef = `${props.clef.toLowerCase()}`;
@@ -50,4 +50,4 @@ const Staff = props => {
     return <View>{context.render()}</View>;
 };
 
-export default Staff;
+export default ChordScale;

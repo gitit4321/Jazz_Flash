@@ -77,7 +77,6 @@ const CardBack = props => {
                             clef={clef}
                             type="chordScale"
                         />
-
                         <View style={styles.pitchNameContainer}>
                             <View>
                                 <Text style={styles.pitchName}>C</Text>
@@ -110,11 +109,25 @@ const CardBack = props => {
                             <Button color="black" title="Listen"></Button>
                         </View>
                     </View>
-                    <View style={styles.fullVoiceContainer}>
-                        <GrandStaff voicingType={'59'} />
+                    <View style={styles.chordVoicingHeaderContainer}>
+                        <View>
+                            <Text style={styles.subHeaderText}>
+                                5/9 Plane Voicing
+                            </Text>
+                        </View>
+                        <View>
+                            <Text style={styles.subHeaderText}>
+                                Rootles CED Chord Voicing
+                            </Text>
+                        </View>
                     </View>
-                    <View style={styles.fullVoiceContainer}>
-                        <GrandStaff voicingType={'CED'} />
+                    <View style={styles.chordVoicingContainer}>
+                        <View style={styles.grandStaffContainer}>
+                            <GrandStaff voicingType={'59'} />
+                        </View>
+                        <View style={styles.grandStaffContainer}>
+                            <GrandStaff voicingType={'CED'} />
+                        </View>
                     </View>
                 </View>
             </ScrollView>
@@ -185,12 +198,26 @@ const styles = StyleSheet.create({
         borderRadius: 120,
         marginHorizontal: 18,
     },
-    fullVoiceContainer: {
+    grandStaffContainer: {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        width: '50%',
+        width: '46%',
+    },
+    chordVoicingHeaderContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        width: '48%',
+        flexWrap: 'wrap',
+        backgroundColor: 'teal',
+    },
+    chordVoicingContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 

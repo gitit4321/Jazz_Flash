@@ -1,4 +1,4 @@
-export let chordData = {
+export const spellingData = {
     treble: {
         pitchCount: 5,
         pitches: [
@@ -21,7 +21,7 @@ export let chordData = {
     },
 };
 
-export let scaleData = {
+export const scaleData = {
     treble: {
         pitchCount: 8,
         pitches: [
@@ -50,7 +50,7 @@ export let scaleData = {
     },
 };
 
-export let planeVoicing59Data = {
+export const planeVoicing59Data = {
     pitchCount: 5,
     pitches: [
         ['c/2', 0],
@@ -61,7 +61,7 @@ export let planeVoicing59Data = {
     ], // 0 == natural, 1 == accidental
 };
 
-export let rootlessCEDVoicing = {
+export const rootlessCEDVoicing = {
     pitchCount: 5,
     pitches: [
         ['e/3', 1],

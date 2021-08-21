@@ -30,7 +30,7 @@ export default function App() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <KeyBar />
+            {/* <KeyBar /> */}
             {/* <CardFront /> */}
             <CardBack tonic={curTonic} />
         </SafeAreaView>
