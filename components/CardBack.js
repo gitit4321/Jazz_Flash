@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button, ScrollView } from 'react-native';
 import RadioButton from './RadioButton';
 import ChordSpelling from './ChordSpelling';
 import ChordScale from './ChordScale';
-import PlaneVoicing59 from './PlaneVoicing59';
+import GrandStaff from './GrandStaff';
 
 const CardBack = props => {
     let tonic = props.tonic;
@@ -111,10 +111,10 @@ const CardBack = props => {
                         </View>
                     </View>
                     <View style={styles.fullVoiceContainer}>
-                        <PlaneVoicing59 voicingType={'59'} />
+                        <GrandStaff voicingType={'59'} />
                     </View>
                     <View style={styles.fullVoiceContainer}>
-                        <PlaneVoicing59 voicingType={'CED'} />
+                        <GrandStaff voicingType={'CED'} />
                     </View>
                 </View>
             </ScrollView>

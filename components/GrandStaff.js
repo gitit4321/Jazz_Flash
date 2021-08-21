@@ -4,7 +4,7 @@ import { useGrandStaff } from 'react-native-vexflow';
 import Vex from 'vexflow';
 import { planeVoicing59Data, rootlessCEDVoicing } from './chord_data/cmi7';
 
-const PlaneVoicing59 = props => {
+const GrandStaff = props => {
     // const type = props.type;
     const tonic = props.tonic;
     const chordData =
@@ -99,4 +99,4 @@ const PlaneVoicing59 = props => {
     return <View>{context.render()}</View>;
 };
 
-export default PlaneVoicing59;
+export default GrandStaff;
