@@ -4,6 +4,7 @@ import RadioButton from './RadioButton';
 import ChordSpelling from './ChordSpelling';
 import ChordScale from './ChordScale';
 import GrandStaff from './GrandStaff';
+import ListenBtn from './ListenBtn';
 
 const CardBack = props => {
     let tonic = props.tonic;
@@ -14,120 +15,38 @@ const CardBack = props => {
         setClef(c);
     };
 
-    return (
-        <View style={styles.container}>
-            <Text style={styles.chordSymbol}>{tonic}mi7</Text>
-            <View style={{ paddingBottom: 15 }}>
-                <RadioButton
-                    clefArr={clefArr}
-                    handleClefChange={handleClefChange}
-                />
-            </View>
-            <ScrollView>
-                <View style={styles.chordSpellingContainer}>
-                    <View style={styles.subHeaderContainer}>
-                        <View>
-                            <Text style={styles.subHeaderText}>
-                                Chord Spelling
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={styles.staffContainer}>
-                        <ChordSpelling
-                            tonic={tonic}
-                            clef={clef}
-                            type="chordSpelling"
-                        />
+    // <RadioButton clefArr={clefArr} handleClefChange={handleClefChange} />
 
-                        <View style={styles.pitchNameContainer}>
-                            <View>
-                                <Text style={styles.pitchName}>C</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>Eb</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>G</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>Bb</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>D</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.radioListenContainer}>
-                        <View style={styles.listenBtnContainer}>
-                            <Button color="black" title="Listen"></Button>
-                        </View>
-                    </View>
+    return (
+        <View style={styles.primaryContainer}>
+            <Text style={styles.chordSymbol}>{tonic}mi7</Text>
+            <ScrollView>
+                <View style={styles.verticalContainer}>
+                    <Text style={styles.sectionHeader}>Chord Spelling</Text>
+                    <ChordSpelling tonic={'C'} clef={clef} />
+                    <ListenBtn title="listen" />
+                    <View style={styles.lineBreak}></View>
                 </View>
-                <View style={styles.chordScaleContainer}>
-                    <View style={styles.subHeaderContainer}>
-                        <View>
-                            <Text style={styles.subHeaderText}>
-                                Chord/Scale
-                            </Text>
-                        </View>
+                <View style={styles.verticalContainer}>
+                    <Text style={styles.sectionHeader}>Chord Scale</Text>
+                    <ChordScale tonic={'C'} clef={clef} />
+                    <ListenBtn title="listen" />
+                    <View style={styles.lineBreak}></View>
+                </View>
+                <View style={styles.horizontalContainer}>
+                    <View style={[styles.verticalContainer, styles.grandStaff]}>
+                        <Text style={styles.sectionHeader}>
+                            5/9 Plane Voicing
+                        </Text>
+                        <GrandStaff tonic={'C'} voicingType="59" />
+                        <ListenBtn title="listen" />
                     </View>
-                    <View style={styles.staffContainer}>
-                        <ChordScale
-                            tonic={tonic}
-                            clef={clef}
-                            type="chordScale"
-                        />
-                        <View style={styles.pitchNameContainer}>
-                            <View>
-                                <Text style={styles.pitchName}>C</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>D</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>Eb</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>F</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>G</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>A</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>Bb</Text>
-                            </View>
-                            <View>
-                                <Text style={styles.pitchName}>C</Text>
-                            </View>
-                        </View>
-                    </View>
-                    <View style={styles.radioListenContainer}>
-                        <View style={styles.listenBtnContainer}>
-                            <Button color="black" title="Listen"></Button>
-                        </View>
-                    </View>
-                    <View style={styles.chordVoicingHeaderContainer}>
-                        <View>
-                            <Text style={styles.subHeaderText}>
-                                5/9 Plane Voicing
-                            </Text>
-                        </View>
-                        <View>
-                            <Text style={styles.subHeaderText}>
-                                Rootles CED Chord Voicing
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={styles.chordVoicingContainer}>
-                        <View style={styles.grandStaffContainer}>
-                            <GrandStaff voicingType={'59'} />
-                        </View>
-                        <View style={styles.grandStaffContainer}>
-                            <GrandStaff voicingType={'CED'} />
-                        </View>
+                    <View style={[styles.verticalContainer, styles.grandStaff]}>
+                        <Text style={styles.sectionHeader}>
+                            Rootless CED Voicing
+                        </Text>
+                        <GrandStaff tonic={'C'} />
+                        <ListenBtn title="listen" />
                     </View>
                 </View>
             </ScrollView>
@@ -136,7 +55,7 @@ const CardBack = props => {
 };
 
 const styles = StyleSheet.create({
-    container: {
+    primaryContainer: {
         display: 'flex',
         backgroundColor: 'rgb(180,187,184)',
         alignItems: 'center',
@@ -151,73 +70,27 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         marginVertical: 14,
     },
-    chordSpellingContainer: {
+    verticalContainer: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'flex-start',
+        alignItems: 'center',
     },
-    subHeaderContainer: {
+    horizontalContainer: {
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
     },
-    subHeaderText: {
+    grandStaff: {
+        width: '50%',
+    },
+    sectionHeader: {
         fontSize: 16,
-        fontWeight: '500',
-        textDecorationLine: 'underline',
+        fontWeight: 'bold',
     },
-    staffContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width: '100%',
-    },
-    pitchNameContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        width: '77%',
-    },
-    pitchName: {
-        paddingHorizontal: 10,
-        fontSize: 18,
-    },
-    radioListenContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        paddingVertical: 10,
-    },
-    listenBtnContainer: {
-        flex: 1,
-        borderColor: 'rgba(0,0,0,0.4)',
-        borderStyle: 'solid',
-        borderWidth: 1,
-        borderRadius: 120,
-        marginHorizontal: 18,
-    },
-    grandStaffContainer: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        width: '46%',
-    },
-    chordVoicingHeaderContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        width: '48%',
-        flexWrap: 'wrap',
-        backgroundColor: 'teal',
-    },
-    chordVoicingContainer: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
+    lineBreak: {
+        backgroundColor: 'grey',
+        height: 1,
+        width: '80%',
+        marginBottom: 15,
     },
 });
 

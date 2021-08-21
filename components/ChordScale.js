@@ -10,8 +10,8 @@ const ChordScale = props => {
     let clef = `${props.clef.toLowerCase()}`;
 
     const [context, stave] = useScore({
-        contextSize: { x: 300, y: 110 }, // this determine the canvas size
-        staveOffset: { x: 5, y: 5 }, // this determine the starting point of the staff relative to top-left corner of canvas
+        contextSize: { x: 300, y: 90 }, // this determine the canvas size
+        staveOffset: { x: 5, y: -20 }, // this determine the starting point of the staff relative to top-left corner of canvas
         staveWidth: 294, // ofc, stave width
         clef: `${props.clef.toLowerCase()}`, // clef
     });

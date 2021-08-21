@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { containerStyles } from '../styles/index';
 import CardBack from './CardBack';
 import KeyBar from './KeyBar';
 
 const Main = () => {
-    const keyArray = [
+    const tonicArray = [
         'C',
         'C#/Db',
         'D',
@@ -18,15 +19,21 @@ const Main = () => {
         'A#/Bb',
         'B',
     ];
-    const [curKey, setCurKey] = useState(keyArray[0]);
+    const [curTonic, setCurTonic] = useState(tonicArray[0]);
 
     return (
-        <View>
-            <KeyBar />
+        <View style={styles.cardContainer}>
+            {/* <KeyBar /> */}
             {/* <CardFront /> */}
-            <CardBack />
+            <CardBack tonic={curTonic} />
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    cardContainer: {
+        ...containerStyles.cardContainer,
+    },
+});
 
 export default Main;

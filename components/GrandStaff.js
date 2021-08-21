@@ -11,8 +11,8 @@ const GrandStaff = props => {
         props.voicingType == '59' ? planeVoicing59Data : rootlessCEDVoicing;
 
     const [context, stave] = useGrandStaff({
-        contextSize: { x: 180, y: 200 }, // this determine the canvas size
-        staveOffset: { x: 30, y: 0 }, // this determine the starting point of the staff relative to top-left corner of canvas
+        contextSize: { x: 180, y: 170 }, // this determine the canvas size
+        staveOffset: { x: 30, y: -20 }, // this determine the starting point of the staff relative to top-left corner of canvas
         staveWidth: 120, // ofc, stave width
     });
 
