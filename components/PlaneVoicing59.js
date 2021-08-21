@@ -22,6 +22,7 @@ const PlaneVoicing59 = props => {
     let keysBass = [];
     let accidentalsBass = [];
 
+    // Add pitches and accidentals to their respective arrays
     for (let i = 0; i < cd.pitchCount; i++) {
         let clef;
         let range = cd.pitches[i][0].split('/')[1];
@@ -40,6 +41,7 @@ const PlaneVoicing59 = props => {
         }
     }
 
+    // Instantiate notes
     let notesTreble = new VF.StaveNote({
         clef: 'treble',
         keys: keysTreble,
@@ -51,6 +53,23 @@ const PlaneVoicing59 = props => {
         keys: keysBass,
         duration: 'w',
     });
+
+    // Add accidentals to notes
+    if (accidentalsTreble.length > 0) {
+        for (let i = 0; i < accidentalsTreble.length; i++) {
+            if (accidentalsTreble[i] == 1) {
+                notesTreble.addAccidental(i, new VF.Accidental('b'));
+            }
+        }
+    }
+
+    if (accidentalsBass.length > 0) {
+        for (let i = 0; i < accidentalsBass.length; i++) {
+            if (accidentalsBass[i] == 1) {
+                notesBass.addAccidental(i, new VF.Accidental('b'));
+            }
+        }
+    }
 
     let voice1 = new VF.Voice({ num_beats: 4, beat_value: 4 });
     voice1.addTickable(notesTreble);
