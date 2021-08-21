@@ -2,20 +2,22 @@ import React from 'react';
 import { View } from 'react-native';
 import { useGrandStaff } from 'react-native-vexflow';
 import Vex from 'vexflow';
-import { planeVoicing59Data } from './chord_data/cmi7';
+import { planeVoicing59Data, rootlessCEDVoicing } from './chord_data/cmi7';
 
 const PlaneVoicing59 = props => {
     // const type = props.type;
     const tonic = props.tonic;
+    const chordData =
+        props.voicingType == '59' ? planeVoicing59Data : rootlessCEDVoicing;
 
     const [context, stave] = useGrandStaff({
         contextSize: { x: 180, y: 200 }, // this determine the canvas size
         staveOffset: { x: 30, y: 0 }, // this determine the starting point of the staff relative to top-left corner of canvas
-        staveWidth: 150, // ofc, stave width
+        staveWidth: 120, // ofc, stave width
     });
 
     const VF = Vex.Flow;
-    let cd = planeVoicing59Data;
+    let cd = chordData;
 
     let keysTreble = [];
     let accidentalsTreble = [];
@@ -72,18 +74,24 @@ const PlaneVoicing59 = props => {
     }
 
     let voice1 = new VF.Voice({ num_beats: 4, beat_value: 4 });
-    voice1.addTickable(notesTreble);
+    voice1.addTickable(notesTreble).setStave(stave[0]);
 
     let voice2 = new VF.Voice({ num_beats: 4, beat_value: 4 });
-    voice2.addTickable(notesBass);
+    voice2.addTickable(notesBass).setStave(stave[1]);
 
-    // // Format and justify the notes to 200 pixels.
+    // // // Format and justify the notes to 200 pixels.
     let formatter = new VF.Formatter();
+
+    var startX = Math.max(stave[0].getNoteStartX(), stave[1].getNoteStartX());
+
+    stave[0].setNoteStartX(startX);
+    stave[1].setNoteStartX(startX);
 
     formatter.joinVoices([voice1]);
     formatter.joinVoices([voice2]);
-    formatter.format([voice1], 50);
-    formatter.format([voice2], 90);
+
+    formatter.format([voice1]);
+    formatter.format([voice2]);
 
     voice1.draw(context, stave[0]);
     voice2.draw(context, stave[1]);

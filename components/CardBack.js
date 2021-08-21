@@ -111,7 +111,10 @@ const CardBack = props => {
                         </View>
                     </View>
                     <View style={styles.fullVoiceContainer}>
-                        <PlaneVoicing59 />
+                        <PlaneVoicing59 voicingType={'59'} />
+                    </View>
+                    <View style={styles.fullVoiceContainer}>
+                        <PlaneVoicing59 voicingType={'CED'} />
                     </View>
                 </View>
             </ScrollView>

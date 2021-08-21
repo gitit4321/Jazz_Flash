@@ -60,3 +60,14 @@ export let planeVoicing59Data = {
         ['g/4', 0],
     ], // 0 == natural, 1 == accidental
 };
+
+export let rootlessCEDVoicing = {
+    pitchCount: 5,
+    pitches: [
+        ['e/3', 1],
+        ['b/3', 1],
+        ['d/4', 0],
+        ['g/4', 0],
+        ['c/5', 0],
+    ], // 0 == natural, 1 == accidental
+};
