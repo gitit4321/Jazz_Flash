@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const CardFront = props => {
     return (
-        <View style={styles.container}>
+        <View style={styles.primaryContainer}>
             <View style={styles.chordSymbolContainer}>
                 <Text>Chord Symbol</Text>
                 <Text style={styles.chordSymbol}>Cmi7</Text>
@@ -21,13 +21,13 @@ const CardFront = props => {
 };
 
 const styles = StyleSheet.create({
-    container: {
+    primaryContainer: {
         display: 'flex',
         backgroundColor: 'rgb(180,187,184)',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
+        justifyContent: 'flex-start',
         height: '90%',
-        width: '90%',
+        width: '95%',
         borderRadius: 10,
     },
     chordSymbolContainer: {
