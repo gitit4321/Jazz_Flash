@@ -11,10 +11,6 @@ const PickerBar = props => {
         handleClefChange,
     } = props;
 
-    // const [selectedKey, setSelectedKey] = useState('C');
-    // const [selectedChordQ, setSelectedChordQ] = useState('min7');
-    // const [selectedClef, setSelectedClef] = useState('Treble');
-
     return (
         <View style={[styles.horizontalContainer, styles.pickerContainer]}>
             <Picker
