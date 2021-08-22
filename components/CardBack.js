@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import RadioButtons from './RadioButtons';
+import SharpFlatRadioBtns from './SharpFlatRadioBtns';
 import ChordSpelling from './ChordSpelling';
 import ChordScale from './ChordScale';
 import GrandStaff from './GrandStaff';
@@ -10,7 +11,7 @@ import PickerBar from './PickerBar';
 const CardBack = props => {
     let tonic = props.tonic;
 
-    // handle pickers
+    // pickers
     const [selectedKey, setSelectedKey] = useState('C');
     const [selectedChordQ, setSelectedChordQ] = useState('maj7');
     const [selectedClef, setSelectedClef] = useState('Treble');
@@ -25,7 +26,11 @@ const CardBack = props => {
         setSelectedClef(c);
     };
 
-    // <RadioButton clefArr={clefArr} handleClefChange={handleClefChange} />
+    // radio btns
+    const [sharpsFlats, setSharpsFlats] = useState('Flats');
+    const handleSharpsFlatsChange = sf => {
+        setShartpsFlats(c);
+    };
 
     return (
         <View style={styles.primaryContainer}>
@@ -40,6 +45,10 @@ const CardBack = props => {
                 handleKeyChange={handleKeyChange}
                 handleChordQChange={handleChordQChange}
                 handleClefChange={handleClefChange}
+            />
+            <SharpFlatRadioBtns
+                sharpsFlats={sharpsFlats}
+                handleSharpsFlatsChange={handleSharpsFlatsChange}
             />
             <ScrollView>
                 <View style={styles.verticalContainer}>
@@ -100,13 +109,6 @@ const styles = StyleSheet.create({
         height: '90%',
         width: '95%',
         borderRadius: 10,
-    },
-    pickerContainer: {
-        display: 'flex',
-        height: '8%',
-        marginBottom: 25,
-        justifyContent: 'space-evenly',
-        // backgroundColor: 'teal',
     },
     chordSymbol: {
         fontSize: 50,

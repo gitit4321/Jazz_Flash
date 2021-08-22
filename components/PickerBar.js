@@ -21,7 +21,7 @@ const PickerBar = props => {
                 selectedValue={selectedKey}
                 style={{ height: 50, width: 100 }}
                 itemStyle={{
-                    height: 60,
+                    height: 50,
                     width: 100,
                 }}
                 onValueChange={(itemValue, itemIndex) =>
@@ -45,7 +45,7 @@ const PickerBar = props => {
                 selectedValue={selectedChordQ}
                 style={{ height: 50, width: 100 }}
                 itemStyle={{
-                    height: 60,
+                    height: 50,
                 }}
                 onValueChange={(itemValue, itemIndex) =>
                     handleChordQChange(itemValue)
@@ -58,7 +58,7 @@ const PickerBar = props => {
                 selectedValue={selectedClef}
                 style={{ height: 50, width: 100 }}
                 itemStyle={{
-                    height: 60,
+                    height: 50,
                 }}
                 onValueChange={(itemValue, itemIndex) =>
                     handleClefChange(itemValue)
@@ -78,10 +78,10 @@ const styles = StyleSheet.create({
     },
     pickerContainer: {
         display: 'flex',
-        height: '8%',
-        marginBottom: 25,
+        // height: '8%',
+        marginBottom: 16,
         justifyContent: 'space-evenly',
-        // backgroundColor: 'teal',
+        backgroundColor: 'red',
     },
 });
 
