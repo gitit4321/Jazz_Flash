@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    ScrollView,
-    Picker,
-    Platform,
-} from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import RadioButtons from './RadioButtons';
 import ChordSpelling from './ChordSpelling';
 import ChordScale from './ChordScale';
@@ -19,7 +12,7 @@ const CardBack = props => {
 
     // handle pickers
     const [selectedKey, setSelectedKey] = useState('C');
-    const [selectedChordQ, setSelectedChordQ] = useState('min7');
+    const [selectedChordQ, setSelectedChordQ] = useState('maj7');
     const [selectedClef, setSelectedClef] = useState('Treble');
 
     const handleKeyChange = c => {
@@ -36,7 +29,10 @@ const CardBack = props => {
 
     return (
         <View style={styles.primaryContainer}>
-            <Text style={styles.chordSymbol}>{selectedKey}mi7</Text>
+            <Text style={styles.chordSymbol}>
+                {selectedKey}
+                {selectedChordQ}
+            </Text>
             <PickerBar
                 selectedKey={selectedKey}
                 selectedChordQ={selectedChordQ}
@@ -48,13 +44,21 @@ const CardBack = props => {
             <ScrollView>
                 <View style={styles.verticalContainer}>
                     <Text style={styles.sectionHeader}>Chord Spelling</Text>
-                    <ChordSpelling tonic={selectedKey} clef={selectedClef} />
+                    <ChordSpelling
+                        tonic={selectedKey}
+                        chordQ={selectedChordQ}
+                        clef={selectedClef}
+                    />
                     <ListenBtn title="listen" />
                     <View style={styles.lineBreak}></View>
                 </View>
                 <View style={styles.verticalContainer}>
                     <Text style={styles.sectionHeader}>Chord Scale</Text>
-                    <ChordScale tonic={selectedKey} clef={selectedClef} />
+                    <ChordScale
+                        tonic={selectedKey}
+                        chordQ={selectedChordQ}
+                        clef={selectedClef}
+                    />
                     <ListenBtn title="listen" />
                     <View style={styles.lineBreak}></View>
                 </View>
@@ -63,14 +67,22 @@ const CardBack = props => {
                         <Text style={styles.sectionHeader}>
                             5/9 Plane Voicing
                         </Text>
-                        <GrandStaff tonic={selectedKey} voicingType="59" />
+                        <GrandStaff
+                            tonic={selectedKey}
+                            chordQ={selectedChordQ}
+                            voicingType="59"
+                        />
                         <ListenBtn title="listen" />
                     </View>
                     <View style={[styles.verticalContainer, styles.grandStaff]}>
                         <Text style={styles.sectionHeader}>
                             Rootless CED Voicing
                         </Text>
-                        <GrandStaff tonic={selectedKey} voicingType="CED" />
+                        <GrandStaff
+                            tonic={selectedKey}
+                            chordQ={selectedChordQ}
+                            voicingType="CED"
+                        />
                         <ListenBtn title="listen" />
                     </View>
                 </View>

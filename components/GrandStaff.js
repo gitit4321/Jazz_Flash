@@ -2,22 +2,22 @@ import React from 'react';
 import { View } from 'react-native';
 import { useGrandStaff } from 'react-native-vexflow';
 import Vex from 'vexflow';
-import { planeVoicing59Data, rootlessCEDVoicing } from './chord_data/cmi7';
+import { pitchData } from './pitch_data/pitchData';
 
 const GrandStaff = props => {
-    // const type = props.type;
-    const tonic = props.tonic;
-    const chordData =
-        props.voicingType == '59' ? planeVoicing59Data : rootlessCEDVoicing;
+    let { tonic, chordQ, voicingType } = props;
+    const fingeringType =
+        voicingType === '59' ? 'planeVoicing59Data' : 'rootlessCEDVoicing';
+    const noteData = pitchData[tonic][chordQ][fingeringType];
+    let accidentalType = pitchData[tonic]['accidentalType'];
 
     const [context, stave] = useGrandStaff({
         contextSize: { x: 180, y: 170 }, // this determine the canvas size
-        staveOffset: { x: 30, y: -20 }, // this determine the starting point of the staff relative to top-left corner of canvas
+        staveOffset: { x: 30, y: -10 }, // this determine the starting point of the staff relative to top-left corner of canvas
         staveWidth: 120, // ofc, stave width
     });
 
     const VF = Vex.Flow;
-    let cd = chordData;
 
     let keysTreble = [];
     let accidentalsTreble = [];
@@ -25,9 +25,9 @@ const GrandStaff = props => {
     let accidentalsBass = [];
 
     // Add pitches and accidentals to their respective arrays
-    for (let i = 0; i < cd.pitchCount; i++) {
+    for (let i = 0; i < noteData.pitchCount; i++) {
         let clef;
-        let range = cd.pitches[i][0].split('/')[1];
+        let range = noteData.pitches[i][0].split('/')[1];
         if (range >= 4) {
             clef = 'treble';
         } else {
@@ -35,11 +35,11 @@ const GrandStaff = props => {
         }
 
         if (clef == 'treble') {
-            keysTreble.push(cd.pitches[i][0]);
-            accidentalsTreble.push(cd.pitches[i][1]);
+            keysTreble.push(noteData.pitches[i][0]);
+            accidentalsTreble.push(noteData.pitches[i][1]);
         } else {
-            keysBass.push(cd.pitches[i][0]);
-            accidentalsBass.push(cd.pitches[i][1]);
+            keysBass.push(noteData.pitches[i][0]);
+            accidentalsBass.push(noteData.pitches[i][1]);
         }
     }
 
@@ -60,7 +60,7 @@ const GrandStaff = props => {
     if (accidentalsTreble.length > 0) {
         for (let i = 0; i < accidentalsTreble.length; i++) {
             if (accidentalsTreble[i] == 1) {
-                notesTreble.addAccidental(i, new VF.Accidental('b'));
+                notesTreble.addAccidental(i, new VF.Accidental(accidentalType));
             }
         }
     }
@@ -68,7 +68,7 @@ const GrandStaff = props => {
     if (accidentalsBass.length > 0) {
         for (let i = 0; i < accidentalsBass.length; i++) {
             if (accidentalsBass[i] == 1) {
-                notesBass.addAccidental(i, new VF.Accidental('b'));
+                notesBass.addAccidental(i, new VF.Accidental(accidentalType));
             }
         }
     }
