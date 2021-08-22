@@ -6,9 +6,6 @@ import {
     useDeviceOrientation,
 } from '@react-native-community/hooks';
 import Constants from 'expo-constants';
-import CardFront from './components/CardFront';
-import CardBack from './components/CardBack';
-import KeyBar from './components/KeyBar';
 import Main from './components/Main';
 
 export default function App() {
@@ -22,7 +19,7 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         display: 'flex',
-        backgroundColor: 'rgb(57,96,58)',
+        backgroundColor: 'rgb(222,222,222)',
         alignItems: 'center',
         justifyContent: 'center',
         height: '100%',

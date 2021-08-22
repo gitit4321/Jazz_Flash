@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Picker, Image } from 'react-native';
+import { StyleSheet, View, Picker, Image, Platform } from 'react-native';
 
 const PickerBar = props => {
     const {
@@ -12,12 +12,18 @@ const PickerBar = props => {
     } = props;
 
     return (
-        <View>
+        <View
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                width: '100%',
+            }}
+        >
             <View style={[styles.horizontalContainer]}>
                 <View style={styles.pickerContainer}>
                     <Picker
                         selectedValue={selectedKey}
-                        style={{ height: 50, width: 90 }}
+                        style={styles.picker}
                         itemStyle={{
                             height: 50,
                         }}
@@ -38,21 +44,11 @@ const PickerBar = props => {
                         <Picker.Item label="A#/Bb" value="A#/Bb" />
                         <Picker.Item label="B" value="B" />
                     </Picker>
-                    <View>
-                        <Image
-                            style={styles.arrows}
-                            source={require('../assets/arrow_up.png')}
-                        />
-                        <Image
-                            style={styles.arrows}
-                            source={require('../assets/arrow_down.png')}
-                        />
-                    </View>
                 </View>
                 <View style={styles.pickerContainer}>
                     <Picker
                         selectedValue={selectedChordQ}
-                        style={{ height: 50, width: 90 }}
+                        style={styles.picker}
                         itemStyle={{
                             height: 50,
                         }}
@@ -63,21 +59,11 @@ const PickerBar = props => {
                         <Picker.Item label="maj7" value="maj7" />
                         <Picker.Item label="min7" value="min7" />
                     </Picker>
-                    <View>
-                        <Image
-                            style={styles.arrows}
-                            source={require('../assets/arrow_up.png')}
-                        />
-                        <Image
-                            style={styles.arrows}
-                            source={require('../assets/arrow_down.png')}
-                        />
-                    </View>
                 </View>
                 <View style={styles.pickerContainer}>
                     <Picker
                         selectedValue={selectedClef}
-                        style={{ height: 50, width: 90 }}
+                        style={styles.picker}
                         itemStyle={{
                             height: 50,
                         }}
@@ -88,16 +74,6 @@ const PickerBar = props => {
                         <Picker.Item label="Treble" value="Treble" />
                         <Picker.Item label="Bass" value="Bass" />
                     </Picker>
-                    <View>
-                        <Image
-                            style={styles.arrows}
-                            source={require('../assets/arrow_up.png')}
-                        />
-                        <Image
-                            style={styles.arrows}
-                            source={require('../assets/arrow_down.png')}
-                        />
-                    </View>
                 </View>
             </View>
         </View>
@@ -108,8 +84,7 @@ const styles = StyleSheet.create({
     horizontalContainer: {
         display: 'flex',
         flexDirection: 'row',
-        width: '95%',
-        justifyContent: 'space-between',
+        justifyContent: 'space-evenly',
     },
     pickerContainer: {
         display: 'flex',
@@ -117,9 +92,9 @@ const styles = StyleSheet.create({
         marginBottom: 16,
         alignItems: 'center',
     },
-    arrows: {
-        height: 14,
-        width: 14,
+    picker: {
+        height: 50,
+        width: 108,
     },
 });
 

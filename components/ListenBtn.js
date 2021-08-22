@@ -10,7 +10,7 @@ const ListenBtn = ({ onPress, title }) => (
 const styles = StyleSheet.create({
     appButtonContainer: {
         elevation: 8,
-        backgroundColor: 'rgb(57,96,58)',
+        backgroundColor: 'rgb(222,222,222)',
         borderRadius: 20,
         paddingVertical: 8,
         paddingHorizontal: 14,
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     },
     appButtonText: {
         fontSize: 16,
-        color: 'rgb(220,227,224)',
+        color: 'rgb(0,0,0)',
         fontWeight: 'normal',
         alignSelf: 'center',
         textTransform: 'uppercase',

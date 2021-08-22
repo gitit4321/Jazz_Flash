@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { containerStyles } from '../styles/index';
-import CardBack from './CardBack';
-import CardFront from './CardFront';
-import KeyBar from './KeyBar';
+import Card from './Card';
 
 const Main = () => {
     const tonicArray = [
@@ -26,7 +24,7 @@ const Main = () => {
         <View style={styles.cardContainer}>
             {/* <KeyBar /> */}
             {/* <CardFront /> */}
-            <CardBack tonic={curTonic} />
+            <Card tonic={curTonic} />
         </View>
     );
 };

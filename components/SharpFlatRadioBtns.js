@@ -7,7 +7,7 @@ const SharpFlatRadioBtns = props => {
     const { sharpsFlats, handleSharpsFlatsChange } = props;
 
     return (
-        <View>
+        <View style={styles.radio}>
             <View style={styles.btn}>
                 {accidentalsArr.map((accidental, key) => {
                     return (
@@ -39,13 +39,13 @@ const SharpFlatRadioBtns = props => {
                     );
                 })}
             </View>
-            {/* <Text>{clef[checked]}</Text> */}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
     radio: {
+        display: 'flex',
         flexDirection: 'row',
     },
     img: {
@@ -56,6 +56,8 @@ const styles = StyleSheet.create({
     btn: {
         flexDirection: 'row',
         alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingBottom: 12,
     },
 });
 

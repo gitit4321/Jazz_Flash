@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
-import RadioButtons from './RadioButtons';
 import SharpFlatRadioBtns from './SharpFlatRadioBtns';
 import ChordSpelling from './ChordSpelling';
 import ChordScale from './ChordScale';
@@ -52,8 +51,8 @@ const CardBack = props => {
             />
             <ScrollView>
                 <View style={styles.verticalContainer}>
-                    <Text style={styles.sectionHeader}>Chord Spelling</Text>
-                    <ChordSpelling
+                    <Text style={styles.sectionHeader}>Chord Scale</Text>
+                    <ChordScale
                         tonic={selectedKey}
                         chordQ={selectedChordQ}
                         clef={selectedClef}
@@ -62,8 +61,8 @@ const CardBack = props => {
                     <View style={styles.lineBreak}></View>
                 </View>
                 <View style={styles.verticalContainer}>
-                    <Text style={styles.sectionHeader}>Chord Scale</Text>
-                    <ChordScale
+                    <Text style={styles.sectionHeader}>Chord Spelling</Text>
+                    <ChordSpelling
                         tonic={selectedKey}
                         chordQ={selectedChordQ}
                         clef={selectedClef}
@@ -103,12 +102,12 @@ const CardBack = props => {
 const styles = StyleSheet.create({
     primaryContainer: {
         display: 'flex',
-        backgroundColor: 'rgb(180,187,184)',
+        // backgroundColor: 'rgb(180,187,184)',
+        backgroundColor: 'rgb(255, 255, 255)',
         alignItems: 'center',
         justifyContent: 'flex-start',
-        height: '90%',
-        width: '95%',
-        borderRadius: 10,
+        height: '100%',
+        width: '100%',
     },
     chordSymbol: {
         fontSize: 50,
