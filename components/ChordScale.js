@@ -6,7 +6,7 @@ import {
     getScaleTreble,
     getScaleBass,
     getVexAccidentalType,
-} from './pitch_data/pitchHandlers';
+} from '../pitch_data/pitchHandlers';
 
 const ChordScale = props => {
     let { tonic, internalScaleName, clef } = props;
@@ -18,9 +18,9 @@ const ChordScale = props => {
             : getScaleTreble(tonic, internalScaleName);
 
     const [context, stave] = useScore({
-        contextSize: { x: 300, y: 100 }, // this determine the canvas size
-        staveOffset: { x: 5, y: -10 }, // this determine the starting point of the staff relative to top-left corner of canvas
-        staveWidth: 294, // ofc, stave width
+        contextSize: { x: 320, y: 110 }, // this determine the canvas size
+        staveOffset: { x: 5, y: 0 }, // this determine the starting point of the staff relative to top-left corner of canvas
+        staveWidth: 310, // ofc, stave width
         clef: clef, // clef
     });
 
@@ -59,7 +59,7 @@ const ChordScale = props => {
     voice.addTickables(notes);
 
     // Format and justify the notes to 270 pixels.
-    let formatter = new VF.Formatter().joinVoices([voice]).format([voice], 270);
+    let formatter = new VF.Formatter().joinVoices([voice]).format([voice], 290);
     voice.draw(context, stave);
 
     return <View>{context.render()}</View>;

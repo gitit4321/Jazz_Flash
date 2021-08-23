@@ -1,25 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet } from 'react-native';
 import { containerStyles } from '../styles/index';
 import Card from './Card';
-import { getScaleName, getInternalScaleName } from './pitch_data/pitchHandlers';
+import {
+    getScaleName,
+    getChordScaleOptions,
+} from '../pitch_data/pitchHandlers';
 
 const Main = () => {
-    // picker states
+    // picker bar states
     const [selectedKey, setSelectedKey] = useState('C');
     const [selectedChordQ, setSelectedChordQ] = useState('maj7');
     const [selectedScaleType, setSelectedScaleType] = useState('major');
     const [selectedClef, setSelectedClef] = useState('Treble');
 
-    // picker handlers
-    const handleKeyChange = c => {
-        setSelectedKey(c);
+    // picker bar handlers
+    const handleKeyChange = k => {
+        setSelectedKey(k);
     };
-    const handleChordQChange = c => {
-        setSelectedChordQ(c);
+    const handleChordQChange = chordQuality => {
+        setSelectedChordQ(chordQuality);
     };
-    const handleClefChange = c => {
-        setSelectedClef(c);
+    const handleClefChange = clef => {
+        setSelectedClef(clef);
     };
     const handleScaleTypeChange = c => {
         setSelectedScaleType(c);
@@ -31,8 +34,30 @@ const Main = () => {
         setSharpsFlats(sf);
     };
 
-    const scaleNameDisplay = getScaleName(selectedChordQ);
-    const internalScaleName = getInternalScaleName(selectedChordQ);
+    // scale option picker state and handler
+    const [scaleOptions, setScaleOptions] = useState([
+        {
+            userDisplay: 'Major/Ionian',
+            programUse: 'major',
+        },
+        {
+            userDisplay: 'Major Pentatonic',
+            programUse: 'majorPentatonic',
+        },
+    ]);
+
+    const handleScaleOptionsChange = chordQuality => {
+        const chordScaleOptions = getChordScaleOptions(chordQuality);
+        setScaleOptions(chordScaleOptions);
+    };
+
+    // scale display variables
+    const displayScalelName = getScaleName(selectedChordQ);
+    const [internalScaleName, setInternalScaleName] = useState('major');
+
+    const handleInternalScaleNameChange = scaleName => {
+        setInternalScaleName(scaleName);
+    };
 
     return (
         <View style={styles.cardContainer}>
@@ -42,13 +67,16 @@ const Main = () => {
                 selectedClef={selectedClef}
                 selectedScaleType={selectedScaleType}
                 sharpsFlats={sharpsFlats}
-                scaleNameDisplay={scaleNameDisplay}
+                displayScalelName={displayScalelName}
                 internalScaleName={internalScaleName}
+                scaleOptions={scaleOptions}
                 handleKeyChange={handleKeyChange}
                 handleChordQChange={handleChordQChange}
                 handleClefChange={handleClefChange}
                 handleSharpsFlatsChange={handleSharpsFlatsChange}
                 handleScaleTypeChange={handleScaleTypeChange}
+                handleScaleOptionsChange={handleScaleOptionsChange}
+                handleInternalScaleNameChange={handleInternalScaleNameChange}
             />
         </View>
     );

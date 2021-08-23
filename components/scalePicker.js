@@ -1,27 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, Picker } from 'react-native';
 
 const ScalePicker = props => {
-    const {
-        selectedChordQ,
-        selectedScaleType,
-        handleChordQChange,
-        handleScaleTypeChange,
-    } = props;
+    const { scaleOptions, handleInternalScaleNameChange } = props;
+
+    const [selectedValue, setSelectedValue] = useState('major');
 
     return (
         <View style={styles.pickerContainer}>
             <Picker
-                selectedValue={selectedChordQ}
+                selectedValue={selectedValue}
                 style={styles.picker}
                 itemStyle={{
                     height: 50,
                 }}
-                onValueChange={(itemValue, itemIndex) =>
-                    handleChordQChange(itemValue)
-                }
+                onValueChange={(itemValue, itemIndex) => {
+                    setSelectedValue(itemValue);
+                    handleInternalScaleNameChange(itemValue);
+                }}
             >
-                <Picker.Item label="Major/Ionian" value="maj7" />
+                {scaleOptions.map((scale, key) => {
+                    return (
+                        <Picker.Item
+                            key={key}
+                            label={scale.userDisplay}
+                            value={scale.programUse}
+                        />
+                    );
+                })}
             </Picker>
         </View>
     );

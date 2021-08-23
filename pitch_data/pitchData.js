@@ -228,24 +228,17 @@ export const majorScales = {
             ['e/5', 1],
             ['f/5', 2],
             ['g/5', 1],
-            ['a/3', 1],
-            ['b/3', 1],
-            ['c/4', 1],
-            ['d/4', 1],
-            ['e/4', 1],
-            ['f/4', 2],
-            ['g/4', 1],
+            ['a/5', 1],
+            ['b/5', 1],
+            ['c/6', 1],
+            ['d/6', 1],
+            ['e/6', 1],
+            ['f/6', 2],
+            ['g/6', 1],
         ],
     },
     Ab: {
         pitches: [
-            ['a/3', -1],
-            ['b/3', -1],
-            ['c/4', 0],
-            ['d/4', -1],
-            ['e/4', -1],
-            ['f/4', 0],
-            ['g/4', 0],
             ['a/4', -1],
             ['b/4', -1],
             ['c/5', 0],
@@ -254,6 +247,13 @@ export const majorScales = {
             ['f/5', 0],
             ['g/5', 0],
             ['a/5', -1],
+            ['b/5', -1],
+            ['c/6', 0],
+            ['d/6', -1],
+            ['e/6', -1],
+            ['f/6', 0],
+            ['g/6', 0],
+            ['a/6', -1],
         ],
     },
     A: {
@@ -277,13 +277,6 @@ export const majorScales = {
     },
     'A#': {
         pitches: [
-            ['a/3', 1],
-            ['b/3', 1],
-            ['c/4', 2],
-            ['d/4', 1],
-            ['e/4', 2],
-            ['f/4', 2],
-            ['g/4', 2],
             ['a/4', 1],
             ['b/4', 1],
             ['c/5', 2],
@@ -292,11 +285,18 @@ export const majorScales = {
             ['f/5', 2],
             ['g/5', 2],
             ['a/5', 1],
+            ['b/5', 1],
+            ['c/6', 2],
+            ['d/6', 1],
+            ['e/6', 2],
+            ['f/6', 2],
+            ['g/6', 2],
+            ['a/6', 1],
         ],
     },
     Bb: {
         pitches: [
-            ['b/4', -1],
+            ['b/3', -1],
             ['c/4', 0],
             ['d/4', 0],
             ['e/4', -1],
@@ -660,7 +660,7 @@ export function getScaleSpecs(scaleType) {
     return scaleTypes[scaleType];
 }
 
-// return chord quality alterations
+// returns the specified chord quality attributes
 export function getChordQualitySpecs(chordQuality) {
     const chordQualities = {
         '6/9': {
@@ -671,10 +671,12 @@ export function getChordQualitySpecs(chordQuality) {
                 [5, 0],
                 [8, 0],
             ],
-            chordScaleName: {
-                userDisplay: 'Major/Ionian',
-                programUse: 'major',
-            },
+            chordScaleName: [
+                {
+                    userDisplay: 'Major/Ionian',
+                    programUse: 'major',
+                },
+            ],
         },
         maj7: {
             chord: [
@@ -684,10 +686,16 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, 0],
                 [8, 0],
             ],
-            chordScaleName: {
-                userDisplay: 'Major/Ionian',
-                programUse: 'major',
-            },
+            chordScaleName: [
+                {
+                    userDisplay: 'Major/Ionian',
+                    programUse: 'major',
+                },
+                {
+                    userDisplay: 'Major Pentatonic',
+                    programUse: 'majorPentatonic',
+                },
+            ],
         },
         'min6/9': {
             chord: [
@@ -697,10 +705,12 @@ export function getChordQualitySpecs(chordQuality) {
                 [5, 0],
                 [8, 0],
             ],
-            chordScaleName: {
-                userDisplay: 'Melodic Minor',
-                programUse: 'melodicMinor',
-            },
+            chordScaleName: [
+                {
+                    userDisplay: 'Melodic Minor',
+                    programUse: 'melodicMinor',
+                },
+            ],
         },
         'min(maj7)': {
             chord: [
@@ -710,10 +720,12 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, 0],
                 [8, 0],
             ],
-            chordScaleName: {
-                userDisplay: 'Melodic Minor',
-                programUse: 'melodicMinor',
-            },
+            chordScaleName: [
+                {
+                    userDisplay: 'Melodic Minor',
+                    programUse: 'melodicMinor',
+                },
+            ],
         },
         min7: {
             chord: [
@@ -723,10 +735,12 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, -1],
                 [8, 0],
             ],
-            chordScaleName: {
-                userDisplay: 'Dorian',
-                programUse: 'dorian',
-            },
+            chordScaleName: [
+                {
+                    userDisplay: 'Dorian',
+                    programUse: 'dorian',
+                },
+            ],
         },
         7: {
             chord: [
@@ -736,10 +750,12 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, -1],
                 [8, 0],
             ],
-            chordScaleName: {
-                userDisplay: 'Mixolydian',
-                programUse: 'mixolydian',
-            },
+            chordScaleName: [
+                {
+                    userDisplay: 'Mixolydian',
+                    programUse: 'mixolydian',
+                },
+            ],
         },
         // dim7: {
         //     chord: [
@@ -758,10 +774,12 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, -1],
                 [8, -1],
             ],
-            chordScaleName: {
-                userDisplay: 'Locrian',
-                programUse: 'locrian',
-            },
+            chordScaleName: [
+                {
+                    userDisplay: 'Locrian',
+                    programUse: 'locrian',
+                },
+            ],
         },
         'min9(b5)': {
             chord: [
@@ -771,71 +789,13 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, -1],
                 [8, 0],
             ],
-            chordScaleName: {
-                userDisplay: 'Locrian 2',
-                programUse: 'locrian2',
-            },
+            chordScaleName: [
+                {
+                    userDisplay: 'Locrian 2',
+                    programUse: 'locrian2',
+                },
+            ],
         },
     };
     return chordQualities[chordQuality];
 }
-
-// export function getChordScales(chordQuality) {
-//     const chordQualities = {
-//         '6/9': {
-//             labels: {
-//                 userDisplay: ['Major/Ionian'],
-//                 programUse: ['major'],
-//             },
-//         },
-//         maj7: {
-//             labels: {
-//                 userDisplay: ['Major/Ionian'],
-//                 programUse: ['major'],
-//             },
-//         },
-//         'min6/9': {
-//             labels: {
-//                 userDisplay: ['Melodic Minor'],
-//                 programUse: ['melodicMinor'],
-//             },
-//         },
-//         'min(maj7)': {
-//             labels: {
-//                 userDisplay: ['Melodic Minor'],
-//                 programUse: ['melodicMinor'],
-//             },
-//         },
-//         min7: {
-//             labels: {
-//                 userDisplay: ['Dorian'],
-//                 programUse: ['dorian'],
-//             },
-//         },
-//         7: {
-//             labels: {
-//                 userDisplay: ['Mixolydian'],
-//                 programUse: ['mixolydian'],
-//             },
-//         },
-//         'min7(b5)': {
-//             labels: {
-//                 userDisplay: ['Locrian'],
-//                 programUse: ['locrian'],
-//             },
-//         },
-//         'min9(b5)': {
-//             labels: {
-//                 userDisplay: ['Locrian 2'],
-//                 programUse: ['locrian2'],
-//             },
-//         },
-//         // dim7: {
-//         //     labels: {
-//         //         userDisplay: ['Mixolydian'],
-//         //         programUse: ['mixolydian'],
-//         //     },
-//         // },
-//     };
-//     return chordQuality[chordQualities];
-// }

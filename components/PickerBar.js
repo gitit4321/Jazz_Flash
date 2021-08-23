@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Picker } from 'react-native';
+import { getFirstInternalScaleName } from '../pitch_data/pitchHandlers';
 
 const PickerBar = props => {
     const {
@@ -9,7 +10,8 @@ const PickerBar = props => {
         handleKeyChange,
         handleChordQChange,
         handleClefChange,
-        handleScaleTypeChange,
+        handleScaleOptionsChange,
+        handleInternalScaleNameChange,
     } = props;
 
     return (
@@ -52,11 +54,14 @@ const PickerBar = props => {
                         style={[styles.picker, styles.chordQpicker]}
                         itemStyle={{
                             height: 50,
-                            // width: 150,
                         }}
-                        onValueChange={(itemValue, itemIndex) =>
-                            handleChordQChange(itemValue)
-                        }
+                        onValueChange={(itemValue, itemIndex) => {
+                            handleChordQChange(itemValue);
+                            handleScaleOptionsChange(itemValue);
+                            handleInternalScaleNameChange(
+                                getFirstInternalScaleName(itemValue)
+                            );
+                        }}
                     >
                         <Picker.Item label="maj7" value="maj7" />
                         <Picker.Item label="min7" value="min7" />

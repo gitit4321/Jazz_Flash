@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Picker } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import SharpFlatRadioBtns from './SharpFlatRadioBtns';
 import ChordSpelling from './ChordSpelling';
 import ChordScale from './ChordScale';
@@ -14,14 +14,17 @@ const CardBack = props => {
         selectedChordQ,
         selectedClef,
         sharpsFlats,
-        scaleNameDisplay,
+        displayScalelName,
         selectedScaleType,
         internalScaleName,
+        scaleOptions,
         handleKeyChange,
         handleChordQChange,
         handleClefChange,
         handleSharpsFlatsChange,
         handleScaleTypeChange,
+        handleScaleOptionsChange,
+        handleInternalScaleNameChange,
     } = props;
 
     function parseSharpsOrFlats(key) {
@@ -44,17 +47,23 @@ const CardBack = props => {
                 selectedChordQ={selectedChordQ}
                 selectedClef={selectedClef}
                 selectedScaleType={selectedScaleType}
+                scaleOptions={scaleOptions}
                 handleKeyChange={handleKeyChange}
                 handleChordQChange={handleChordQChange}
                 handleClefChange={handleClefChange}
+                handleInternalScaleNameChange={handleInternalScaleNameChange}
                 handleScaleTypeChange={handleScaleTypeChange}
+                handleScaleOptionsChange={handleScaleOptionsChange}
             />
-            {/* <ScalePicker
+            <ScalePicker
                 selectedChordQ={selectedChordQ}
                 selectedScaleType={selectedScaleType}
+                scaleOptions={scaleOptions}
                 handleChordQChange={handleChordQChange}
                 handleScaleTypeChange={handleScaleTypeChange}
-            /> */}
+                handleScaleOptionsChange={handleScaleOptionsChange}
+                handleInternalScaleNameChange={handleInternalScaleNameChange}
+            />
             <SharpFlatRadioBtns
                 sharpsFlats={sharpsFlats}
                 handleSharpsFlatsChange={handleSharpsFlatsChange}
@@ -63,7 +72,7 @@ const CardBack = props => {
             <ScrollView>
                 <View style={styles.verticalContainer}>
                     <Text style={styles.sectionHeader}>
-                        {scaleNameDisplay} Scale
+                        {displayScalelName} Scale
                     </Text>
 
                     <ChordScale

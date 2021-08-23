@@ -6,7 +6,7 @@ import {
     getChordTreble,
     getChordBass,
     getVexAccidentalType,
-} from './pitch_data/pitchHandlers';
+} from '../pitch_data/pitchHandlers';
 
 const ChordSpelling = props => {
     let { tonic, chordQ, clef } = props;
@@ -18,8 +18,8 @@ const ChordSpelling = props => {
             : getChordTreble(tonic, chordQ);
 
     const [context, stave] = useScore({
-        contextSize: { x: 260, y: 100 }, // this determine the canvas size
-        staveOffset: { x: 5, y: -10 }, // this determine the starting point of the staff relative to top-left corner of canvas
+        contextSize: { x: 260, y: 110 }, // this determine the canvas size
+        staveOffset: { x: 5, y: 0 }, // this determine the starting point of the staff relative to top-left corner of canvas
         staveWidth: 250, // ofc, stave width
         clef: clef, // clef
     });

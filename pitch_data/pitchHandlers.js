@@ -1,9 +1,4 @@
-import {
-    majorScales,
-    getScaleSpecs,
-    getChordQualitySpecs,
-    getChordScales,
-} from './pitchData';
+import { majorScales, getScaleSpecs, getChordQualitySpecs } from './pitchData';
 
 // Returns a nested list containting pitch/range and relevant pitch alteration.
 // (Ex: [['c/4', 0], ['d/4', -1]]
@@ -31,7 +26,26 @@ export const getScaleBass = (key, scaleType) => {
     const { scale } = getScaleSpecs(scaleType);
     const baseScale = majorScales[key]['pitches'];
     const outScale = [];
-    const baseScaleBass = dropScaleOctave(baseScale);
+    const twoOctaveDropKeys = [
+        'Eb',
+        'E',
+        'F',
+        'F#',
+        'Gb',
+        'G',
+        'G#',
+        'Ab',
+        'A',
+        'A#',
+    ];
+
+    // drop base scale by one octave
+    let baseScaleBass = dropScaleOctave(baseScale);
+
+    // drop base scale once more if necessary (present in 'twoOctaveDropKeys')
+    if (twoOctaveDropKeys.includes(key)) {
+        baseScaleBass = dropScaleOctave(baseScaleBass);
+    }
 
     for (let i = 0; i < scale.length; i++) {
         let currentPitch = baseScaleBass[scale[i][0]][0];
@@ -70,7 +84,24 @@ export const getChordBass = (key, chordQuality) => {
     const { chord } = getChordQualitySpecs(chordQuality);
     const baseScale = majorScales[key]['pitches'];
     const outChord = [];
-    const baseScaleBass = dropScaleOctave(baseScale);
+    const twoOctaveDropKeys = [
+        'Eb',
+        'E',
+        'F',
+        'F#',
+        'Gb',
+        'G',
+        'G#',
+        'Ab',
+        'A',
+        'A#',
+    ];
+
+    let baseScaleBass = dropScaleOctave(baseScale);
+
+    if (twoOctaveDropKeys.includes(key)) {
+        baseScaleBass = dropScaleOctave(baseScaleBass);
+    }
 
     for (let i = 0; i < chord.length; i++) {
         let currentPitch = baseScaleBass[chord[i][0]][0];
@@ -90,11 +121,10 @@ export const getScaleName = chordQuality => {
     return chordScaleName['userDisplay'];
 };
 
-// Returns the chord scale title in human readable form
-export const getInternalScaleName = chordQuality => {
+// Returns the first (most commonly played) chord scale title in program readable form
+export const getFirstInternalScaleName = chordQuality => {
     const { chordScaleName } = getChordQualitySpecs(chordQuality);
-
-    return chordScaleName['programUse'];
+    return chordScaleName[0]['programUse'];
 };
 
 // return the approproate Vexflow accidental character corresponding to the inputted integer
@@ -116,7 +146,11 @@ export const getVexAccidentalType = accidental => {
     }
 };
 
-// Lowers this inputted scale data by one octave.
+export const getChordScaleOptions = chordQuality => {
+    const { chordScaleName } = getChordQualitySpecs(chordQuality);
+    return chordScaleName;
+};
+// Lowers this inputted scale data by one octave
 // Only for use in this module
 const dropScaleOctave = baseScale => {
     bassPitches = [];
