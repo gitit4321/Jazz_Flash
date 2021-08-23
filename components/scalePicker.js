@@ -1,10 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Picker } from 'react-native';
 
 const ScalePicker = props => {
-    const { scaleOptions, handleInternalScaleNameChange } = props;
+    const {
+        scaleOptions,
+        handleInternalScaleNameChange,
+        handleDisplayScaleNameChange,
+    } = props;
 
     const [selectedValue, setSelectedValue] = useState('major');
+    const values = [];
+    const labels = [];
+
+    for (let i = 0; i < scaleOptions.length; i++) {
+        values.push(scaleOptions[i].programUse);
+        labels.push(scaleOptions[i].userDisplay);
+    }
 
     return (
         <View style={styles.pickerContainer}>
@@ -17,6 +28,7 @@ const ScalePicker = props => {
                 onValueChange={(itemValue, itemIndex) => {
                     setSelectedValue(itemValue);
                     handleInternalScaleNameChange(itemValue);
+                    handleDisplayScaleNameChange(labels[itemIndex]);
                 }}
             >
                 {scaleOptions.map((scale, key) => {

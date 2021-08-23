@@ -1,18 +1,63 @@
 import React from 'react';
 import { StyleSheet, View, Picker } from 'react-native';
-import { getFirstInternalScaleName } from '../pitch_data/pitchHandlers';
+import {
+    getFirstInternalScaleName,
+    getAllChordScaleData,
+} from '../pitch_data/pitchHandlers';
 
 const PickerBar = props => {
     const {
         selectedKey,
         selectedChordQ,
         selectedClef,
+        scaleOptions,
+        displayScaleName,
         handleKeyChange,
         handleChordQChange,
         handleClefChange,
         handleScaleOptionsChange,
         handleInternalScaleNameChange,
+        handleDisplayScaleNameChange,
     } = props;
+
+    const allChords = getAllChordScaleData();
+    const chordIds = [0, 1, 2, 3, 4, 5, 6, 7];
+    const keys = [
+        'C',
+        'C#/Db',
+        'D',
+        'D#/Eb',
+        'E',
+        'F',
+        'F#/Gb',
+        'G',
+        'G#/Ab',
+        'A',
+        'A#/Bb',
+        'B',
+    ];
+
+    const chords = [
+        'maj7',
+        'min7',
+        '6/9',
+        '7',
+        'min6/9',
+        'min(maj7)',
+        'min7(b5)',
+        'min9(b5)',
+    ];
+
+    const primaryChordScales = [
+        'Major/Ionian',
+        'Dorian',
+        'Major/Ionian',
+        'Mixolydian',
+        'Melodic Minor',
+        'Melodic Minor',
+        'Locrian',
+        'Locrian 2',
+    ];
 
     return (
         <View
@@ -34,18 +79,11 @@ const PickerBar = props => {
                             handleKeyChange(itemValue)
                         }
                     >
-                        <Picker.Item label="C" value="C" />
-                        <Picker.Item label="C#/Db" value="C#/Db" />
-                        <Picker.Item label="D" value="D" />
-                        <Picker.Item label="D#/Eb" value="D#/Eb" />
-                        <Picker.Item label="E" value="E" />
-                        <Picker.Item label="F" value="F" />
-                        <Picker.Item label="F#/Gb" value="F#/Gb" />
-                        <Picker.Item label="G" value="G" />
-                        <Picker.Item label="G#/Ab" value="G#/Ab" />
-                        <Picker.Item label="A" value="A" />
-                        <Picker.Item label="A#/Bb" value="A#/Bb" />
-                        <Picker.Item label="B" value="B" />
+                        {keys.map((k, key) => {
+                            return (
+                                <Picker.Item key={key} label={k} value={k} />
+                            );
+                        })}
                     </Picker>
                 </View>
                 <View style={styles.pickerContainer}>
@@ -61,16 +99,20 @@ const PickerBar = props => {
                             handleInternalScaleNameChange(
                                 getFirstInternalScaleName(itemValue)
                             );
+                            handleDisplayScaleNameChange(
+                                primaryChordScales[itemIndex]
+                            );
                         }}
                     >
-                        <Picker.Item label="maj7" value="maj7" />
-                        <Picker.Item label="min7" value="min7" />
-                        <Picker.Item label="6/9" value="6/9" />
-                        <Picker.Item label="min6/9" value="min6/9" />
-                        <Picker.Item label="min(maj7)" value="min(maj7)" />
-                        <Picker.Item label="7" value="7" />
-                        <Picker.Item label="min7(b5)" value="min7(b5)" />
-                        <Picker.Item label="min9(b5)" value="min9(b5)" />
+                        {chords.map((chord, key) => {
+                            return (
+                                <Picker.Item
+                                    key={key}
+                                    label={chord}
+                                    value={chord}
+                                />
+                            );
+                        })}
                     </Picker>
                 </View>
                 <View style={styles.pickerContainer}>

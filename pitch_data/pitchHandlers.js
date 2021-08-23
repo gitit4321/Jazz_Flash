@@ -1,4 +1,5 @@
-import { majorScales, getScaleSpecs, getChordQualitySpecs } from './pitchData';
+import { majorScales, chordQualities, scaleTypes } from './pitchData';
+// getChordQualitySpecs, getScaleSpecs,
 
 // Returns a nested list containting pitch/range and relevant pitch alteration.
 // (Ex: [['c/4', 0], ['d/4', -1]]
@@ -114,13 +115,6 @@ export const getChordBass = (key, chordQuality) => {
     return outChord;
 };
 
-// Returns the chord scale title in human readable form
-export const getScaleName = chordQuality => {
-    const { chordScaleName } = getChordQualitySpecs(chordQuality);
-
-    return chordScaleName['userDisplay'];
-};
-
 // Returns the first (most commonly played) chord scale title in program readable form
 export const getFirstInternalScaleName = chordQuality => {
     const { chordScaleName } = getChordQualitySpecs(chordQuality);
@@ -146,9 +140,24 @@ export const getVexAccidentalType = accidental => {
     }
 };
 
+// returns an array of all viable scale names (both for user display and internal program use)
 export const getChordScaleOptions = chordQuality => {
     const { chordScaleName } = getChordQualitySpecs(chordQuality);
     return chordScaleName;
+};
+
+export const getAllChordScaleData = () => {
+    return chordQualities;
+};
+
+// returns the specified chord quality attributes
+const getChordQualitySpecs = chordQuality => {
+    return chordQualities[chordQuality];
+};
+
+// returns scale/mode alterations
+const getScaleSpecs = scaleType => {
+    return scaleTypes[scaleType];
 };
 // Lowers this inputted scale data by one octave
 // Only for use in this module

@@ -3,8 +3,8 @@ import { View, StyleSheet } from 'react-native';
 import { containerStyles } from '../styles/index';
 import Card from './Card';
 import {
-    getScaleName,
     getChordScaleOptions,
+    getAllChordScaleData,
 } from '../pitch_data/pitchHandlers';
 
 const Main = () => {
@@ -52,12 +52,43 @@ const Main = () => {
     };
 
     // scale display variables
-    const displayScalelName = getScaleName(selectedChordQ);
-    const [internalScaleName, setInternalScaleName] = useState('major');
+    const [displayScaleName, setDisplayScaleName] = useState('Major/Ionian');
+    const handleDisplayScaleNameChange = scaleName => {
+        setDisplayScaleName(scaleName);
+    };
+    //getScaleName(selectedChordQ);
 
+    const [internalScaleName, setInternalScaleName] = useState('major');
     const handleInternalScaleNameChange = scaleName => {
         setInternalScaleName(scaleName);
     };
+
+    // let allChords = getAllChordScaleData();
+    // let ids = [];
+    // let displayNames = [];
+    // console.log(
+    //     '--------------------------------------------------------------------'
+    // );
+
+    // for (const chord in allChords) {
+    //     console.log(chord);
+    //     let chords = allChords[chord];
+    //     for (const [key, value] of Object.entries(chords)) {
+    //         // console.log('KEY: ', key);
+    //         // console.log('VALUE: ', value);
+    //         if (key === 'id') {
+    //             ids.push(value);
+    //         }
+    //         if (key === 'chordScaleName') {
+    //             displayNames.push(value);
+    //         }
+    // console.log('IDS: ', ids);
+    // console.log('displayNames: ', displayNames);
+    // for (const id in chords) {
+    //     console.log(chords[id]);
+    // }
+    //     }
+    // }
 
     return (
         <View style={styles.cardContainer}>
@@ -67,7 +98,7 @@ const Main = () => {
                 selectedClef={selectedClef}
                 selectedScaleType={selectedScaleType}
                 sharpsFlats={sharpsFlats}
-                displayScalelName={displayScalelName}
+                displayScaleName={displayScaleName}
                 internalScaleName={internalScaleName}
                 scaleOptions={scaleOptions}
                 handleKeyChange={handleKeyChange}
@@ -77,6 +108,7 @@ const Main = () => {
                 handleScaleTypeChange={handleScaleTypeChange}
                 handleScaleOptionsChange={handleScaleOptionsChange}
                 handleInternalScaleNameChange={handleInternalScaleNameChange}
+                handleDisplayScaleNameChange={handleDisplayScaleNameChange}
             />
         </View>
     );

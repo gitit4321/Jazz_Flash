@@ -14,7 +14,7 @@ const CardBack = props => {
         selectedChordQ,
         selectedClef,
         sharpsFlats,
-        displayScalelName,
+        displayScaleName,
         selectedScaleType,
         internalScaleName,
         scaleOptions,
@@ -25,6 +25,7 @@ const CardBack = props => {
         handleScaleTypeChange,
         handleScaleOptionsChange,
         handleInternalScaleNameChange,
+        handleDisplayScaleNameChange,
     } = props;
 
     function parseSharpsOrFlats(key) {
@@ -48,12 +49,14 @@ const CardBack = props => {
                 selectedClef={selectedClef}
                 selectedScaleType={selectedScaleType}
                 scaleOptions={scaleOptions}
+                displayScaleName={displayScaleName}
                 handleKeyChange={handleKeyChange}
                 handleChordQChange={handleChordQChange}
                 handleClefChange={handleClefChange}
                 handleInternalScaleNameChange={handleInternalScaleNameChange}
                 handleScaleTypeChange={handleScaleTypeChange}
                 handleScaleOptionsChange={handleScaleOptionsChange}
+                handleDisplayScaleNameChange={handleDisplayScaleNameChange}
             />
             <ScalePicker
                 selectedChordQ={selectedChordQ}
@@ -63,6 +66,7 @@ const CardBack = props => {
                 handleScaleTypeChange={handleScaleTypeChange}
                 handleScaleOptionsChange={handleScaleOptionsChange}
                 handleInternalScaleNameChange={handleInternalScaleNameChange}
+                handleDisplayScaleNameChange={handleDisplayScaleNameChange}
             />
             <SharpFlatRadioBtns
                 sharpsFlats={sharpsFlats}
@@ -72,7 +76,8 @@ const CardBack = props => {
             <ScrollView>
                 <View style={styles.verticalContainer}>
                     <Text style={styles.sectionHeader}>
-                        {displayScalelName} Scale
+                        {parseSharpsOrFlats(selectedKey)} {displayScaleName}{' '}
+                        Scale
                     </Text>
 
                     <ChordScale
@@ -140,7 +145,6 @@ const styles = StyleSheet.create({
     chordSymbol: {
         fontSize: 50,
         fontWeight: '500',
-        textDecorationLine: 'underline',
         marginVertical: 14,
     },
     verticalContainer: {

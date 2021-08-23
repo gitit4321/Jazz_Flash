@@ -334,468 +334,459 @@ export const majorScales = {
     },
 };
 
-// returns scale/mode alterations
-export function getScaleSpecs(scaleType) {
-    // Scale arrays contain a nested list for each scale degree to include in the new scale from the base (major scale)
-    // where each nested list has the specified scale degree at index 0 and the necessary alteration at index 1.
-    const scaleTypes = {
-        ionian: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, 0],
-                [3, 0],
-                [4, 0],
-                [5, 0],
-                [6, 0],
-                [7, 0],
-            ],
-        },
-        dorian: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, -1],
-                [3, 0],
-                [4, 0],
-                [5, 0],
-                [6, -1],
-                [7, 0],
-            ],
-        },
-        phrygian: {
-            scale: [
-                [0, 0],
-                [1, -1],
-                [2, -1],
-                [3, 0],
-                [4, 0],
-                [5, -1],
-                [6, -1],
-                [7, 0],
-            ],
-        },
-        lydian: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, 0],
-                [3, 1],
-                [4, 0],
-                [5, 0],
-                [6, 0],
-                [7, 0],
-            ],
-        },
-        mixolydian: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, 0],
-                [3, 0],
-                [4, 0],
-                [5, 0],
-                [6, -1],
-                [7, 0],
-            ],
-        },
-        aeolian: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, -1],
-                [3, 0],
-                [4, 0],
-                [5, -1],
-                [6, -1],
-                [7, 0],
-            ],
-        },
-        locrian: {
-            scale: [
-                [0, 0],
-                [1, -1],
-                [2, -1],
-                [3, 0],
-                [4, -1],
-                [5, -1],
-                [6, -1],
-                [7, 0],
-            ],
-        },
-        locrian2: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, -1],
-                [3, 0],
-                [4, -1],
-                [5, -1],
-                [6, -1],
-                [7, 0],
-            ],
-        },
-        major: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, 0],
-                [3, 0],
-                [4, 0],
-                [5, 0],
-                [6, 0],
-                [7, 0],
-            ],
-        },
-        melodicMinor: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, -1],
-                [3, 0],
-                [4, 0],
-                [5, 0],
-                [6, 0],
-                [7, 0],
-            ],
-        },
-        harmonicMinor: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, -1],
-                [3, 0],
-                [4, 0],
-                [5, -1],
-                [6, 0],
-                [7, 0],
-            ],
-        },
-        harmonicMajor: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2],
-                [3, 0],
-                [4, 0],
-                [5, -1],
-                [6, 0],
-                [7, 0],
-            ],
-        },
-        naturalMinor: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, -1],
-                [3, 0],
-                [4, 0],
-                [5, -1],
-                [6, -1],
-                [7, 0],
-            ],
-        },
-        wholeTone: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, 0],
-                [3, 1],
-                [4, 1],
-                [6, -1],
-                [7, 0],
-            ],
-        },
-        majorPentatonic: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, 0],
-                [4, 0],
-                [5, 0],
-                [7, 0],
-            ],
-        },
-        minorPentatonic: {
-            scale: [
-                [0, 0],
-                [2, -1],
-                [3, 0],
-                [4, 0],
-                [6, -1],
-                [7, 0],
-            ],
-        },
+// Scale arrays contain a nested list for each scale degree to include in the new scale from the base (major scale)
+// where each nested list has the specified scale degree at index 0 and the necessary alteration at index 1.
+export const scaleTypes = {
+    ionian: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, 0],
+            [3, 0],
+            [4, 0],
+            [5, 0],
+            [6, 0],
+            [7, 0],
+        ],
+    },
+    dorian: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, -1],
+            [3, 0],
+            [4, 0],
+            [5, 0],
+            [6, -1],
+            [7, 0],
+        ],
+    },
+    phrygian: {
+        scale: [
+            [0, 0],
+            [1, -1],
+            [2, -1],
+            [3, 0],
+            [4, 0],
+            [5, -1],
+            [6, -1],
+            [7, 0],
+        ],
+    },
+    lydian: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, 0],
+            [3, 1],
+            [4, 0],
+            [5, 0],
+            [6, 0],
+            [7, 0],
+        ],
+    },
+    mixolydian: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, 0],
+            [3, 0],
+            [4, 0],
+            [5, 0],
+            [6, -1],
+            [7, 0],
+        ],
+    },
+    aeolian: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, -1],
+            [3, 0],
+            [4, 0],
+            [5, -1],
+            [6, -1],
+            [7, 0],
+        ],
+    },
+    locrian: {
+        scale: [
+            [0, 0],
+            [1, -1],
+            [2, -1],
+            [3, 0],
+            [4, -1],
+            [5, -1],
+            [6, -1],
+            [7, 0],
+        ],
+    },
+    locrian2: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, -1],
+            [3, 0],
+            [4, -1],
+            [5, -1],
+            [6, -1],
+            [7, 0],
+        ],
+    },
+    major: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, 0],
+            [3, 0],
+            [4, 0],
+            [5, 0],
+            [6, 0],
+            [7, 0],
+        ],
+    },
+    melodicMinor: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, -1],
+            [3, 0],
+            [4, 0],
+            [5, 0],
+            [6, 0],
+            [7, 0],
+        ],
+    },
+    harmonicMinor: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, -1],
+            [3, 0],
+            [4, 0],
+            [5, -1],
+            [6, 0],
+            [7, 0],
+        ],
+    },
+    harmonicMajor: {
+        scale: [[0, 0], [1, 0], [2], [3, 0], [4, 0], [5, -1], [6, 0], [7, 0]],
+    },
+    naturalMinor: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, -1],
+            [3, 0],
+            [4, 0],
+            [5, -1],
+            [6, -1],
+            [7, 0],
+        ],
+    },
+    wholeTone: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, 0],
+            [3, 1],
+            [4, 1],
+            [6, -1],
+            [7, 0],
+        ],
+    },
+    majorPentatonic: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, 0],
+            [4, 0],
+            [5, 0],
+            [7, 0],
+        ],
+    },
+    minorPentatonic: {
+        scale: [
+            [0, 0],
+            [2, -1],
+            [3, 0],
+            [4, 0],
+            [6, -1],
+            [7, 0],
+        ],
+    },
 
-        traditionalBlues: {
-            scale: [
-                [0, 0],
-                [2, -1],
-                [3, 0],
-                [3, 1],
-                [4, 0],
-                [6, -1],
-                [7, 0],
-            ],
-        },
+    traditionalBlues: {
+        scale: [
+            [0, 0],
+            [2, -1],
+            [3, 0],
+            [3, 1],
+            [4, 0],
+            [6, -1],
+            [7, 0],
+        ],
+    },
 
-        majorBebop: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, 0],
-                [3, 0],
-                [4, 0],
-                [4, 1],
-                [5, 0],
-                [6, 0],
-                [7, 0],
-            ],
-        },
+    majorBebop: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, 0],
+            [3, 0],
+            [4, 0],
+            [4, 1],
+            [5, 0],
+            [6, 0],
+            [7, 0],
+        ],
+    },
 
-        dominantBebop: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, 0],
-                [3, 0],
-                [4, 0],
-                [5, 0],
-                [6, -1],
-                [6, 0],
-                [7, 0],
-            ],
-        },
+    dominantBebop: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, 0],
+            [3, 0],
+            [4, 0],
+            [5, 0],
+            [6, -1],
+            [6, 0],
+            [7, 0],
+        ],
+    },
 
-        minorBebop: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, -1],
-                [3, 0],
-                [4, 0],
-                [5, 0],
-                [6, -1],
-                [6, 0],
-                [7, 0],
-            ],
-        },
+    minorBebop: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, -1],
+            [3, 0],
+            [4, 0],
+            [5, 0],
+            [6, -1],
+            [6, 0],
+            [7, 0],
+        ],
+    },
 
-        // NEED TO BE ABLE TO HANDLE SHARPS AND FLATS
-        // wholeHalfDiminished: {
-        //     pitchCount: 9,
-        //     alterationTypes: -1,
-        //     alterationPitches: [2, 6],
-        // },
+    // NEED TO BE ABLE TO HANDLE SHARPS AND FLATS
+    // wholeHalfDiminished: {
+    //     pitchCount: 9,
+    //     alterationTypes: -1,
+    //     alterationPitches: [2, 6],
+    // },
 
-        // NEED TO BE ABLE TO HANDLE SHARPS AND FLATS
-        // halfWholeDiminished: {
-        //     pitchCount: 9,
-        //     alterationTypes: -1,
-        //     alterationPitches: [2, 6],
-        // },
+    // NEED TO BE ABLE TO HANDLE SHARPS AND FLATS
+    // halfWholeDiminished: {
+    //     pitchCount: 9,
+    //     alterationTypes: -1,
+    //     alterationPitches: [2, 6],
+    // },
 
-        // ASK POP HOW TO FRAME THIS... I.E. AS IF SCALE DEGREE 7 IS THE TONIC?
-        // superLocrian: {
-        //     pitchCount: 8,
-        //     alterationTypes: -1,
-        //     alterationPitches: [1, 2, 3, 4, 5, 6],
-        // },
-        // // ASK POP HOW TO FRAME THIS... I.E. AS IF SCALE DEGREE 7 IS THE TONIC?
-        // superLocrian: {
+    // ASK POP HOW TO FRAME THIS... I.E. AS IF SCALE DEGREE 7 IS THE TONIC?
+    // superLocrian: {
+    //     pitchCount: 8,
+    //     alterationTypes: -1,
+    //     alterationPitches: [1, 2, 3, 4, 5, 6],
+    // },
+    // // ASK POP HOW TO FRAME THIS... I.E. AS IF SCALE DEGREE 7 IS THE TONIC?
+    // superLocrian: {
 
-        //     pitchCount: 8,
-        //     alterationTypes: -1,
-        //     alterationPitches: [1, 2, 3, 4, 5, 6],
-        // },
+    //     pitchCount: 8,
+    //     alterationTypes: -1,
+    //     alterationPitches: [1, 2, 3, 4, 5, 6],
+    // },
 
-        // ASK POP HOW TO FRAME THIS... I.E. AS IF SCALE DEGREE 7 IS THE TONIC?
-        // mode2HarmonicMinor: {
-        //     scale: [
-        //         [1, 0],
-        //         [2, -1],
-        //         [3, 0],
-        //         [4, 0],
-        //         [5, -1],
-        //         [6, 0],
-        //         [7, 0],
-        //         [8, 0],
-        //     ],
-        //     pitchCount: 8,
-        //     alterationTypes: -1,
-        //     alterationPitches: [1, 2, 3, 4, 5, 6],
-        // },
+    // ASK POP HOW TO FRAME THIS... I.E. AS IF SCALE DEGREE 7 IS THE TONIC?
+    // mode2HarmonicMinor: {
+    //     scale: [
+    //         [1, 0],
+    //         [2, -1],
+    //         [3, 0],
+    //         [4, 0],
+    //         [5, -1],
+    //         [6, 0],
+    //         [7, 0],
+    //         [8, 0],
+    //     ],
+    //     pitchCount: 8,
+    //     alterationTypes: -1,
+    //     alterationPitches: [1, 2, 3, 4, 5, 6],
+    // },
 
-        // ASK POP HOW TO FRAME THIS... I.E. AS IF SCALE DEGREE 7 IS THE TONIC?
-        // mode5HarmonicMinor: {
-        //     scale: [
-        //         [4, 0],
-        //         [5, -1],
-        //         [6, 0],
-        //         [7, 0],
-        //         [8, 0],
-        //         [9, -1],
-        //         [10, 0],
-        //         [11, 0],
-        //     ],
-        //     pitchCount: 8,
-        //     alterationTypes: -1,
-        //     alterationPitches: [1, 2, 3, 4, 5, 6],
-        // },
+    // ASK POP HOW TO FRAME THIS... I.E. AS IF SCALE DEGREE 7 IS THE TONIC?
+    // mode5HarmonicMinor: {
+    //     scale: [
+    //         [4, 0],
+    //         [5, -1],
+    //         [6, 0],
+    //         [7, 0],
+    //         [8, 0],
+    //         [9, -1],
+    //         [10, 0],
+    //         [11, 0],
+    //     ],
+    //     pitchCount: 8,
+    //     alterationTypes: -1,
+    //     alterationPitches: [1, 2, 3, 4, 5, 6],
+    // },
 
-        lydianDominant: {
-            scale: [
-                [0, 0],
-                [1, 0],
-                [2, 0],
-                [3, 1],
-                [4, 0],
-                [5, 0],
-                [6, -1],
-                [7, 0],
-            ],
-        },
-    };
-    // console.log(scaleTypes[scaleType]);
-    return scaleTypes[scaleType];
-}
+    lydianDominant: {
+        scale: [
+            [0, 0],
+            [1, 0],
+            [2, 0],
+            [3, 1],
+            [4, 0],
+            [5, 0],
+            [6, -1],
+            [7, 0],
+        ],
+    },
+};
 
-// returns the specified chord quality attributes
-export function getChordQualitySpecs(chordQuality) {
-    const chordQualities = {
-        '6/9': {
-            chord: [
-                [0, 0],
-                [2, 0],
-                [4, 0],
-                [5, 0],
-                [8, 0],
-            ],
-            chordScaleName: [
-                {
-                    userDisplay: 'Major/Ionian',
-                    programUse: 'major',
-                },
-            ],
-        },
-        maj7: {
-            chord: [
-                [0, 0],
-                [2, 0],
-                [4, 0],
-                [6, 0],
-                [8, 0],
-            ],
-            chordScaleName: [
-                {
-                    userDisplay: 'Major/Ionian',
-                    programUse: 'major',
-                },
-                {
-                    userDisplay: 'Major Pentatonic',
-                    programUse: 'majorPentatonic',
-                },
-            ],
-        },
-        'min6/9': {
-            chord: [
-                [0, 0],
-                [2, -1],
-                [4, 0],
-                [5, 0],
-                [8, 0],
-            ],
-            chordScaleName: [
-                {
-                    userDisplay: 'Melodic Minor',
-                    programUse: 'melodicMinor',
-                },
-            ],
-        },
-        'min(maj7)': {
-            chord: [
-                [0, 0],
-                [2, -1],
-                [4, 0],
-                [6, 0],
-                [8, 0],
-            ],
-            chordScaleName: [
-                {
-                    userDisplay: 'Melodic Minor',
-                    programUse: 'melodicMinor',
-                },
-            ],
-        },
-        min7: {
-            chord: [
-                [0, 0],
-                [2, -1],
-                [4, 0],
-                [6, -1],
-                [8, 0],
-            ],
-            chordScaleName: [
-                {
-                    userDisplay: 'Dorian',
-                    programUse: 'dorian',
-                },
-            ],
-        },
-        7: {
-            chord: [
-                [0, 0],
-                [2, 0],
-                [4, 0],
-                [6, -1],
-                [8, 0],
-            ],
-            chordScaleName: [
-                {
-                    userDisplay: 'Mixolydian',
-                    programUse: 'mixolydian',
-                },
-            ],
-        },
-        // dim7: {
-        //     chord: [
-        //         [0, 0],
-        //         [2, -1],
-        //         [3, 1],
-        //         [5, 0],
-        //     ],
+// chord quaities each have an id, pitch/accidental alterations, and an array of viable chord scale names.
+export const chordQualities = {
+    '6/9': {
+        id: 0,
+        chord: [
+            [0, 0],
+            [2, 0],
+            [4, 0],
+            [5, 0],
+            [8, 0],
+        ],
+        chordScaleName: [
+            {
+                userDisplay: 'Major/Ionian',
+                programUse: 'major',
+            },
+        ],
+    },
+    maj7: {
+        id: 1,
+        chord: [
+            [0, 0],
+            [2, 0],
+            [4, 0],
+            [6, 0],
+            [8, 0],
+        ],
+        chordScaleName: [
+            {
+                userDisplay: 'Major/Ionian',
+                programUse: 'major',
+            },
+            {
+                userDisplay: 'Major Pentatonic',
+                programUse: 'majorPentatonic',
+            },
+        ],
+    },
+    'min6/9': {
+        id: 2,
+        chord: [
+            [0, 0],
+            [2, -1],
+            [4, 0],
+            [5, 0],
+            [8, 0],
+        ],
+        chordScaleName: [
+            {
+                userDisplay: 'Melodic Minor',
+                programUse: 'melodicMinor',
+            },
+        ],
+    },
+    'min(maj7)': {
+        id: 3,
+        chord: [
+            [0, 0],
+            [2, -1],
+            [4, 0],
+            [6, 0],
+            [8, 0],
+        ],
+        chordScaleName: [
+            {
+                userDisplay: 'Melodic Minor',
+                programUse: 'melodicMinor',
+            },
+        ],
+    },
+    min7: {
+        id: 4,
+        chord: [
+            [0, 0],
+            [2, -1],
+            [4, 0],
+            [6, -1],
+            [8, 0],
+        ],
+        chordScaleName: [
+            {
+                userDisplay: 'Dorian',
+                programUse: 'dorian',
+            },
+        ],
+    },
+    7: {
+        id: 5,
+        chord: [
+            [0, 0],
+            [2, 0],
+            [4, 0],
+            [6, -1],
+            [8, 0],
+        ],
+        chordScaleName: [
+            {
+                userDisplay: 'Mixolydian',
+                programUse: 'mixolydian',
+            },
+        ],
+    },
+    // dim7: {
+    //     chord: [
+    //         [0, 0],
+    //         [2, -1],
+    //         [3, 1],
+    //         [5, 0],
+    //     ],
 
-        // },
-        'min7(b5)': {
-            chord: [
-                [0, 0],
-                [2, -1],
-                [4, -1],
-                [6, -1],
-                [8, -1],
-            ],
-            chordScaleName: [
-                {
-                    userDisplay: 'Locrian',
-                    programUse: 'locrian',
-                },
-            ],
-        },
-        'min9(b5)': {
-            chord: [
-                [0, 0],
-                [2, -1],
-                [4, -1],
-                [6, -1],
-                [8, 0],
-            ],
-            chordScaleName: [
-                {
-                    userDisplay: 'Locrian 2',
-                    programUse: 'locrian2',
-                },
-            ],
-        },
-    };
-    return chordQualities[chordQuality];
-}
+    // },
+    'min7(b5)': {
+        id: 6,
+        chord: [
+            [0, 0],
+            [2, -1],
+            [4, -1],
+            [6, -1],
+            [8, -1],
+        ],
+        chordScaleName: [
+            {
+                userDisplay: 'Locrian',
+                programUse: 'locrian',
+            },
+        ],
+    },
+    'min9(b5)': {
+        id: 7,
+        chord: [
+            [0, 0],
+            [2, -1],
+            [4, -1],
+            [6, -1],
+            [8, 0],
+        ],
+        chordScaleName: [
+            {
+                userDisplay: 'Locrian 2',
+                programUse: 'locrian2',
+            },
+        ],
+    },
+};
