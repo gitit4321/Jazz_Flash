@@ -2,13 +2,20 @@ import React from 'react';
 import { View } from 'react-native';
 import { useScore } from 'react-native-vexflow';
 import Vex from 'vexflow';
-import { pitchData } from './pitch_data/pitchData';
+import {
+    getScaleTreble,
+    getScaleBass,
+    getVexAccidentalType,
+} from './pitch_data/pitchHandlers';
 
 const ChordScale = props => {
-    let { tonic, chordQ, clef } = props;
+    let { tonic, selectedScaleType, clef } = props;
     clef = clef.toLowerCase();
-    const noteData = pitchData[tonic][chordQ]['scaleData'][clef];
-    let accidentalType = pitchData[tonic]['accidentalType'];
+
+    const noteData =
+        clef === 'bass'
+            ? getScaleBass(tonic, selectedScaleType)
+            : getScaleTreble(tonic, selectedScaleType);
 
     const [context, stave] = useScore({
         contextSize: { x: 300, y: 100 }, // this determine the canvas size
@@ -19,31 +26,39 @@ const ChordScale = props => {
 
     const VF = Vex.Flow;
     let notes = [];
+    let beatCount = 0;
 
-    for (let i = 0; i < noteData.pitchCount; i++) {
-        if (noteData.pitches[i][1] == 1) {
+    for (let i = 0; i < noteData.length; i++) {
+        if (noteData[i][1] !== 0) {
             notes.push(
                 new VF.StaveNote({
                     clef: clef,
-                    keys: [noteData.pitches[i][0]],
+                    keys: [noteData[i][0]],
                     duration: 'w',
-                }).addAccidental(0, new VF.Accidental(accidentalType))
+                }).addAccidental(
+                    0,
+                    new VF.Accidental(getVexAccidentalType(noteData[i][1]))
+                )
             );
         } else {
             notes.push(
                 new VF.StaveNote({
                     clef: clef,
-                    keys: [noteData.pitches[i][0]],
+                    keys: [noteData[i][0]],
                     duration: 'w',
                 })
             );
         }
+        beatCount++;
     }
 
-    let voice = new VF.Voice({ num_beats: 32, beat_value: 4 });
+    // multiply beatcount by 4 to accomodate each note rendering as a whole note (4 beats)
+    beatCount = beatCount * 4;
+
+    let voice = new VF.Voice({ num_beats: beatCount, beat_value: 4 });
     voice.addTickables(notes);
 
-    // Format and justify the notes to 200 pixels.
+    // Format and justify the notes to 270 pixels.
     let formatter = new VF.Formatter().joinVoices([voice]).format([voice], 270);
     voice.draw(context, stave);
 

@@ -1,40 +1,39 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Picker } from 'react-native';
 import SharpFlatRadioBtns from './SharpFlatRadioBtns';
 import ChordSpelling from './ChordSpelling';
 import ChordScale from './ChordScale';
-import GrandStaff from './GrandStaff';
+// import GrandStaff from './GrandStaff';
 import ListenBtn from './ListenBtn';
 import PickerBar from './PickerBar';
 
 const CardBack = props => {
-    let tonic = props.tonic;
+    const {
+        selectedKey,
+        selectedChordQ,
+        selectedClef,
+        selectedScaleType,
+        sharpsFlats,
+        handleKeyChange,
+        handleChordQChange,
+        handleClefChange,
+        handleSharpsFlatsChange,
+        handleScaleTypeChange,
+    } = props;
 
-    // pickers
-    const [selectedKey, setSelectedKey] = useState('C');
-    const [selectedChordQ, setSelectedChordQ] = useState('maj7');
-    const [selectedClef, setSelectedClef] = useState('Treble');
-
-    const handleKeyChange = c => {
-        setSelectedKey(c);
-    };
-    const handleChordQChange = c => {
-        setSelectedChordQ(c);
-    };
-    const handleClefChange = c => {
-        setSelectedClef(c);
-    };
-
-    // radio btns
-    const [sharpsFlats, setSharpsFlats] = useState('Flats');
-    const handleSharpsFlatsChange = sf => {
-        setShartpsFlats(c);
-    };
+    function parseSharpsOrFlats(key) {
+        if (key.length > 1) {
+            let splitKeyName = key.split('/');
+            return sharpsFlats === 'Sharps' ? splitKeyName[0] : splitKeyName[1];
+        } else {
+            return key;
+        }
+    }
 
     return (
         <View style={styles.primaryContainer}>
             <Text style={styles.chordSymbol}>
-                {selectedKey}
+                {parseSharpsOrFlats(selectedKey)}
                 {selectedChordQ}
             </Text>
             <PickerBar
@@ -53,8 +52,9 @@ const CardBack = props => {
                 <View style={styles.verticalContainer}>
                     <Text style={styles.sectionHeader}>Chord Scale</Text>
                     <ChordScale
-                        tonic={selectedKey}
+                        tonic={parseSharpsOrFlats(selectedKey)}
                         chordQ={selectedChordQ}
+                        selectedScaleType={selectedScaleType}
                         clef={selectedClef}
                     />
                     <ListenBtn title="listen" />
@@ -63,7 +63,7 @@ const CardBack = props => {
                 <View style={styles.verticalContainer}>
                     <Text style={styles.sectionHeader}>Chord Spelling</Text>
                     <ChordSpelling
-                        tonic={selectedKey}
+                        tonic={parseSharpsOrFlats(selectedKey)}
                         chordQ={selectedChordQ}
                         clef={selectedClef}
                     />
@@ -75,22 +75,22 @@ const CardBack = props => {
                         <Text style={styles.sectionHeader}>
                             5/9 Plane Voicing
                         </Text>
-                        <GrandStaff
-                            tonic={selectedKey}
+                        {/* <GrandStaff
+                            tonic={parseSharpsOrFlats(selectedKey)}
                             chordQ={selectedChordQ}
                             voicingType="59"
-                        />
+                        /> */}
                         <ListenBtn title="listen" />
                     </View>
                     <View style={[styles.verticalContainer, styles.grandStaff]}>
                         <Text style={styles.sectionHeader}>
                             Rootless CED Voicing
                         </Text>
-                        <GrandStaff
-                            tonic={selectedKey}
+                        {/* <GrandStaff
+                            tonic={parseSharpsOrFlats(selectedKey)}
                             chordQ={selectedChordQ}
                             voicingType="CED"
-                        />
+                        /> */}
                         <ListenBtn title="listen" />
                     </View>
                 </View>

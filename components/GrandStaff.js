@@ -2,12 +2,18 @@ import React from 'react';
 import { View } from 'react-native';
 import { useGrandStaff } from 'react-native-vexflow';
 import Vex from 'vexflow';
-import { pitchData } from './pitch_data/pitchData';
+import {
+    getChordTreble,
+    getChordBass,
+    getVexAccidentalType,
+} from './pitch_data/pitchHandlers';
 
 const GrandStaff = props => {
     let { tonic, chordQ, voicingType } = props;
+
     const fingeringType =
         voicingType === '59' ? 'planeVoicing59Data' : 'rootlessCEDVoicing';
+
     const noteData = pitchData[tonic][chordQ][fingeringType];
     let accidentalType = pitchData[tonic]['accidentalType'];
 
