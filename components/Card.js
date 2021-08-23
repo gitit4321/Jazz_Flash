@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, Picker } from 'react-native';
 import SharpFlatRadioBtns from './SharpFlatRadioBtns';
 import ChordSpelling from './ChordSpelling';
@@ -6,14 +6,17 @@ import ChordScale from './ChordScale';
 // import GrandStaff from './GrandStaff';
 import ListenBtn from './ListenBtn';
 import PickerBar from './PickerBar';
+import ScalePicker from './ScalePicker';
 
 const CardBack = props => {
     const {
         selectedKey,
         selectedChordQ,
         selectedClef,
-        selectedScaleType,
         sharpsFlats,
+        scaleNameDisplay,
+        selectedScaleType,
+        internalScaleName,
         handleKeyChange,
         handleChordQChange,
         handleClefChange,
@@ -40,28 +43,44 @@ const CardBack = props => {
                 selectedKey={selectedKey}
                 selectedChordQ={selectedChordQ}
                 selectedClef={selectedClef}
+                selectedScaleType={selectedScaleType}
                 handleKeyChange={handleKeyChange}
                 handleChordQChange={handleChordQChange}
                 handleClefChange={handleClefChange}
+                handleScaleTypeChange={handleScaleTypeChange}
             />
+            {/* <ScalePicker
+                selectedChordQ={selectedChordQ}
+                selectedScaleType={selectedScaleType}
+                handleChordQChange={handleChordQChange}
+                handleScaleTypeChange={handleScaleTypeChange}
+            /> */}
             <SharpFlatRadioBtns
                 sharpsFlats={sharpsFlats}
                 handleSharpsFlatsChange={handleSharpsFlatsChange}
+                selectedKey={selectedKey}
             />
             <ScrollView>
                 <View style={styles.verticalContainer}>
-                    <Text style={styles.sectionHeader}>Chord Scale</Text>
+                    <Text style={styles.sectionHeader}>
+                        {scaleNameDisplay} Scale
+                    </Text>
+
                     <ChordScale
                         tonic={parseSharpsOrFlats(selectedKey)}
                         chordQ={selectedChordQ}
-                        selectedScaleType={selectedScaleType}
+                        internalScaleName={internalScaleName}
                         clef={selectedClef}
                     />
                     <ListenBtn title="listen" />
                     <View style={styles.lineBreak}></View>
                 </View>
                 <View style={styles.verticalContainer}>
-                    <Text style={styles.sectionHeader}>Chord Spelling</Text>
+                    <Text style={styles.sectionHeader}>
+                        {parseSharpsOrFlats(selectedKey)}
+                        {selectedChordQ} Chord Spelling
+                    </Text>
+
                     <ChordSpelling
                         tonic={parseSharpsOrFlats(selectedKey)}
                         chordQ={selectedChordQ}

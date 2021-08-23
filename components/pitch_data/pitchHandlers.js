@@ -1,4 +1,9 @@
-import { majorScales, getScaleSpecs, getChordQualitySpecs } from './pitchData';
+import {
+    majorScales,
+    getScaleSpecs,
+    getChordQualitySpecs,
+    getChordScales,
+} from './pitchData';
 
 // Returns a nested list containting pitch/range and relevant pitch alteration.
 // (Ex: [['c/4', 0], ['d/4', -1]]
@@ -76,6 +81,20 @@ export const getChordBass = (key, chordQuality) => {
     }
 
     return outChord;
+};
+
+// Returns the chord scale title in human readable form
+export const getScaleName = chordQuality => {
+    const { chordScaleName } = getChordQualitySpecs(chordQuality);
+
+    return chordScaleName['userDisplay'];
+};
+
+// Returns the chord scale title in human readable form
+export const getInternalScaleName = chordQuality => {
+    const { chordScaleName } = getChordQualitySpecs(chordQuality);
+
+    return chordScaleName['programUse'];
 };
 
 // return the approproate Vexflow accidental character corresponding to the inputted integer

@@ -423,6 +423,18 @@ export function getScaleSpecs(scaleType) {
                 [7, 0],
             ],
         },
+        locrian2: {
+            scale: [
+                [0, 0],
+                [1, 0],
+                [2, -1],
+                [3, 0],
+                [4, -1],
+                [5, -1],
+                [6, -1],
+                [7, 0],
+            ],
+        },
         major: {
             scale: [
                 [0, 0],
@@ -648,6 +660,7 @@ export function getScaleSpecs(scaleType) {
     return scaleTypes[scaleType];
 }
 
+// return chord quality alterations
 export function getChordQualitySpecs(chordQuality) {
     const chordQualities = {
         '6/9': {
@@ -658,6 +671,10 @@ export function getChordQualitySpecs(chordQuality) {
                 [5, 0],
                 [8, 0],
             ],
+            chordScaleName: {
+                userDisplay: 'Major/Ionian',
+                programUse: 'major',
+            },
         },
         maj7: {
             chord: [
@@ -667,6 +684,10 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, 0],
                 [8, 0],
             ],
+            chordScaleName: {
+                userDisplay: 'Major/Ionian',
+                programUse: 'major',
+            },
         },
         'min6/9': {
             chord: [
@@ -676,6 +697,10 @@ export function getChordQualitySpecs(chordQuality) {
                 [5, 0],
                 [8, 0],
             ],
+            chordScaleName: {
+                userDisplay: 'Melodic Minor',
+                programUse: 'melodicMinor',
+            },
         },
         'min(maj7)': {
             chord: [
@@ -685,6 +710,10 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, 0],
                 [8, 0],
             ],
+            chordScaleName: {
+                userDisplay: 'Melodic Minor',
+                programUse: 'melodicMinor',
+            },
         },
         min7: {
             chord: [
@@ -694,6 +723,10 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, -1],
                 [8, 0],
             ],
+            chordScaleName: {
+                userDisplay: 'Dorian',
+                programUse: 'dorian',
+            },
         },
         7: {
             chord: [
@@ -703,15 +736,20 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, -1],
                 [8, 0],
             ],
+            chordScaleName: {
+                userDisplay: 'Mixolydian',
+                programUse: 'mixolydian',
+            },
         },
-        dim7: {
-            chord: [
-                [0, 0],
-                [2, -1],
-                [3, 1],
-                [5, 0],
-            ],
-        },
+        // dim7: {
+        //     chord: [
+        //         [0, 0],
+        //         [2, -1],
+        //         [3, 1],
+        //         [5, 0],
+        //     ],
+
+        // },
         'min7(b5)': {
             chord: [
                 [0, 0],
@@ -720,6 +758,10 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, -1],
                 [8, -1],
             ],
+            chordScaleName: {
+                userDisplay: 'Locrian',
+                programUse: 'locrian',
+            },
         },
         'min9(b5)': {
             chord: [
@@ -729,7 +771,71 @@ export function getChordQualitySpecs(chordQuality) {
                 [6, -1],
                 [8, 0],
             ],
+            chordScaleName: {
+                userDisplay: 'Locrian 2',
+                programUse: 'locrian2',
+            },
         },
     };
     return chordQualities[chordQuality];
 }
+
+// export function getChordScales(chordQuality) {
+//     const chordQualities = {
+//         '6/9': {
+//             labels: {
+//                 userDisplay: ['Major/Ionian'],
+//                 programUse: ['major'],
+//             },
+//         },
+//         maj7: {
+//             labels: {
+//                 userDisplay: ['Major/Ionian'],
+//                 programUse: ['major'],
+//             },
+//         },
+//         'min6/9': {
+//             labels: {
+//                 userDisplay: ['Melodic Minor'],
+//                 programUse: ['melodicMinor'],
+//             },
+//         },
+//         'min(maj7)': {
+//             labels: {
+//                 userDisplay: ['Melodic Minor'],
+//                 programUse: ['melodicMinor'],
+//             },
+//         },
+//         min7: {
+//             labels: {
+//                 userDisplay: ['Dorian'],
+//                 programUse: ['dorian'],
+//             },
+//         },
+//         7: {
+//             labels: {
+//                 userDisplay: ['Mixolydian'],
+//                 programUse: ['mixolydian'],
+//             },
+//         },
+//         'min7(b5)': {
+//             labels: {
+//                 userDisplay: ['Locrian'],
+//                 programUse: ['locrian'],
+//             },
+//         },
+//         'min9(b5)': {
+//             labels: {
+//                 userDisplay: ['Locrian 2'],
+//                 programUse: ['locrian2'],
+//             },
+//         },
+//         // dim7: {
+//         //     labels: {
+//         //         userDisplay: ['Mixolydian'],
+//         //         programUse: ['mixolydian'],
+//         //     },
+//         // },
+//     };
+//     return chordQuality[chordQualities];
+// }

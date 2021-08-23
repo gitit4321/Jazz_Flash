@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Picker, Image, Platform } from 'react-native';
+import { StyleSheet, View, Picker } from 'react-native';
 
 const PickerBar = props => {
     const {
@@ -9,6 +9,7 @@ const PickerBar = props => {
         handleKeyChange,
         handleChordQChange,
         handleClefChange,
+        handleScaleTypeChange,
     } = props;
 
     return (
@@ -48,9 +49,10 @@ const PickerBar = props => {
                 <View style={styles.pickerContainer}>
                     <Picker
                         selectedValue={selectedChordQ}
-                        style={styles.picker}
+                        style={[styles.picker, styles.chordQpicker]}
                         itemStyle={{
                             height: 50,
+                            // width: 150,
                         }}
                         onValueChange={(itemValue, itemIndex) =>
                             handleChordQChange(itemValue)
@@ -58,6 +60,12 @@ const PickerBar = props => {
                     >
                         <Picker.Item label="maj7" value="maj7" />
                         <Picker.Item label="min7" value="min7" />
+                        <Picker.Item label="6/9" value="6/9" />
+                        <Picker.Item label="min6/9" value="min6/9" />
+                        <Picker.Item label="min(maj7)" value="min(maj7)" />
+                        <Picker.Item label="7" value="7" />
+                        <Picker.Item label="min7(b5)" value="min7(b5)" />
+                        <Picker.Item label="min9(b5)" value="min9(b5)" />
                     </Picker>
                 </View>
                 <View style={styles.pickerContainer}>
@@ -95,6 +103,10 @@ const styles = StyleSheet.create({
     picker: {
         height: 50,
         width: 108,
+    },
+    chordQpicker: {
+        height: 50,
+        width: 140,
     },
 });
 

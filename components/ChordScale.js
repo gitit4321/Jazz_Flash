@@ -9,13 +9,13 @@ import {
 } from './pitch_data/pitchHandlers';
 
 const ChordScale = props => {
-    let { tonic, selectedScaleType, clef } = props;
+    let { tonic, internalScaleName, clef } = props;
     clef = clef.toLowerCase();
 
     const noteData =
         clef === 'bass'
-            ? getScaleBass(tonic, selectedScaleType)
-            : getScaleTreble(tonic, selectedScaleType);
+            ? getScaleBass(tonic, internalScaleName)
+            : getScaleTreble(tonic, internalScaleName);
 
     const [context, stave] = useScore({
         contextSize: { x: 300, y: 100 }, // this determine the canvas size

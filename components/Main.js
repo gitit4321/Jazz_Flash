@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { containerStyles } from '../styles/index';
 import Card from './Card';
+import { getScaleName, getInternalScaleName } from './pitch_data/pitchHandlers';
 
 const Main = () => {
     // picker states
@@ -30,6 +31,9 @@ const Main = () => {
         setSharpsFlats(sf);
     };
 
+    const scaleNameDisplay = getScaleName(selectedChordQ);
+    const internalScaleName = getInternalScaleName(selectedChordQ);
+
     return (
         <View style={styles.cardContainer}>
             <Card
@@ -38,6 +42,8 @@ const Main = () => {
                 selectedClef={selectedClef}
                 selectedScaleType={selectedScaleType}
                 sharpsFlats={sharpsFlats}
+                scaleNameDisplay={scaleNameDisplay}
+                internalScaleName={internalScaleName}
                 handleKeyChange={handleKeyChange}
                 handleChordQChange={handleChordQChange}
                 handleClefChange={handleClefChange}

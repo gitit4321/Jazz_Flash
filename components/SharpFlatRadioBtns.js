@@ -4,7 +4,8 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 const SharpFlatRadioBtns = props => {
     const [checked, setChecked] = useState(0);
     const accidentalsArr = ['Flats', 'Sharps'];
-    const { sharpsFlats, handleSharpsFlatsChange } = props;
+    const { handleSharpsFlatsChange, selectedKey } = props;
+    const disabled = selectedKey.length === 1 ? true : false;
 
     return (
         <View style={styles.radio}>
@@ -14,25 +15,57 @@ const SharpFlatRadioBtns = props => {
                         <View key={accidental}>
                             {checked == key ? (
                                 <TouchableOpacity style={styles.btn}>
-                                    <Image
-                                        style={styles.img}
-                                        source={require('../assets/radio_checked.png')}
-                                    />
-                                    <Text>{accidental}</Text>
+                                    {disabled ? (
+                                        <Image
+                                            style={styles.img}
+                                            source={require('../assets/radio_checked_disabled.png')}
+                                        />
+                                    ) : (
+                                        <Image
+                                            style={styles.img}
+                                            source={require('../assets/radio_checked.png')}
+                                        />
+                                    )}
+                                    {disabled ? (
+                                        <Text style={{ color: 'grey' }}>
+                                            {accidental}
+                                        </Text>
+                                    ) : (
+                                        <Text style={{ color: 'black' }}>
+                                            {accidental}
+                                        </Text>
+                                    )}
                                 </TouchableOpacity>
                             ) : (
                                 <TouchableOpacity
                                     onPress={() => {
-                                        setChecked(key);
-                                        handleSharpsFlatsChange(accidental);
+                                        if (!disabled) {
+                                            setChecked(key);
+                                            handleSharpsFlatsChange(accidental);
+                                        }
                                     }}
                                     style={styles.btn}
                                 >
-                                    <Image
-                                        style={styles.img}
-                                        source={require('../assets/radio_unchecked.png')}
-                                    />
-                                    <Text>{accidental}</Text>
+                                    {disabled ? (
+                                        <Image
+                                            style={styles.img}
+                                            source={require('../assets/radio_unchecked_disabled.png')}
+                                        />
+                                    ) : (
+                                        <Image
+                                            style={styles.img}
+                                            source={require('../assets/radio_unchecked.png')}
+                                        />
+                                    )}
+                                    {disabled ? (
+                                        <Text style={{ color: 'grey' }}>
+                                            {accidental}
+                                        </Text>
+                                    ) : (
+                                        <Text style={{ color: 'black' }}>
+                                            {accidental}
+                                        </Text>
+                                    )}
                                 </TouchableOpacity>
                             )}
                         </View>
