@@ -7,6 +7,9 @@ import ChordScale from './ChordScale';
 import ListenBtn from './ListenBtn';
 import PickerBar from './PickerBar';
 import ScalePicker from './ScalePicker';
+import PitchNameDisplay5 from './PitchNameDisplay5';
+import PitchNameDisplay6 from './PitchNameDisplay6';
+import PitchNameDisplay8 from './PitchNameDisplay8';
 
 const CardBack = props => {
     const {
@@ -28,6 +31,8 @@ const CardBack = props => {
         handleDisplayScaleNameChange,
     } = props;
 
+    const scaleLength6 = ['majorPentatonic', 'minorPentatonic'];
+
     function parseSharpsOrFlats(key) {
         if (key.length > 1) {
             let splitKeyName = key.split('/');
@@ -37,6 +42,7 @@ const CardBack = props => {
         }
     }
 
+    console.log(selectedChordQ);
     return (
         <View style={styles.primaryContainer}>
             <Text style={styles.chordSymbol}>
@@ -86,6 +92,20 @@ const CardBack = props => {
                         internalScaleName={internalScaleName}
                         clef={selectedClef}
                     />
+                    {scaleLength6.includes(internalScaleName) ? (
+                        <PitchNameDisplay6
+                            tonic={parseSharpsOrFlats(selectedKey)}
+                            internalScaleName={internalScaleName}
+                            clef={selectedClef}
+                        />
+                    ) : (
+                        <PitchNameDisplay8
+                            tonic={parseSharpsOrFlats(selectedKey)}
+                            internalScaleName={internalScaleName}
+                            clef={selectedClef}
+                        />
+                    )}
+
                     <ListenBtn title="listen" />
                     <View style={styles.lineBreak}></View>
                 </View>
@@ -96,6 +116,11 @@ const CardBack = props => {
                     </Text>
 
                     <ChordSpelling
+                        tonic={parseSharpsOrFlats(selectedKey)}
+                        chordQ={selectedChordQ}
+                        clef={selectedClef}
+                    />
+                    <PitchNameDisplay5
                         tonic={parseSharpsOrFlats(selectedKey)}
                         chordQ={selectedChordQ}
                         clef={selectedClef}

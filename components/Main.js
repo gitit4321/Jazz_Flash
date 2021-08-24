@@ -56,39 +56,11 @@ const Main = () => {
     const handleDisplayScaleNameChange = scaleName => {
         setDisplayScaleName(scaleName);
     };
-    //getScaleName(selectedChordQ);
 
     const [internalScaleName, setInternalScaleName] = useState('major');
     const handleInternalScaleNameChange = scaleName => {
         setInternalScaleName(scaleName);
     };
-
-    // let allChords = getAllChordScaleData();
-    // let ids = [];
-    // let displayNames = [];
-    // console.log(
-    //     '--------------------------------------------------------------------'
-    // );
-
-    // for (const chord in allChords) {
-    //     console.log(chord);
-    //     let chords = allChords[chord];
-    //     for (const [key, value] of Object.entries(chords)) {
-    //         // console.log('KEY: ', key);
-    //         // console.log('VALUE: ', value);
-    //         if (key === 'id') {
-    //             ids.push(value);
-    //         }
-    //         if (key === 'chordScaleName') {
-    //             displayNames.push(value);
-    //         }
-    // console.log('IDS: ', ids);
-    // console.log('displayNames: ', displayNames);
-    // for (const id in chords) {
-    //     console.log(chords[id]);
-    // }
-    //     }
-    // }
 
     return (
         <View style={styles.cardContainer}>

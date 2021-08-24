@@ -159,10 +159,11 @@ const getChordQualitySpecs = chordQuality => {
 const getScaleSpecs = scaleType => {
     return scaleTypes[scaleType];
 };
+
 // Lowers this inputted scale data by one octave
 // Only for use in this module
 const dropScaleOctave = baseScale => {
-    bassPitches = [];
+    const bassPitches = [];
 
     for (let i = 0; i < baseScale.length; i++) {
         let currentPitch = baseScale[i][0];
