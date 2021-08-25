@@ -13,8 +13,6 @@ const PitchNameDisaplay5 = props => {
 
     const pitchAccidentalData = [];
 
-    console.log(pitchAccidentalData);
-
     for (let i = 0; i < noteData.length; i++) {
         let pitchName = noteData[i][0].split('/')[0].toUpperCase();
         let accidental = noteData[i][1];

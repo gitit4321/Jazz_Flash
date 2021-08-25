@@ -1,12 +1,30 @@
 import { majorScales, chordQualities, scaleTypes } from './pitchData';
-// getChordQualitySpecs, getScaleSpecs,
+
+// return the approproate Vexflow accidental character corresponding to the inputted integer
+export const getVexAccidentalType = accidental => {
+    if (accidental === 2) {
+        return '##';
+    }
+    if (accidental === 1) {
+        return '#';
+    }
+    if (accidental === 0) {
+        return 'n';
+    }
+    if (accidental === -1) {
+        return 'b';
+    }
+    if (accidental === -2) {
+        return 'bb';
+    }
+};
 
 // Returns a nested list containting pitch/range and relevant pitch alteration.
 // (Ex: [['c/4', 0], ['d/4', -1]]
 export const getScaleTreble = (key, scaleType) => {
     // destructured scaleType object
     const { scale } = getScaleSpecs(scaleType);
-    const baseScale = majorScales[key]['pitches'];
+    const baseScale = getBaseScale(key);
     const outScale = [];
 
     for (let i = 0; i < scale.length; i++) {
@@ -25,7 +43,7 @@ export const getScaleTreble = (key, scaleType) => {
 export const getScaleBass = (key, scaleType) => {
     // destructured scaleType object
     const { scale } = getScaleSpecs(scaleType);
-    const baseScale = majorScales[key]['pitches'];
+    const baseScale = getBaseScale(key);
     const outScale = [];
     const twoOctaveDropKeys = [
         'Eb',
@@ -64,7 +82,7 @@ export const getScaleBass = (key, scaleType) => {
 export const getChordTreble = (key, chordQuality) => {
     // destructured scaleType object
     const { chord } = getChordQualitySpecs(chordQuality);
-    const baseScale = majorScales[key]['pitches'];
+    const baseScale = getBaseScale(key);
     const outChord = [];
 
     for (let i = 0; i < chord.length; i++) {
@@ -83,7 +101,7 @@ export const getChordTreble = (key, chordQuality) => {
 export const getChordBass = (key, chordQuality) => {
     // destructured scaleType object
     const { chord } = getChordQualitySpecs(chordQuality);
-    const baseScale = majorScales[key]['pitches'];
+    const baseScale = getBaseScale(key);
     const outChord = [];
     const twoOctaveDropKeys = [
         'Eb',
@@ -121,47 +139,35 @@ export const getFirstInternalScaleName = chordQuality => {
     return chordScaleName[0]['programUse'];
 };
 
-// return the approproate Vexflow accidental character corresponding to the inputted integer
-export const getVexAccidentalType = accidental => {
-    if (accidental === 2) {
-        return '##';
-    }
-    if (accidental === 1) {
-        return '#';
-    }
-    if (accidental === 0) {
-        return 'n';
-    }
-    if (accidental === -1) {
-        return 'b';
-    }
-    if (accidental === -2) {
-        return 'bb';
-    }
-};
-
 // returns an array of all viable scale names (both for user display and internal program use)
 export const getChordScaleOptions = chordQuality => {
     const { chordScaleName } = getChordQualitySpecs(chordQuality);
     return chordScaleName;
 };
 
+// returns all chordQualities data (Object)
 export const getAllChordScaleData = () => {
     return chordQualities;
 };
 
-// returns the specified chord quality attributes
+/*  The below functions are only to be used by this module (pitchHandlers.js) */
+
+// returns the raw major scale data for which all other scales and chords are derived (Nested Array)
+const getBaseScale = key => {
+    return majorScales[key]['pitches'];
+};
+
+// returns the specified chord quality attributes (Object)
 const getChordQualitySpecs = chordQuality => {
     return chordQualities[chordQuality];
 };
 
-// returns scale/mode alterations
+// returns scale/mode alterations (Nested Array)
 const getScaleSpecs = scaleType => {
     return scaleTypes[scaleType];
 };
 
-// Lowers this inputted scale data by one octave
-// Only for use in this module
+// Lowers the inputted scale data by one octave.
 const dropScaleOctave = baseScale => {
     const bassPitches = [];
 

@@ -959,7 +959,7 @@ export const chordQualities = {
         ],
     },
     dim7: {
-        id: 7,
+        id: 17,
         chord: [
             [0, 0],
             [2, -1],
@@ -968,3 +968,10 @@ export const chordQualities = {
         ],
     },
 };
+
+export const voicings59 = {
+    id: 0,
+    voicing: [[]],
+};
+
+export const voicingsCED = {};
