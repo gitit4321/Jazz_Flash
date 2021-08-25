@@ -3,7 +3,6 @@ export const allNotesContainer = {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     marginLeft: 18,
-    marginBottom: 18,
     width: 280,
 };
 
@@ -12,7 +11,6 @@ export const allNotesAccidentalOffsetContainer = {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     marginLeft: 48,
-    marginBottom: 18,
     width: 280,
 };
 

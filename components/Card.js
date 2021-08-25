@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import SharpFlatRadioBtns from './SharpFlatRadioBtns';
 import ChordSpelling from './ChordSpelling';
 import ChordScale from './ChordScale';
-// import GrandStaff from './GrandStaff';
+import GrandStaff from './GrandStaff';
 import ListenBtn from './ListenBtn';
 import PickerBar from './PickerBar';
 import ScalePicker from './ScalePicker';
@@ -137,18 +137,28 @@ const CardBack = props => {
                     <View style={styles.lineBreak}></View>
                 </View>
                 <View style={styles.horizontalContainer}>
-                    <View style={[styles.verticalContainer, styles.grandStaff]}>
+                    <View
+                        style={[
+                            styles.verticalContainer,
+                            styles.grandStaffContainer,
+                        ]}
+                    >
                         <Text style={styles.sectionHeader}>
                             5/9 Plane Voicing
                         </Text>
-                        {/* <GrandStaff
+                        <GrandStaff
                             tonic={parseSharpsOrFlats(selectedKey)}
                             chordQ={selectedChordQ}
                             voicingType="59"
-                        /> */}
+                        />
                         <ListenBtn title="listen" />
                     </View>
-                    <View style={[styles.verticalContainer, styles.grandStaff]}>
+                    <View
+                        style={[
+                            styles.verticalContainer,
+                            styles.grandStaffContainer,
+                        ]}
+                    >
                         <Text style={styles.sectionHeader}>
                             Rootless CED Voicing
                         </Text>
@@ -189,7 +199,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
     },
-    grandStaff: {
+    grandStaffContainer: {
         width: '50%',
     },
     sectionHeader: {

@@ -6,16 +6,19 @@ import {
     getChordTreble,
     getChordBass,
     getVexAccidentalType,
-} from './pitch_data/pitchHandlers';
+    get59Voicing,
+} from '../pitch_data/pitchHandlers';
 
 const GrandStaff = props => {
     let { tonic, chordQ, voicingType } = props;
 
-    const fingeringType =
-        voicingType === '59' ? 'planeVoicing59Data' : 'rootlessCEDVoicing';
+    const noteData =
+        voicingType === '59'
+            ? get59Voicing(tonic, chordQ)
+            : get59Voicing(tonic, chordQ);
 
-    const noteData = pitchData[tonic][chordQ][fingeringType];
-    let accidentalType = pitchData[tonic]['accidentalType'];
+    // const noteData = pitchData[tonic][chordQ][fingeringType];
+    // let accidentalType = pitchData[tonic]['accidentalType'];
 
     const [context, stave] = useGrandStaff({
         contextSize: { x: 180, y: 170 }, // this determine the canvas size
@@ -30,25 +33,29 @@ const GrandStaff = props => {
     let keysBass = [];
     let accidentalsBass = [];
 
+    // NEED TO PUT THE BOTTOM THREE VOICES IF EVERY CHORD, WITH THEIR ACCIDENTALS && REGARDLESS OF RANGE, IN THE BASS CLEF
+
     // Add pitches and accidentals to their respective arrays
-    for (let i = 0; i < noteData.pitchCount; i++) {
+    for (let i = 0; i < noteData.length; i++) {
         let clef;
-        let range = noteData.pitches[i][0].split('/')[1];
-        if (range >= 4) {
-            clef = 'treble';
-        } else {
+        let range = noteData[i][0].split('/')[1];
+        if (i <= 2) {
             clef = 'bass';
+        } else {
+            clef = 'treble';
         }
 
         if (clef == 'treble') {
-            keysTreble.push(noteData.pitches[i][0]);
-            accidentalsTreble.push(noteData.pitches[i][1]);
+            keysTreble.push(noteData[i][0]);
+            accidentalsTreble.push(noteData[i][1]);
         } else {
-            keysBass.push(noteData.pitches[i][0]);
-            accidentalsBass.push(noteData.pitches[i][1]);
+            keysBass.push(noteData[i][0]);
+            accidentalsBass.push(noteData[i][1]);
         }
     }
 
+    console.log('ACCIDENTALS Treble: ', accidentalsTreble);
+    console.log('ACCIDENTALS Bass: ', accidentalsBass);
     // Instantiate notes
     let notesTreble = new VF.StaveNote({
         clef: 'treble',
@@ -65,16 +72,24 @@ const GrandStaff = props => {
     // Add accidentals to notes
     if (accidentalsTreble.length > 0) {
         for (let i = 0; i < accidentalsTreble.length; i++) {
-            if (accidentalsTreble[i] == 1) {
-                notesTreble.addAccidental(i, new VF.Accidental(accidentalType));
+            if (accidentalsTreble[i] !== 0) {
+                notesTreble.addAccidental(
+                    i,
+                    new VF.Accidental(
+                        getVexAccidentalType(accidentalsTreble[i])
+                    )
+                );
             }
         }
     }
 
     if (accidentalsBass.length > 0) {
         for (let i = 0; i < accidentalsBass.length; i++) {
-            if (accidentalsBass[i] == 1) {
-                notesBass.addAccidental(i, new VF.Accidental(accidentalType));
+            if (accidentalsBass[i] !== 0) {
+                notesBass.addAccidental(
+                    i,
+                    new VF.Accidental(getVexAccidentalType(accidentalsBass[i]))
+                );
             }
         }
     }

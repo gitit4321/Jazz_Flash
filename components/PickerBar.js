@@ -1,9 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Picker } from 'react-native';
-import {
-    getFirstInternalScaleName,
-    getAllChordScaleData,
-} from '../pitch_data/pitchHandlers';
+import { getFirstInternalScaleName } from '../pitch_data/pitchHandlers';
 
 const PickerBar = props => {
     const {
@@ -73,9 +70,9 @@ const PickerBar = props => {
                         itemStyle={{
                             height: 50,
                         }}
-                        onValueChange={(itemValue, itemIndex) =>
-                            handleKeyChange(itemValue)
-                        }
+                        onValueChange={(itemValue, itemIndex) => {
+                            handleKeyChange(itemValue);
+                        }}
                     >
                         {keys.map((k, key) => {
                             return (

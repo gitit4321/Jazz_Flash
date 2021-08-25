@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { containerStyles } from '../styles/index';
 import Card from './Card';
-import { getChordScaleOptions } from '../pitch_data/pitchHandlers';
+import {
+    getChordScaleOptions,
+    get59Voicing,
+} from '../pitch_data/pitchHandlers';
 
 const Main = () => {
     const [selectedKey, setSelectedKey] = useState('C');
@@ -22,6 +25,13 @@ const Main = () => {
             programUse: 'majorPentatonic',
         },
     ]);
+
+    // console.log(get59Voicing('Eb', 'maj7'));
+    // console.log('NEW_________________________');
+    // let arr = get59Voicing('F', 'maj7');
+    // for (let i = 0; i < arr.length; i++) {
+    //     console.log(arr[i][0], arr[i][1]);
+    // }
 
     // picker bar handlers
     const handleKeyChange = k => {

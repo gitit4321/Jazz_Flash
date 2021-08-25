@@ -133,6 +133,91 @@ export const getChordBass = (key, chordQuality) => {
     return outChord;
 };
 
+export const get59Voicing = (key, chordQuality) => {
+    // destructured chordQualities object
+    const { chord } = getChordQualitySpecs(chordQuality);
+    const baseScale = getBaseScale(key);
+    const voicingRange1 = ['b', 'c', 'd'];
+    const voicingRange1PositionMap = {
+        0: 0,
+        1: 1,
+        2: 4,
+        3: 2,
+        4: 3,
+    };
+    const voicingRange2PositionMap = {
+        0: 0,
+        1: 2,
+        2: 3,
+        3: 1,
+        4: 4,
+    };
+    let isInVoiceRange1 = false;
+    let outChord = new Array(5);
+
+    // iterate throught each chord tone and make necessary range/accidental adjustments
+    for (let i = 0; i < chord.length; i++) {
+        let currentPitchData = baseScale[chord[i][0]];
+        let currentPitchName = currentPitchData[0][0];
+        let currentPitchAccidental = currentPitchData[1];
+        let newPitchData;
+
+        // set chord root to appropriate range
+        if (i === 0) {
+            if (
+                voicingRange1.includes(currentPitchName) ||
+                (currentPitchName === 'e' && currentPitchAccidental === -1)
+            ) {
+                // determine the proper voicing range
+                isInVoiceRange1 = true;
+            }
+            newPitchData = lowerPitchOctave(currentPitchData[0], 2);
+
+            // set 3rd scale degree to appropriate ranges
+        } else if (i === 1) {
+            newPitchData = lowerPitchOctave(currentPitchData[0], 1);
+
+            // set 5th scale degree to appropriate ranges
+        } else if (i === 2) {
+            if (!isInVoiceRange1) {
+                newPitchData = lowerPitchOctave(currentPitchData[0], 1);
+            } else {
+                newPitchData = currentPitchData[0];
+            }
+
+            // set 7th scale degree to appropriate ranges
+        } else if (i === 3) {
+            if (isInVoiceRange1) {
+                newPitchData = lowerPitchOctave(currentPitchData[0], 1);
+            } else {
+                newPitchData = lowerPitchOctave(currentPitchData[0], 2);
+            }
+            // set 7th scale degree to appropriate ranges
+        } else if (i === 4) {
+            newPitchData = lowerPitchOctave(currentPitchData[0], 1);
+        }
+
+        // set chord tone's accidental to that of the inputted chord quality
+        let currentAlteration = chord[i][1];
+        let newAlteration = currentPitchAccidental + currentAlteration;
+
+        // outChord.push([newPitchData, newAlteration]);
+        if (isInVoiceRange1) {
+            outChord[voicingRange1PositionMap[i]] = [
+                newPitchData,
+                newAlteration,
+            ];
+        } else {
+            outChord[voicingRange2PositionMap[i]] = [
+                newPitchData,
+                newAlteration,
+            ];
+        }
+    }
+
+    return outChord;
+};
+
 // Returns the first (most commonly played) chord scale title in program readable form
 export const getFirstInternalScaleName = chordQuality => {
     const { chordScaleName } = getChordQualitySpecs(chordQuality);
@@ -150,7 +235,9 @@ export const getAllChordScaleData = () => {
     return chordQualities;
 };
 
-/*  The below functions are only to be used by this module (pitchHandlers.js) */
+/*  
+The below functions are only to be used by this module (pitchHandlers.js) 
+*/
 
 // returns the raw major scale data for which all other scales and chords are derived (Nested Array)
 const getBaseScale = key => {
@@ -175,9 +262,17 @@ const dropScaleOctave = baseScale => {
         let currentPitch = baseScale[i][0];
         let curPitchSplit = currentPitch.split('/');
         let newRange = (parseInt(curPitchSplit[1]) - 1).toString();
-        let newBassPitch = curPitchSplit[0] + '/' + newRange;
+        let newPitch = curPitchSplit[0] + '/' + newRange;
         bassPitches.push([newBassPitch, baseScale[i][1]]);
     }
 
     return bassPitches;
+};
+
+const lowerPitchOctave = (pitchData, numOctavesToLower) => {
+    // console.log(pitchData);
+    let splitPitchData = pitchData.split('/');
+    let newRange = (parseInt(splitPitchData[1]) - numOctavesToLower).toString();
+    let newPitch = splitPitchData[0] + '/' + newRange;
+    return newPitch;
 };
