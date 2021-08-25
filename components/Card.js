@@ -9,6 +9,7 @@ import PickerBar from './PickerBar';
 import ScalePicker from './ScalePicker';
 import PitchNameDisplay5 from './PitchNameDisplay5';
 import PitchNameDisplay6 from './PitchNameDisplay6';
+import PitchNameDisplay7 from './PitchNameDisplay7';
 import PitchNameDisplay8 from './PitchNameDisplay8';
 import PitchNameDisplay9 from './PitchNameDisplay9';
 
@@ -33,6 +34,7 @@ const CardBack = props => {
     } = props;
 
     const scaleLength6 = ['majorPentatonic', 'minorPentatonic'];
+    const scaleLength7 = ['wholeTone'];
     const scaleLength9 = ['halfWholeDiminished', 'wholeHalfDiminished'];
 
     function parseSharpsOrFlats(key) {
@@ -96,6 +98,12 @@ const CardBack = props => {
                     />
                     {scaleLength6.includes(internalScaleName) ? (
                         <PitchNameDisplay6
+                            tonic={parseSharpsOrFlats(selectedKey)}
+                            internalScaleName={internalScaleName}
+                            clef={selectedClef}
+                        />
+                    ) : scaleLength7.includes(internalScaleName) ? (
+                        <PitchNameDisplay7
                             tonic={parseSharpsOrFlats(selectedKey)}
                             internalScaleName={internalScaleName}
                             clef={selectedClef}

@@ -2,7 +2,7 @@ export const allNotesContainer = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginLeft: 28,
+    marginLeft: 23,
     width: 280,
 };
 
@@ -18,14 +18,14 @@ export const noteNameContainer = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    width: 32,
+    width: 40.3,
 };
 
 export const noteNameAccidentalOffsetContainer = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-    width: 30.3,
+    width: 38,
 };
 
 export const pitchNames = {

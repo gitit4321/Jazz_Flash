@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { getScaleTreble, getScaleBass } from '../pitch_data/pitchHandlers';
 import { noteScaleText6 } from '../styles/index';
 
-const PitchNameDisaplay6 = props => {
+const PitchNameDisplay6 = props => {
     const { tonic, internalScaleName, clef } = props;
 
     const noteData =
@@ -124,4 +124,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default PitchNameDisaplay6;
+export default PitchNameDisplay6;

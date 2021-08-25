@@ -9,7 +9,7 @@ import {
 
 const Main = () => {
     const [selectedKey, setSelectedKey] = useState('C');
-    const [selectedChordQ, setSelectedChordQ] = useState('maj7');
+    const [selectedChordQ, setSelectedChordQ] = useState('6/9');
     const [selectedScaleType, setSelectedScaleType] = useState('major');
     const [selectedClef, setSelectedClef] = useState('Treble');
     const [sharpsFlats, setSharpsFlats] = useState('Flats');

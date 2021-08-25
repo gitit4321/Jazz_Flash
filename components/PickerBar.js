@@ -34,24 +34,45 @@ const PickerBar = props => {
     ];
 
     const chords = [
-        'maj7',
-        'min7',
         '6/9',
-        '7',
+        'maj7',
+        'maj7(#11)',
+        'maj7(b6)',
         'min6/9',
         'min(maj7)',
+        'min7',
+        '7',
+        '7(#11)',
+        '7(b5/#5)',
+        '7(b9/b13)',
+        '13(b9)',
+        '7(#9/#5)',
+        '7(b9/#9/b13)',
+        '7(b9/#11)',
         'min7(b5)',
         'min9(b5)',
+        'dim7',
     ];
 
     const primaryChordScales = [
         'Major/Ionian',
-        'Dorian',
         'Major/Ionian',
-        'Mixolydian',
+        'Lydian',
+        'Harmonic Major',
         'Melodic Minor',
+        'Melodic Minor',
+        'Dorian',
+        'Mixolydian',
+        'Lydian Dominant',
+        'Whole Tone',
+        '5th Mode Harmonic Minor',
+        '5th Mode Harmonic Major',
+        'Super Locrian',
+        'Phrygian',
         'Locrian',
         'Locrian #2',
+        '2nd Mode Harmonic Minor',
+        'Half Whole Diminished',
     ];
 
     return (

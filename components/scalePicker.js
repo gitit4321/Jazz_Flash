@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     },
     picker: {
         height: 50,
-        width: 250,
+        width: 280,
     },
 });
 

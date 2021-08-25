@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { getScaleTreble, getScaleBass } from '../pitch_data/pitchHandlers';
-import { noteScaleText8 } from '../styles/index';
+import { getScaleBass, getScaleTreble } from '../pitch_data/pitchHandlers';
+import { noteScaleText7 } from '../styles/index';
 
-const PitchNameDisplay8 = props => {
+const PitchNameDisplay7 = props => {
     const { tonic, internalScaleName, clef } = props;
 
     const noteData =
@@ -39,7 +39,7 @@ const PitchNameDisplay8 = props => {
                 return (
                     // each noteName's container
                     <View
-                        key={'8pitchPair' + key.toString()}
+                        key={'5pitchPair' + key.toString()}
                         style={
                             isFirstPitchAccdidental == true
                                 ? styles.noteNameAccidentalOffsetContainer
@@ -96,32 +96,32 @@ const PitchNameDisplay8 = props => {
 
 const styles = StyleSheet.create({
     allNotesContainer: {
-        ...noteScaleText8.allNotesContainer,
+        ...noteScaleText7.allNotesContainer,
     },
     allNotesAccidentalOffsetContainer: {
-        ...noteScaleText8.allNotesAccidentalOffsetContainer,
+        ...noteScaleText7.allNotesAccidentalOffsetContainer,
     },
     noteNameContainer: {
-        ...noteScaleText8.noteNameContainer,
+        ...noteScaleText7.noteNameContainer,
     },
     noteNameAccidentalOffsetContainer: {
-        ...noteScaleText8.noteNameAccidentalOffsetContainer,
+        ...noteScaleText7.noteNameAccidentalOffsetContainer,
     },
     pitchNames: {
-        ...noteScaleText8.pitchNames,
+        ...noteScaleText7.pitchNames,
     },
     sharp: {
-        ...noteScaleText8.sharp,
+        ...noteScaleText7.sharp,
     },
     flat: {
-        ...noteScaleText8.flat,
+        ...noteScaleText7.flat,
     },
     doubleSharp: {
-        ...noteScaleText8.doubleSharp,
+        ...noteScaleText7.doubleSharp,
     },
     doubleFlat: {
-        ...noteScaleText8.doubleFlat,
+        ...noteScaleText7.doubleFlat,
     },
 });
 
-export default PitchNameDisplay8;
+export default PitchNameDisplay7;

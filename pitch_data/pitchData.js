@@ -714,7 +714,7 @@ export const chordQualities = {
             },
         ],
     },
-    'maj7:(#11)': {
+    'maj7(#11)': {
         id: 2,
         chord: [
             [0, 0],
@@ -965,6 +965,12 @@ export const chordQualities = {
             [2, -1],
             [3, 1],
             [5, 0],
+        ],
+        chordScaleName: [
+            {
+                userDisplay: 'Half Whole Diminished',
+                programUse: 'halfWholeDiminished',
+            },
         ],
     },
 };

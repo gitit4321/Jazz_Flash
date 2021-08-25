@@ -17,9 +17,6 @@ const GrandStaff = props => {
             ? get59Voicing(tonic, chordQ)
             : get59Voicing(tonic, chordQ);
 
-    // const noteData = pitchData[tonic][chordQ][fingeringType];
-    // let accidentalType = pitchData[tonic]['accidentalType'];
-
     const [context, stave] = useGrandStaff({
         contextSize: { x: 180, y: 170 }, // this determine the canvas size
         staveOffset: { x: 30, y: -10 }, // this determine the starting point of the staff relative to top-left corner of canvas
@@ -32,8 +29,6 @@ const GrandStaff = props => {
     let accidentalsTreble = [];
     let keysBass = [];
     let accidentalsBass = [];
-
-    // NEED TO PUT THE BOTTOM THREE VOICES IF EVERY CHORD, WITH THEIR ACCIDENTALS && REGARDLESS OF RANGE, IN THE BASS CLEF
 
     // Add pitches and accidentals to their respective arrays
     for (let i = 0; i < noteData.length; i++) {
@@ -54,8 +49,6 @@ const GrandStaff = props => {
         }
     }
 
-    console.log('ACCIDENTALS Treble: ', accidentalsTreble);
-    console.log('ACCIDENTALS Bass: ', accidentalsBass);
     // Instantiate notes
     let notesTreble = new VF.StaveNote({
         clef: 'treble',
