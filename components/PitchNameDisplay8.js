@@ -39,6 +39,7 @@ const PitchNameDisaplay8 = props => {
                 return (
                     // each noteName's container
                     <View
+                        key={'8pitchPair' + key.toString()}
                         style={
                             isFirstPitchAccdidental == true
                                 ? styles.noteNameAccidentalOffsetContainer

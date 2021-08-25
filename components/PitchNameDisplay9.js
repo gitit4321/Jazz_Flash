@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { getScaleTreble, getScaleBass } from '../pitch_data/pitchHandlers';
-import { noteScaleText6 } from '../styles/index';
+import { noteScaleText9 } from '../styles/index';
 
-const PitchNameDisaplay6 = props => {
+const PitchNameDisaplay9 = props => {
     const { tonic, internalScaleName, clef } = props;
 
     const noteData =
@@ -39,7 +39,7 @@ const PitchNameDisaplay6 = props => {
                 return (
                     // each noteName's container
                     <View
-                        key={'6pitchPair' + key.toString()}
+                        key={'8pitchPair' + key.toString()}
                         style={
                             isFirstPitchAccdidental == true
                                 ? styles.noteNameAccidentalOffsetContainer
@@ -96,32 +96,32 @@ const PitchNameDisaplay6 = props => {
 
 const styles = StyleSheet.create({
     allNotesContainer: {
-        ...noteScaleText6.allNotesContainer,
+        ...noteScaleText9.allNotesContainer,
     },
     allNotesAccidentalOffsetContainer: {
-        ...noteScaleText6.allNotesAccidentalOffsetContainer,
+        ...noteScaleText9.allNotesAccidentalOffsetContainer,
     },
     noteNameContainer: {
-        ...noteScaleText6.noteNameContainer,
+        ...noteScaleText9.noteNameContainer,
     },
     noteNameAccidentalOffsetContainer: {
-        ...noteScaleText6.noteNameAccidentalOffsetContainer,
+        ...noteScaleText9.noteNameAccidentalOffsetContainer,
     },
     pitchNames: {
-        ...noteScaleText6.pitchNames,
+        ...noteScaleText9.pitchNames,
     },
     sharp: {
-        ...noteScaleText6.sharp,
+        ...noteScaleText9.sharp,
     },
     flat: {
-        ...noteScaleText6.flat,
+        ...noteScaleText9.flat,
     },
     doubleSharp: {
-        ...noteScaleText6.doubleSharp,
+        ...noteScaleText9.doubleSharp,
     },
     doubleFlat: {
-        ...noteScaleText6.doubleFlat,
+        ...noteScaleText9.doubleFlat,
     },
 });
 
-export default PitchNameDisaplay6;
+export default PitchNameDisaplay9;

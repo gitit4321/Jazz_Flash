@@ -10,6 +10,7 @@ const PickerBar = props => {
         selectedKey,
         selectedChordQ,
         selectedClef,
+        internalScaleName,
         scaleOptions,
         displayScaleName,
         handleKeyChange,
@@ -20,8 +21,6 @@ const PickerBar = props => {
         handleDisplayScaleNameChange,
     } = props;
 
-    const allChords = getAllChordScaleData();
-    const chordIds = [0, 1, 2, 3, 4, 5, 6, 7];
     const keys = [
         'C',
         'C#/Db',
@@ -54,9 +53,8 @@ const PickerBar = props => {
         'Major/Ionian',
         'Mixolydian',
         'Melodic Minor',
-        'Melodic Minor',
         'Locrian',
-        'Locrian 2',
+        'Locrian #2',
     ];
 
     return (
