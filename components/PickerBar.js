@@ -69,9 +69,9 @@ const PickerBar = props => {
         '5th Mode Harmonic Major',
         'Super Locrian',
         'Phrygian',
+        'Half Whole Diminished',
         'Locrian',
         'Locrian #2',
-        '2nd Mode Harmonic Minor',
         'Half Whole Diminished',
     ];
 
