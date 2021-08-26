@@ -170,11 +170,11 @@ const CardBack = props => {
                         <Text style={styles.sectionHeader}>
                             Rootless CED Voicing
                         </Text>
-                        {/* <GrandStaff
+                        <GrandStaff
                             tonic={parseSharpsOrFlats(selectedKey)}
                             chordQ={selectedChordQ}
                             voicingType="CED"
-                        /> */}
+                        />
                         <ListenBtn title="listen" />
                     </View>
                 </View>

@@ -139,6 +139,7 @@ export const get59Voicing = (key, chordQuality) => {
     const { chord } = getChordQualitySpecs(chordQuality);
     const baseScale = getBaseScale(key);
     const voicingRange1 = ['b', 'c', 'd'];
+    // mappings used to place each chord tone in the proper index in 'outChord'. This allows Vexflow to render accidentals on the appropriate chord tone
     const voicingRange1PositionMap = {
         0: 0,
         1: 1,
@@ -173,16 +174,16 @@ export const get59Voicing = (key, chordQuality) => {
                 // determine the proper voicing range
                 isInVoiceRange1 = true;
             }
-            newPitchData = lowerPitchOctave(currentPitchData[0], 2);
+            newPitchData = alterPitchOctave(currentPitchData[0], -2);
 
             // set 3rd scale degree to appropriate ranges
         } else if (i === 1) {
-            newPitchData = lowerPitchOctave(currentPitchData[0], 1);
+            newPitchData = alterPitchOctave(currentPitchData[0], -1);
 
             // set 5th scale degree to appropriate ranges
         } else if (i === 2) {
             if (!isInVoiceRange1) {
-                newPitchData = lowerPitchOctave(currentPitchData[0], 1);
+                newPitchData = alterPitchOctave(currentPitchData[0], -1);
             } else {
                 newPitchData = currentPitchData[0];
             }
@@ -190,20 +191,20 @@ export const get59Voicing = (key, chordQuality) => {
             // set 7th scale degree to appropriate ranges
         } else if (i === 3) {
             if (isInVoiceRange1) {
-                newPitchData = lowerPitchOctave(currentPitchData[0], 1);
+                newPitchData = alterPitchOctave(currentPitchData[0], -1);
             } else {
-                newPitchData = lowerPitchOctave(currentPitchData[0], 2);
+                newPitchData = alterPitchOctave(currentPitchData[0], -2);
             }
-            // set 7th scale degree to appropriate ranges
+            // set 9th scale degree to appropriate ranges
         } else if (i === 4) {
-            newPitchData = lowerPitchOctave(currentPitchData[0], 1);
+            newPitchData = alterPitchOctave(currentPitchData[0], -1);
         }
 
         // set chord tone's accidental to that of the inputted chord quality
         let currentAlteration = chord[i][1];
         let newAlteration = currentPitchAccidental + currentAlteration;
 
-        // outChord.push([newPitchData, newAlteration]);
+        // insert chord tone to its proper array position, depending on the voicing range.
         if (isInVoiceRange1) {
             outChord[voicingRange1PositionMap[i]] = [
                 newPitchData,
@@ -215,6 +216,78 @@ export const get59Voicing = (key, chordQuality) => {
                 newAlteration,
             ];
         }
+    }
+
+    return outChord;
+};
+
+// returns a nested array containing pitch/range and relevant pitch alterations for 'Rootless CED' voicings.
+export const getCEDVoicing = (key, chordQuality) => {
+    // destructured chordQualities object
+    const { chord } = getChordQualitySpecs(chordQuality);
+    const baseScale = getBaseScale(key);
+    // mappings used to place each chord tone in the proper index in 'outChord'. This allows Vexflow to render accidentals on the appropriate chord tone
+    const voicingPositionMap = {
+        0: 4,
+        1: 0,
+        2: 3,
+        3: 1,
+        4: 2,
+    };
+    let isAnAKey = key === 'Ab' || key === 'A' || key === 'A#' ? true : false;
+    let outChord = new Array(chord.length);
+
+    // iterate throught each chord tone and make necessary range/accidental adjustments
+    for (let i = 0; i < chord.length; i++) {
+        let currentPitchData = baseScale[chord[i][0]];
+        let currentPitchName = currentPitchData[0][0];
+        let currentPitchAccidental = currentPitchData[1];
+        let newPitchData;
+
+        // set chord root to appropriate range
+        if (i === 0) {
+            // alter roots for all keys except for those beginning with 'A'
+            if (!isAnAKey) {
+                newPitchData = alterPitchOctave(currentPitchData[0], 1);
+            } else {
+                newPitchData = currentPitchData[0];
+            }
+            // set 3rd scale degree to appropriate ranges
+        } else if (i === 1) {
+            if (!isAnAKey) {
+                newPitchData = alterPitchOctave(currentPitchData[0], -1);
+            } else {
+                newPitchData = alterPitchOctave(currentPitchData[0], -2);
+            }
+            // set 5th scale degree to appropriate ranges
+        } else if (i === 2) {
+            if (!isAnAKey) {
+                newPitchData = currentPitchData[0];
+            } else {
+                newPitchData = alterPitchOctave(currentPitchData[0], -1);
+            }
+
+            // set 6/7th scale degree to appropriate ranges
+        } else if (i === 3) {
+            if (!isAnAKey) {
+                newPitchData = alterPitchOctave(currentPitchData[0], -1);
+            } else {
+                newPitchData = alterPitchOctave(currentPitchData[0], -2);
+            }
+
+            // set 9th scale degree to appropriate ranges
+        } else if (i === 4) {
+            if (!isAnAKey) {
+                newPitchData = alterPitchOctave(currentPitchData[0], -1);
+            } else {
+                newPitchData = alterPitchOctave(currentPitchData[0], -2);
+            }
+        }
+        // set chord tone's accidental to that of the inputted chord quality
+        let currentAlteration = chord[i][1];
+        let newAlteration = currentPitchAccidental + currentAlteration;
+
+        outChord[voicingPositionMap[i]] = [newPitchData, newAlteration];
     }
 
     return outChord;
@@ -271,9 +344,11 @@ const dropScaleOctave = baseScale => {
     return bassPitches;
 };
 
-const lowerPitchOctave = (pitchData, numOctavesToLower) => {
+const alterPitchOctave = (pitchData, numOctavesToDisplace) => {
     let splitPitchData = pitchData.split('/');
-    let newRange = (parseInt(splitPitchData[1]) - numOctavesToLower).toString();
+    let newRange = (
+        parseInt(splitPitchData[1]) + numOctavesToDisplace
+    ).toString();
     let newPitch = splitPitchData[0] + '/' + newRange;
     return newPitch;
 };

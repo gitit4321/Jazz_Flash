@@ -976,9 +976,7 @@ export const chordQualities = {
     },
 };
 
-export const voicings59 = {
+export const voicingsCED = {
     id: 0,
     voicing: [[]],
 };
-
-export const voicingsCED = {};

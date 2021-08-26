@@ -6,7 +6,7 @@ import {
     // getScaleTreble,
     // getChordTreble,
     getChordScaleOptions,
-    // get59Voicing,
+    getCEDVoicing,
 } from '../pitch_data/pitchHandlers';
 
 const Main = () => {
@@ -32,7 +32,7 @@ const Main = () => {
     // console.log('NEW_________________________');
     // let arr = getScaleTreble('C', 'dim7');
     // let arr = getChordTreble('C', 'dim7');
-    // let arr = get59Voicing('C', 'dim7');
+    // let arr = getCEDVoicing('Ab', '6/9');
     // for (let i = 0; i < arr.length; i++) {
     //     console.log(arr[i][0], arr[i][1]);
     // }
