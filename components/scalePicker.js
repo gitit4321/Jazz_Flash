@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Picker } from 'react-native';
+import { StyleSheet, View, Text, Picker } from 'react-native';
 
 const ScalePicker = props => {
     const {
@@ -19,6 +19,7 @@ const ScalePicker = props => {
 
     return (
         <View style={styles.pickerContainer}>
+            <Text style={styles.pickerLabel}>Scale</Text>
             <Picker
                 selectedValue={selectedValue}
                 style={styles.picker}
@@ -53,9 +54,13 @@ const styles = StyleSheet.create({
     },
     pickerContainer: {
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         marginBottom: 16,
         alignItems: 'center',
+    },
+    pickerLabel: {
+        fontSize: 18,
+        fontWeight: '500',
     },
     picker: {
         height: 50,

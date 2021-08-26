@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     chordSymbol: {
-        fontSize: 50,
+        fontSize: 38,
         fontWeight: '500',
         marginVertical: 14,
     },

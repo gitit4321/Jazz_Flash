@@ -3,8 +3,10 @@ import { View, StyleSheet } from 'react-native';
 import { containerStyles } from '../styles/index';
 import Card from './Card';
 import {
+    // getScaleTreble,
+    // getChordTreble,
     getChordScaleOptions,
-    get59Voicing,
+    // get59Voicing,
 } from '../pitch_data/pitchHandlers';
 
 const Main = () => {
@@ -28,7 +30,9 @@ const Main = () => {
 
     // console.log(get59Voicing('Eb', 'maj7'));
     // console.log('NEW_________________________');
-    // let arr = get59Voicing('F', 'maj7');
+    // let arr = getScaleTreble('C', 'dim7');
+    // let arr = getChordTreble('C', 'dim7');
+    // let arr = get59Voicing('C', 'dim7');
     // for (let i = 0; i < arr.length; i++) {
     //     console.log(arr[i][0], arr[i][1]);
     // }

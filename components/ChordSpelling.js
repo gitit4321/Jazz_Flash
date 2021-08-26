@@ -17,8 +17,6 @@ const ChordSpelling = props => {
             ? getChordBass(tonic, chordQ)
             : getChordTreble(tonic, chordQ);
 
-    // console.log('NOTE DATA:', noteData);
-
     const [context, stave] = useScore({
         contextSize: { x: 260, y: 110 }, // this determine the canvas size
         staveOffset: { x: 5, y: 0 }, // this determine the starting point of the staff relative to top-left corner of canvas

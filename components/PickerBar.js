@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Picker } from 'react-native';
+import { StyleSheet, View, Text, Picker } from 'react-native';
 import { getFirstInternalScaleName } from '../pitch_data/pitchHandlers';
 
 const PickerBar = props => {
@@ -85,6 +85,7 @@ const PickerBar = props => {
         >
             <View style={[styles.horizontalContainer]}>
                 <View style={styles.pickerContainer}>
+                    <Text style={styles.pickerLabel}>Root</Text>
                     <Picker
                         selectedValue={selectedKey}
                         style={styles.picker}
@@ -103,6 +104,7 @@ const PickerBar = props => {
                     </Picker>
                 </View>
                 <View style={styles.pickerContainer}>
+                    <Text style={styles.pickerLabel}>Chord</Text>
                     <Picker
                         selectedValue={selectedChordQ}
                         style={[styles.picker, styles.chordQpicker]}
@@ -132,6 +134,7 @@ const PickerBar = props => {
                     </Picker>
                 </View>
                 <View style={styles.pickerContainer}>
+                    <Text style={styles.pickerLabel}>Clef</Text>
                     <Picker
                         selectedValue={selectedClef}
                         style={styles.picker}
@@ -159,7 +162,7 @@ const styles = StyleSheet.create({
     },
     pickerContainer: {
         display: 'flex',
-        flexDirection: 'row',
+        flexDirection: 'column',
         marginBottom: 16,
         alignItems: 'center',
     },
@@ -167,9 +170,13 @@ const styles = StyleSheet.create({
         height: 50,
         width: 108,
     },
+    pickerLabel: {
+        fontSize: 18,
+        fontWeight: '500',
+    },
     chordQpicker: {
         height: 50,
-        width: 140,
+        width: 155,
     },
 });
 

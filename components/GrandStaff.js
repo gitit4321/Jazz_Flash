@@ -3,8 +3,6 @@ import { View } from 'react-native';
 import { useGrandStaff } from 'react-native-vexflow';
 import Vex from 'vexflow';
 import {
-    getChordTreble,
-    getChordBass,
     getVexAccidentalType,
     get59Voicing,
 } from '../pitch_data/pitchHandlers';
@@ -33,7 +31,7 @@ const GrandStaff = props => {
     // Add pitches and accidentals to their respective arrays
     for (let i = 0; i < noteData.length; i++) {
         let clef;
-        let range = noteData[i][0].split('/')[1];
+        // let range = noteData[i][0].split('/')[1];
         if (i <= 2) {
             clef = 'bass';
         } else {

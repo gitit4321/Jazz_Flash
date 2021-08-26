@@ -19,7 +19,7 @@ export const getVexAccidentalType = accidental => {
     }
 };
 
-// Returns a nested list containting pitch/range and relevant pitch alteration.
+// Returns a nested array containting pitch/range and relevant pitch alteration.
 // (Ex: [['c/4', 0], ['d/4', -1]]
 export const getScaleTreble = (key, scaleType) => {
     // destructured scaleType object
@@ -38,7 +38,7 @@ export const getScaleTreble = (key, scaleType) => {
     return outScale;
 };
 
-// Return a nested list, containting pitch/range and relevant pitch alteration, where pitches have been lowered by one octave.
+// Return a nested array, containting pitch/range and relevant pitch alteration, where pitches have been lowered by one octave.
 // (Ex: [['c/4', 0], ['d/4', -1]]
 export const getScaleBass = (key, scaleType) => {
     // destructured scaleType object
@@ -77,7 +77,7 @@ export const getScaleBass = (key, scaleType) => {
     return outScale;
 };
 
-// Returns a nested list containting pitch/range and relevant pitch alteration.
+// Returns a nested array containting pitch/range and relevant pitch alteration.
 // (Ex: [['c/4', 0], ['d/4', -1]]
 export const getChordTreble = (key, chordQuality) => {
     // destructured scaleType object
@@ -96,7 +96,7 @@ export const getChordTreble = (key, chordQuality) => {
     return outChord;
 };
 
-// Return a nested list, containting pitch/range and relevant pitch alteration, where pitches have been lowered by one octave.
+// Return a nested array, containting pitch/range and relevant pitch alteration, where pitches have been lowered by one octave.
 // (Ex: [['c/4', 0], ['d/4', -1]]
 export const getChordBass = (key, chordQuality) => {
     // destructured scaleType object
@@ -133,6 +133,7 @@ export const getChordBass = (key, chordQuality) => {
     return outChord;
 };
 
+// returns a nested array containing pitch/range and relevant pitch alterations for '5/9 Plane' voicings.
 export const get59Voicing = (key, chordQuality) => {
     // destructured chordQualities object
     const { chord } = getChordQualitySpecs(chordQuality);
@@ -152,8 +153,9 @@ export const get59Voicing = (key, chordQuality) => {
         3: 1,
         4: 4,
     };
+
     let isInVoiceRange1 = false;
-    let outChord = new Array(5);
+    let outChord = new Array(chord.length);
 
     // iterate throught each chord tone and make necessary range/accidental adjustments
     for (let i = 0; i < chord.length; i++) {
@@ -262,7 +264,7 @@ const dropScaleOctave = baseScale => {
         let currentPitch = baseScale[i][0];
         let curPitchSplit = currentPitch.split('/');
         let newRange = (parseInt(curPitchSplit[1]) - 1).toString();
-        let newPitch = curPitchSplit[0] + '/' + newRange;
+        let newBassPitch = curPitchSplit[0] + '/' + newRange;
         bassPitches.push([newBassPitch, baseScale[i][1]]);
     }
 
@@ -270,7 +272,6 @@ const dropScaleOctave = baseScale => {
 };
 
 const lowerPitchOctave = (pitchData, numOctavesToLower) => {
-    // console.log(pitchData);
     let splitPitchData = pitchData.split('/');
     let newRange = (parseInt(splitPitchData[1]) - numOctavesToLower).toString();
     let newPitch = splitPitchData[0] + '/' + newRange;

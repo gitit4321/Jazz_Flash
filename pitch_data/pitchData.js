@@ -742,7 +742,7 @@ export const chordQualities = {
         chordScaleName: [
             {
                 userDisplay: 'Harmonic Major',
-                programUse: 'hamronicMajor',
+                programUse: 'harmonicMajor',
             },
         ],
     },
@@ -831,8 +831,8 @@ export const chordQualities = {
         chord: [
             [0, 0],
             [2, 0],
-            [3, -1],
             [3, 1],
+            [6, -1],
             [8, 0],
         ],
         chordScaleName: [
@@ -963,8 +963,9 @@ export const chordQualities = {
         chord: [
             [0, 0],
             [2, -1],
-            [3, 1],
+            [4, -1],
             [5, 0],
+            [8, 0],
         ],
         chordScaleName: [
             {
