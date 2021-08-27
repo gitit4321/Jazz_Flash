@@ -1,5 +1,9 @@
 # Jazz Flash
-This is the first rendition of what will become a fully fledged mobile quiz application. Built with React Native, the application runs on both Android and iPhone devices. My goal is to make this resource available to instuctors, students, hobbyist, or anyone else that wishes strengthen their jazz theory knowledge base. The current form of Jazz Flash is essentially a reference for scales, chord qualities, and basic keyboard voicings. However, I look forward to building out its funcitonality to incude more 'quiz' like elements that will test the user on appropriate scales and keyboard voicings for selected chord qualities.  
+This is the first rendition of what will become a fully fledged mobile quiz application. Built with React Native, the application runs on both Android and iPhone devices. The genesis of this project came via a discussion with Jazz Department faculty members at the University of Oregon who cited a lack of modern teaching resources for their foundational jazz theory and performance curriculae. 
+
+My goal is to make this resource available to instuctors, students, hobbyist, or anyone else that wishes strengthen their jazz theory knowledge base. 
+
+The current form of Jazz Flash is essentially a reference for scales, chord qualities, and basic keyboard voicings. However, I look forward to building out its functionality to incude more 'quiz' like elements that will test the user on appropriate scales and keyboard voicings for selected chord qualities.  
 
 In addition to several screen shots below, you can also find a video demo at the bottom of this page.
 
