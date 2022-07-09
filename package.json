@@ -17,7 +17,8 @@
     "react-native": "0.68.2",
     "react-native-vexflow": "^0.0.1",
     "react-native-web": "0.17.7",
-    "vexflow": "^3.0.9"
+    "vexflow": "^3.0.9",
+    "expo-av": "~11.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
