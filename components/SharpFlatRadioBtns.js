@@ -18,12 +18,12 @@ const SharpFlatRadioBtns = props => {
                                     {disabled ? (
                                         <Image
                                             style={styles.img}
-                                            source={require('../assets/radio_checked_disabled.png')}
+                                            source={require('../assets/images/radio_checked_disabled.png')}
                                         />
                                     ) : (
                                         <Image
                                             style={styles.img}
-                                            source={require('../assets/radio_checked.png')}
+                                            source={require('../assets/images/radio_checked.png')}
                                         />
                                     )}
                                     {disabled ? (
@@ -49,12 +49,12 @@ const SharpFlatRadioBtns = props => {
                                     {disabled ? (
                                         <Image
                                             style={styles.img}
-                                            source={require('../assets/radio_unchecked_disabled.png')}
+                                            source={require('../assets/images/radio_unchecked_disabled.png')}
                                         />
                                     ) : (
                                         <Image
                                             style={styles.img}
-                                            source={require('../assets/radio_unchecked.png')}
+                                            source={require('../assets/images/radio_unchecked.png')}
                                         />
                                     )}
                                     {disabled ? (
