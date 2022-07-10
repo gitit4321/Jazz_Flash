@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useContext } from 'react';
 
 const SharpFlatRadioBtns = () => {
     const selectedPitchDataCtx = useContext(SelectedPitchDataContext);

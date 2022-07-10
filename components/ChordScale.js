@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { View } from 'react-native';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
 import { useScore } from 'react-native-vexflow';
 import Vex from 'vexflow';
 import {
@@ -7,8 +7,8 @@ import {
     getScaleBass,
     getVexAccidentalType,
 } from '../pitch_data/pitchHandlers';
-import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
-import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
+import React, { useContext } from 'react';
+import { View } from 'react-native';
 
 const ChordScale = () => {
     const selectedPitchDataCtx = useContext(SelectedPitchDataContext);

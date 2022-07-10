@@ -1,8 +1,8 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { containerStyles } from '../styles/index';
-import Card from './Card';
 import { SelectedPitchDataContextProvider } from '../contexts/selected-pitch-data-context';
+import { containerStyles } from '../styles/index';
+import { View, StyleSheet } from 'react-native';
+import React from 'react';
+import Card from './Card';
 
 const Main = () => {
     return (

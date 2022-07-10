@@ -1,14 +1,14 @@
-import React, { useContext } from 'react';
-import { View } from 'react-native';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
 import { useScore } from 'react-native-vexflow';
+import React, { useContext } from 'react';
 import Vex from 'vexflow';
 import {
     getChordTreble,
     getChordBass,
     getVexAccidentalType,
 } from '../pitch_data/pitchHandlers';
-import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
-import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
+import { View } from 'react-native';
 
 const ChordSpelling = () => {
     const selectedPitchDataCtx = useContext(SelectedPitchDataContext);

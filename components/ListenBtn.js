@@ -1,5 +1,5 @@
-import React from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
+import React from 'react';
 
 const ListenBtn = ({ onPress, title }) => (
     <TouchableOpacity onPress={onPress} style={styles.appButtonContainer}>

@@ -1,14 +1,14 @@
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
+import { useGrandStaff } from 'react-native-vexflow';
 import React, { useContext } from 'react';
 import { View } from 'react-native';
-import { useGrandStaff } from 'react-native-vexflow';
 import Vex from 'vexflow';
 import {
     getVexAccidentalType,
     get59Voicing,
     getCEDVoicing,
 } from '../pitch_data/pitchHandlers';
-import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
-import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
 
 const GrandStaff = props => {
     const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
