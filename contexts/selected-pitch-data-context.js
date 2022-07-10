@@ -1,21 +1,31 @@
 import { createContext, useState } from 'react';
+import { getChordScaleOptions } from '../pitch_data/pitchHandlers';
 
 const SelectedPitchDataContext = createContext({
-    selectedKey: '',
-    selectedChordQ: '',
-    selectedScaleType: '',
-    selectedClef: '',
-    sharpsOrFlats: '',
-    displayScaleName: '',
-    internalScaleName: '',
-    scaleOptions: [],
+    selectedKey: 'C',
+    selectedChordQ: '6/9',
+    selectedScaleType: 'major',
+    selectedClef: 'Treble',
+    sharpsOrFlats: 'Flats',
+    displayScaleName: 'Major/Ionian',
+    internalScaleName: 'major',
+    scaleOptions: [
+        {
+            userDisplay: 'Major/Ionian',
+            programUse: 'major',
+        },
+        {
+            userDisplay: 'Major Pentatonic',
+            programUse: 'majorPentatonic',
+        },
+    ],
     onKeyChange: key => {},
     onChordQualityChange: chordQuality => {},
     onScaleTypeChange: scaleName => {},
     onClefChange: clef => {},
     onSharpsOrFlatsChange: accidental => {},
     onDisplayScaleNameChange: displayScaleName => {},
-    oninternalScaleNameChange: internalScaleName => {},
+    onInternalScaleNameChange: internalScaleName => {},
     onScaleOptionsChange: scaleOptions => {},
 });
 
@@ -89,3 +99,5 @@ export const SelectedPitchDataContextProvider = props => {
         </SelectedPitchDataContext.Provider>
     );
 };
+
+export default SelectedPitchDataContext;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import SharpFlatRadioBtns from './SharpFlatRadioBtns';
 import ChordSpelling from './ChordSpelling';
@@ -12,114 +12,46 @@ import PitchNameDisplay6 from './PitchNameDisplay6';
 import PitchNameDisplay7 from './PitchNameDisplay7';
 import PitchNameDisplay8 from './PitchNameDisplay8';
 import PitchNameDisplay9 from './PitchNameDisplay9';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
 
-const CardBack = props => {
-    const {
-        selectedKey,
-        selectedChordQ,
-        selectedClef,
-        sharpsFlats,
-        displayScaleName,
-        selectedScaleType,
-        internalScaleName,
-        scaleOptions,
-        handleKeyChange,
-        handleChordQChange,
-        handleClefChange,
-        handleSharpsFlatsChange,
-        handleScaleTypeChange,
-        handleScaleOptionsChange,
-        handleInternalScaleNameChange,
-        handleDisplayScaleNameChange,
-    } = props;
+const Card = () => {
+    const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
 
     const scaleLength6 = ['majorPentatonic', 'minorPentatonic'];
     const scaleLength7 = ['wholeTone'];
     const scaleLength9 = ['halfWholeDiminished', 'wholeHalfDiminished'];
 
-    function parseSharpsOrFlats(key) {
-        if (key.length > 1) {
-            let splitKeyName = key.split('/');
-            return sharpsFlats === 'Sharps' ? splitKeyName[0] : splitKeyName[1];
-        } else {
-            return key;
-        }
-    }
-
     return (
         <View style={styles.primaryContainer}>
             <Text style={styles.chordSymbol}>
-                {parseSharpsOrFlats(selectedKey)}
-                {selectedChordQ}
+                {parseSharpsOrFlats(selectedPitchDataCtx.selectedKey)}
+                {selectedPitchDataCtx.selectedChordQ}
             </Text>
-            <PickerBar
-                selectedKey={selectedKey}
-                selectedChordQ={selectedChordQ}
-                selectedClef={selectedClef}
-                selectedScaleType={selectedScaleType}
-                scaleOptions={scaleOptions}
-                internalScaleName={internalScaleName}
-                displayScaleName={displayScaleName}
-                handleKeyChange={handleKeyChange}
-                handleChordQChange={handleChordQChange}
-                handleClefChange={handleClefChange}
-                handleInternalScaleNameChange={handleInternalScaleNameChange}
-                handleScaleTypeChange={handleScaleTypeChange}
-                handleScaleOptionsChange={handleScaleOptionsChange}
-                handleDisplayScaleNameChange={handleDisplayScaleNameChange}
-            />
-            <ScalePicker
-                selectedChordQ={selectedChordQ}
-                selectedScaleType={selectedScaleType}
-                scaleOptions={scaleOptions}
-                handleChordQChange={handleChordQChange}
-                handleScaleTypeChange={handleScaleTypeChange}
-                handleScaleOptionsChange={handleScaleOptionsChange}
-                handleInternalScaleNameChange={handleInternalScaleNameChange}
-                handleDisplayScaleNameChange={handleDisplayScaleNameChange}
-            />
-            <SharpFlatRadioBtns
-                sharpsFlats={sharpsFlats}
-                handleSharpsFlatsChange={handleSharpsFlatsChange}
-                selectedKey={selectedKey}
-            />
+            <PickerBar />
+            <ScalePicker />
+            <SharpFlatRadioBtns />
             <ScrollView>
                 <View style={styles.verticalContainer}>
                     <Text style={styles.sectionHeader}>
-                        {parseSharpsOrFlats(selectedKey)} {displayScaleName}{' '}
-                        Scale
+                        {parseSharpsOrFlats(selectedPitchDataCtx.selectedKey)}{' '}
+                        {selectedPitchDataCtx.displayScaleName} Scale
                     </Text>
-
-                    <ChordScale
-                        tonic={parseSharpsOrFlats(selectedKey)}
-                        chordQ={selectedChordQ}
-                        internalScaleName={internalScaleName}
-                        clef={selectedClef}
-                    />
-                    {scaleLength6.includes(internalScaleName) ? (
-                        <PitchNameDisplay6
-                            tonic={parseSharpsOrFlats(selectedKey)}
-                            internalScaleName={internalScaleName}
-                            clef={selectedClef}
-                        />
-                    ) : scaleLength7.includes(internalScaleName) ? (
-                        <PitchNameDisplay7
-                            tonic={parseSharpsOrFlats(selectedKey)}
-                            internalScaleName={internalScaleName}
-                            clef={selectedClef}
-                        />
-                    ) : scaleLength9.includes(internalScaleName) ? (
-                        <PitchNameDisplay9
-                            tonic={parseSharpsOrFlats(selectedKey)}
-                            internalScaleName={internalScaleName}
-                            clef={selectedClef}
-                        />
+                    <ChordScale />
+                    {scaleLength6.includes(
+                        selectedPitchDataCtx.internalScaleName
+                    ) ? (
+                        <PitchNameDisplay6 />
+                    ) : scaleLength7.includes(
+                          selectedPitchDataCtx.internalScaleName
+                      ) ? (
+                        <PitchNameDisplay7 />
+                    ) : scaleLength9.includes(
+                          selectedPitchDataCtx.internalScaleName
+                      ) ? (
+                        <PitchNameDisplay9 />
                     ) : (
-                        <PitchNameDisplay8
-                            tonic={parseSharpsOrFlats(selectedKey)}
-                            internalScaleName={internalScaleName}
-                            clef={selectedClef}
-                        />
+                        <PitchNameDisplay8 />
                     )}
 
                     <ListenBtn title="listen" />
@@ -127,20 +59,11 @@ const CardBack = props => {
                 </View>
                 <View style={styles.verticalContainer}>
                     <Text style={styles.sectionHeader}>
-                        {parseSharpsOrFlats(selectedKey)}
-                        {selectedChordQ} Chord Spelling
+                        {parseSharpsOrFlats(selectedPitchDataCtx.selectedKey)}
+                        {selectedPitchDataCtx.selectedChordQ} Chord Spelling
                     </Text>
-
-                    <ChordSpelling
-                        tonic={parseSharpsOrFlats(selectedKey)}
-                        chordQ={selectedChordQ}
-                        clef={selectedClef}
-                    />
-                    <PitchNameDisplay5
-                        tonic={parseSharpsOrFlats(selectedKey)}
-                        chordQ={selectedChordQ}
-                        clef={selectedClef}
-                    />
+                    <ChordSpelling />
+                    <PitchNameDisplay5 />
                     <ListenBtn title="listen" />
                     <View style={styles.lineBreak}></View>
                 </View>
@@ -154,11 +77,7 @@ const CardBack = props => {
                         <Text style={styles.sectionHeader}>
                             5/9 Plane Voicing
                         </Text>
-                        <GrandStaff
-                            tonic={parseSharpsOrFlats(selectedKey)}
-                            chordQ={selectedChordQ}
-                            voicingType="59"
-                        />
+                        <GrandStaff voicingType="59" />
                         <ListenBtn title="listen" />
                     </View>
                     <View
@@ -170,11 +89,7 @@ const CardBack = props => {
                         <Text style={styles.sectionHeader}>
                             Rootless CED Voicing
                         </Text>
-                        <GrandStaff
-                            tonic={parseSharpsOrFlats(selectedKey)}
-                            chordQ={selectedChordQ}
-                            voicingType="CED"
-                        />
+                        <GrandStaff voicingType="CED" />
                         <ListenBtn title="listen" />
                     </View>
                 </View>
@@ -186,7 +101,6 @@ const CardBack = props => {
 const styles = StyleSheet.create({
     primaryContainer: {
         display: 'flex',
-        // backgroundColor: 'rgb(180,187,184)',
         backgroundColor: 'rgb(255, 255, 255)',
         alignItems: 'center',
         justifyContent: 'flex-start',
@@ -222,4 +136,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CardBack;
+export default Card;

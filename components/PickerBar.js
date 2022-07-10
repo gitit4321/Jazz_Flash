@@ -1,23 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { getFirstInternalScaleName } from '../pitch_data/pitchHandlers';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
 
-const PickerBar = props => {
-    const {
-        selectedKey,
-        selectedChordQ,
-        selectedClef,
-        internalScaleName,
-        scaleOptions,
-        displayScaleName,
-        handleKeyChange,
-        handleChordQChange,
-        handleClefChange,
-        handleScaleOptionsChange,
-        handleInternalScaleNameChange,
-        handleDisplayScaleNameChange,
-    } = props;
+const PickerBar = () => {
+    const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
 
     const keys = [
         'C',
@@ -88,13 +76,13 @@ const PickerBar = props => {
                 <View style={styles.pickerContainer}>
                     <Text style={styles.pickerLabel}>Root</Text>
                     <Picker
-                        selectedValue={selectedKey}
+                        selectedValue={selectedPitchDataCtx.selectedKey}
                         style={styles.picker}
                         itemStyle={{
                             height: 50,
                         }}
                         onValueChange={(itemValue, itemIndex) => {
-                            handleKeyChange(itemValue);
+                            selectedPitchDataCtx.onKeyChange(itemValue);
                         }}
                     >
                         {keys.map((k, key) => {
@@ -107,18 +95,22 @@ const PickerBar = props => {
                 <View style={styles.pickerContainer}>
                     <Text style={styles.pickerLabel}>Chord</Text>
                     <Picker
-                        selectedValue={selectedChordQ}
+                        selectedValue={selectedPitchDataCtx.selectedChordQ}
                         style={[styles.picker, styles.chordQpicker]}
                         itemStyle={{
                             height: 50,
                         }}
                         onValueChange={(itemValue, itemIndex) => {
-                            handleChordQChange(itemValue);
-                            handleScaleOptionsChange(itemValue);
-                            handleInternalScaleNameChange(
+                            selectedPitchDataCtx.onChordQualityChange(
+                                itemValue
+                            );
+                            selectedPitchDataCtx.onScaleOptionsChange(
+                                itemValue
+                            );
+                            selectedPitchDataCtx.onInternalScaleNameChange(
                                 getFirstInternalScaleName(itemValue)
                             );
-                            handleDisplayScaleNameChange(
+                            selectedPitchDataCtx.onDisplayScaleNameChange(
                                 primaryChordScales[itemIndex]
                             );
                         }}
@@ -137,13 +129,13 @@ const PickerBar = props => {
                 <View style={styles.pickerContainer}>
                     <Text style={styles.pickerLabel}>Clef</Text>
                     <Picker
-                        selectedValue={selectedClef}
+                        selectedValue={selectedPitchDataCtx.selectedClef}
                         style={styles.picker}
                         itemStyle={{
                             height: 50,
                         }}
                         onValueChange={(itemValue, itemIndex) =>
-                            handleClefChange(itemValue)
+                            selectedPitchDataCtx.onClefChange(itemValue)
                         }
                     >
                         <Picker.Item label="Treble" value="Treble" />

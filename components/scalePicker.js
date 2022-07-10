@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
 
-const ScalePicker = props => {
-    const {
-        scaleOptions,
-        handleInternalScaleNameChange,
-        handleDisplayScaleNameChange,
-    } = props;
+const ScalePicker = () => {
+    const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
 
     const [selectedValue, setSelectedValue] = useState('major');
     const values = [];
     const labels = [];
 
-    for (let i = 0; i < scaleOptions.length; i++) {
-        values.push(scaleOptions[i].programUse);
-        labels.push(scaleOptions[i].userDisplay);
+    for (let i = 0; i < selectedPitchDataCtx.scaleOptions.length; i++) {
+        values.push(selectedPitchDataCtx.scaleOptions[i].programUse);
+        labels.push(selectedPitchDataCtx.scaleOptions[i].userDisplay);
     }
 
     return (
@@ -29,11 +26,14 @@ const ScalePicker = props => {
                 }}
                 onValueChange={(itemValue, itemIndex) => {
                     setSelectedValue(itemValue);
-                    handleInternalScaleNameChange(itemValue);
-                    handleDisplayScaleNameChange(labels[itemIndex]);
+
+                    selectedPitchDataCtx.onInternalScaleNameChange(itemValue);
+                    selectedPitchDataCtx.onDisplayScaleNameChange(
+                        labels[itemIndex]
+                    );
                 }}
             >
-                {scaleOptions.map((scale, key) => {
+                {selectedPitchDataCtx.scaleOptions.map((scale, key) => {
                     return (
                         <Picker.Item
                             key={key}

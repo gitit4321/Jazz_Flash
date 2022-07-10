@@ -1,89 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { containerStyles } from '../styles/index';
 import Card from './Card';
-import {
-    // getScaleTreble,
-    // getChordTreble,
-    getChordScaleOptions,
-    getCEDVoicing,
-} from '../pitch_data/pitchHandlers';
+import { SelectedPitchDataContextProvider } from '../contexts/selected-pitch-data-context';
 
 const Main = () => {
-    const [selectedKey, setSelectedKey] = useState('C');
-    const [selectedChordQ, setSelectedChordQ] = useState('6/9');
-    const [selectedScaleType, setSelectedScaleType] = useState('major');
-    const [selectedClef, setSelectedClef] = useState('Treble');
-    const [sharpsFlats, setSharpsFlats] = useState('Flats');
-    const [displayScaleName, setDisplayScaleName] = useState('Major/Ionian');
-    const [internalScaleName, setInternalScaleName] = useState('major');
-    const [scaleOptions, setScaleOptions] = useState([
-        {
-            userDisplay: 'Major/Ionian',
-            programUse: 'major',
-        },
-        {
-            userDisplay: 'Major Pentatonic',
-            programUse: 'majorPentatonic',
-        },
-    ]);
-
-    // console.log(get59Voicing('Eb', 'maj7'));
-    // console.log('NEW_________________________');
-    // let arr = getScaleTreble('C', 'dim7');
-    // let arr = getChordTreble('C', 'dim7');
-    // let arr = getCEDVoicing('Ab', '6/9');
-    // for (let i = 0; i < arr.length; i++) {
-    //     console.log(arr[i][0], arr[i][1]);
-    // }
-
-    // picker bar handlers
-    const handleKeyChange = k => {
-        setSelectedKey(k);
-    };
-    const handleChordQChange = chordQuality => {
-        setSelectedChordQ(chordQuality);
-    };
-    const handleClefChange = clef => {
-        setSelectedClef(clef);
-    };
-    const handleScaleTypeChange = c => {
-        setSelectedScaleType(c);
-    };
-    const handleSharpsFlatsChange = sf => {
-        setSharpsFlats(sf);
-    };
-    const handleScaleOptionsChange = chordQuality => {
-        const chordScaleOptions = getChordScaleOptions(chordQuality);
-        setScaleOptions(chordScaleOptions);
-    };
-    const handleDisplayScaleNameChange = scaleName => {
-        setDisplayScaleName(scaleName);
-    };
-    const handleInternalScaleNameChange = scaleName => {
-        setInternalScaleName(scaleName);
-    };
-
     return (
         <View style={styles.cardContainer}>
-            <Card
-                selectedKey={selectedKey}
-                selectedChordQ={selectedChordQ}
-                selectedClef={selectedClef}
-                selectedScaleType={selectedScaleType}
-                sharpsFlats={sharpsFlats}
-                displayScaleName={displayScaleName}
-                internalScaleName={internalScaleName}
-                scaleOptions={scaleOptions}
-                handleKeyChange={handleKeyChange}
-                handleChordQChange={handleChordQChange}
-                handleClefChange={handleClefChange}
-                handleSharpsFlatsChange={handleSharpsFlatsChange}
-                handleScaleTypeChange={handleScaleTypeChange}
-                handleScaleOptionsChange={handleScaleOptionsChange}
-                handleInternalScaleNameChange={handleInternalScaleNameChange}
-                handleDisplayScaleNameChange={handleDisplayScaleNameChange}
-            />
+            <SelectedPitchDataContextProvider>
+                <Card />
+            </SelectedPitchDataContextProvider>
         </View>
     );
 };

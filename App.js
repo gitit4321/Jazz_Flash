@@ -1,10 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, Text, SafeAreaView, Platform, View } from 'react-native';
-import {
-    useDimensions,
-    useDeviceOrientation,
-} from '@react-native-community/hooks';
+import React from 'react';
+import { StyleSheet, SafeAreaView, Platform, View } from 'react-native';
 import Constants from 'expo-constants';
 import Main from './components/Main';
 

@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { getScaleBass, getScaleTreble } from '../pitch_data/pitchHandlers';
 import { noteScaleText7 } from '../styles/index';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
 
-const PitchNameDisplay7 = props => {
-    const { tonic, internalScaleName, clef } = props;
+const PitchNameDisplay7 = () => {
+    const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
 
     const noteData =
-        clef === 'bass'
-            ? getScaleBass(tonic, internalScaleName)
-            : getScaleTreble(tonic, internalScaleName);
+        selectedPitchDataCtx.selectedClef === 'bass'
+            ? getScaleBass(
+                  parseSharpsOrFlats(selectedPitchDataCtx.selectedKey),
+                  selectedPitchDataCtx.internalScaleName
+              )
+            : getScaleTreble(
+                  parseSharpsOrFlats(selectedPitchDataCtx.selectedKey),
+                  selectedPitchDataCtx.internalScaleName
+              );
 
     const pitchAccidentalData = [];
 

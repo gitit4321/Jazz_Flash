@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
 
-const SharpFlatRadioBtns = props => {
+const SharpFlatRadioBtns = () => {
+    const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
     const [checked, setChecked] = useState(0);
     const accidentalsArr = ['Flats', 'Sharps'];
-    const { handleSharpsFlatsChange, selectedKey } = props;
-    const disabled = selectedKey.length === 1 ? true : false;
+
+    const disabled =
+        selectedPitchDataCtx.selectedKey.length === 1 ? true : false;
 
     return (
         <View style={styles.radio}>
@@ -41,7 +44,10 @@ const SharpFlatRadioBtns = props => {
                                     onPress={() => {
                                         if (!disabled) {
                                             setChecked(key);
-                                            handleSharpsFlatsChange(accidental);
+
+                                            selectedPitchDataCtx.onSharpsOrFlatsChange(
+                                                accidental
+                                            );
                                         }
                                     }}
                                     style={styles.btn}

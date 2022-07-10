@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View } from 'react-native';
 import { useScore } from 'react-native-vexflow';
 import Vex from 'vexflow';
@@ -7,15 +7,24 @@ import {
     getChordBass,
     getVexAccidentalType,
 } from '../pitch_data/pitchHandlers';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
 
-const ChordSpelling = props => {
-    let { tonic, chordQ, clef } = props;
-    clef = clef.toLowerCase();
+const ChordSpelling = () => {
+    const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
+
+    let clef = selectedPitchDataCtx.selectedClef.toLowerCase();
 
     const noteData =
         clef === 'bass'
-            ? getChordBass(tonic, chordQ)
-            : getChordTreble(tonic, chordQ);
+            ? getChordBass(
+                  parseSharpsOrFlats(selectedPitchDataCtx.selectedKey),
+                  selectedPitchDataCtx.selectedChordQ
+              )
+            : getChordTreble(
+                  parseSharpsOrFlats(selectedPitchDataCtx.selectedKey),
+                  selectedPitchDataCtx.selectedChordQ
+              );
 
     const [context, stave] = useScore({
         contextSize: { x: 260, y: 110 }, // this determine the canvas size
