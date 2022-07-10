@@ -15,7 +15,7 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.68.2",
-    "react-native-vexflow": "^0.0.1",
+    "react-native-vexflow": "https://github.com/gitit4321/react-native-vexflow.git",
     "react-native-web": "0.17.7",
     "vexflow": "^3.0.9"
   },
