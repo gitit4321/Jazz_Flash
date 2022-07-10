@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View } from 'react-native';
 import { useGrandStaff } from 'react-native-vexflow';
 import Vex from 'vexflow';
@@ -7,14 +7,22 @@ import {
     get59Voicing,
     getCEDVoicing,
 } from '../pitch_data/pitchHandlers';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
 
 const GrandStaff = props => {
-    let { tonic, chordQ, voicingType } = props;
+    const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
 
     const noteData =
-        voicingType === '59'
-            ? get59Voicing(tonic, chordQ)
-            : getCEDVoicing(tonic, chordQ);
+        props.voicingType === '59'
+            ? get59Voicing(
+                  parseSharpsOrFlats(selectedPitchDataCtx.selectedKey),
+                  selectedPitchDataCtx.selectedChordQ
+              )
+            : getCEDVoicing(
+                  parseSharpsOrFlats(selectedPitchDataCtx.selectedKey),
+                  selectedPitchDataCtx.selectedChordQ
+              );
 
     const [context, stave] = useGrandStaff({
         contextSize: { x: 180, y: 180 }, // this determine the canvas size
@@ -34,7 +42,7 @@ const GrandStaff = props => {
         let clef;
 
         // if '5/9' voicing, keep bottom 3 voices in the bass clef
-        if (voicingType === '59') {
+        if (props.voicingType === '59') {
             if (i <= 2) {
                 clef = 'bass';
             } else {

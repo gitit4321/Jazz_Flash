@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { getScaleTreble, getScaleBass } from '../pitch_data/pitchHandlers';
 import { noteScaleText6 } from '../styles/index';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
 
-const PitchNameDisplay6 = props => {
-    const { tonic, internalScaleName, clef } = props;
+const PitchNameDisplay6 = () => {
+    const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
 
     const noteData =
-        clef === 'bass'
-            ? getScaleBass(tonic, internalScaleName)
-            : getScaleTreble(tonic, internalScaleName);
+        selectedPitchDataCtx.selectedClef === 'bass'
+            ? getScaleBass(
+                  parseSharpsOrFlats(selectedPitchDataCtx.selectedKey),
+                  selectedPitchDataCtx.internalScaleName
+              )
+            : getScaleTreble(
+                  parseSharpsOrFlats(selectedPitchDataCtx.selectedKey),
+                  selectedPitchDataCtx.internalScaleName
+              );
 
     const pitchAccidentalData = [];
 
@@ -63,28 +71,28 @@ const PitchNameDisplay6 = props => {
                                     styles.flat,
                                     styles.firstPitchAccidentalAdjust,
                                 ]}
-                                source={require('../assets/flat.png')}
+                                source={require('../assets/images/flat.png')}
                             ></Image>
                         )}
                         {pitchPair.accidental === 1 && (
                             <Image
                                 key={'sharp' + key.toString()}
                                 style={styles.sharp}
-                                source={require('../assets/sharp.png')}
+                                source={require('../assets/images/sharp.png')}
                             ></Image>
                         )}
                         {pitchPair.accidental === -2 && (
                             <Image
                                 key={'doubleFlat' + key.toString()}
                                 style={styles.doubleFlat}
-                                source={require('../assets/double_flat.png')}
+                                source={require('../assets/images/double_flat.png')}
                             ></Image>
                         )}
                         {pitchPair.accidental === 2 && (
                             <Image
                                 key={'doubleSharp' + key.toString()}
                                 style={styles.doubleSharp}
-                                source={require('../assets/double_sharp.png')}
+                                source={require('../assets/images/double_sharp.png')}
                             ></Image>
                         )}
                     </View>
