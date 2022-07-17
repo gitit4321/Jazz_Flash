@@ -5,8 +5,8 @@ import soundLibrary from '../assets/soundLibrary';
 
 const PianoKeyboard = props => {
     useEffect(() => {
-        const sounds = Player.load(soundLibrary);
-    });
+        Player.load(soundLibrary);
+    }, []);
 
     return (
         <Piano

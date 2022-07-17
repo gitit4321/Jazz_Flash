@@ -8,15 +8,24 @@ import OrientationContext from '../contexts/orientation-context';
 
 const Main = () => {
     const ctx = useContext(OrientationContext);
+
+    const SmallPiano = () => {
+        return <PianoKeyboard first="c3" last="c4" />;
+    };
+    const LargePiano = () => {
+        return <PianoKeyboard first="a2" last="c5" />;
+    };
+
     return (
         <>
             <Text>{ctx.orientation.orientation}</Text>
-            {/* {ctx.orientation.orientation === 'PORTRAIT' ? (
+            {ctx.orientation.orientation === 'PORTRAIT' ? (
                 <SmallPiano />
             ) : (
                 <LargePiano />
-            )} */}
-            <PianoKeyboard first="a2" last="c5" />
+            )}
+            {/* <PianoKeyboard first="a2" last="c5" /> */}
+
         </>
     );
 };

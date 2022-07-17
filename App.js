@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, Platform } from 'react-native';
+import { StyleSheet, SafeAreaView, Platform, View } from 'react-native';
 import Constants from 'expo-constants';
 import Main from './components/Main';
 import { OrientationProvider } from './contexts/orientation-context';

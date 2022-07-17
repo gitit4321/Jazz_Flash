@@ -19,7 +19,9 @@
     "react-native-piano": "^1.0.1",
     "react-native-vexflow": "https://github.com/gitit4321/react-native-vexflow.git",
     "react-native-web": "0.17.7",
-    "vexflow": "^3.0.9"
+    "vexflow": "^3.0.9",
+    "expo-screen-orientation": "~4.2.0",
+    "expo-sensors": "~11.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
