@@ -1,24 +1,22 @@
-import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
-import { getChordBass, getChordTreble } from '../pitch_data/pitchHandlers';
-import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
+import SelectedPitchDataContext from '../../contexts/selected-pitch-data-context';
+import { getScaleTreble, getScaleBass } from '../../pitch_data/pitchHandlers';
+import { parseSharpsOrFlats } from '../../utils/parseSharpsOrFlats';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { noteScaleText5 } from '../styles/index';
+import { noteScaleText6 } from '../../styles/index';
 import React, { useContext } from 'react';
 
-const PitchNameDisplay5 = () => {
+const PitchNameDisplay6 = () => {
     const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
 
-    let clef = selectedPitchDataCtx.selectedClef.toLowerCase();
-
     const noteData =
-        clef === 'bass'
-            ? getChordBass(
+        selectedPitchDataCtx.selectedClef === 'bass'
+            ? getScaleBass(
                   parseSharpsOrFlats(selectedPitchDataCtx.selectedKey),
-                  selectedPitchDataCtx.selectedChordQ
+                  selectedPitchDataCtx.internalScaleName
               )
-            : getChordTreble(
+            : getScaleTreble(
                   parseSharpsOrFlats(selectedPitchDataCtx.selectedKey),
-                  selectedPitchDataCtx.selectedChordQ
+                  selectedPitchDataCtx.internalScaleName
               );
 
     const pitchAccidentalData = [];
@@ -49,7 +47,7 @@ const PitchNameDisplay5 = () => {
                 return (
                     // each noteName's container
                     <View
-                        key={'5pitchPair' + key.toString()}
+                        key={'6pitchPair' + key.toString()}
                         style={
                             isFirstPitchAccdidental == true
                                 ? styles.noteNameAccidentalOffsetContainer
@@ -73,28 +71,28 @@ const PitchNameDisplay5 = () => {
                                     styles.flat,
                                     styles.firstPitchAccidentalAdjust,
                                 ]}
-                                source={require('../assets/images/flat.png')}
+                                source={require('../../assets/images/flat.png')}
                             ></Image>
                         )}
                         {pitchPair.accidental === 1 && (
                             <Image
                                 key={'sharp' + key.toString()}
                                 style={styles.sharp}
-                                source={require('../assets/images/sharp.png')}
+                                source={require('../../assets/images/sharp.png')}
                             ></Image>
                         )}
                         {pitchPair.accidental === -2 && (
                             <Image
                                 key={'doubleFlat' + key.toString()}
                                 style={styles.doubleFlat}
-                                source={require('../assets/images/double_flat.png')}
+                                source={require('../../assets/images/double_flat.png')}
                             ></Image>
                         )}
                         {pitchPair.accidental === 2 && (
                             <Image
                                 key={'doubleSharp' + key.toString()}
                                 style={styles.doubleSharp}
-                                source={require('../assets/images/double_sharp.png')}
+                                source={require('../../assets/images/double_sharp.png')}
                             ></Image>
                         )}
                     </View>
@@ -106,32 +104,32 @@ const PitchNameDisplay5 = () => {
 
 const styles = StyleSheet.create({
     allNotesContainer: {
-        ...noteScaleText5.allNotesContainer,
+        ...noteScaleText6.allNotesContainer,
     },
     allNotesAccidentalOffsetContainer: {
-        ...noteScaleText5.allNotesAccidentalOffsetContainer,
+        ...noteScaleText6.allNotesAccidentalOffsetContainer,
     },
     noteNameContainer: {
-        ...noteScaleText5.noteNameContainer,
+        ...noteScaleText6.noteNameContainer,
     },
     noteNameAccidentalOffsetContainer: {
-        ...noteScaleText5.noteNameAccidentalOffsetContainer,
+        ...noteScaleText6.noteNameAccidentalOffsetContainer,
     },
     pitchNames: {
-        ...noteScaleText5.pitchNames,
+        ...noteScaleText6.pitchNames,
     },
     sharp: {
-        ...noteScaleText5.sharp,
+        ...noteScaleText6.sharp,
     },
     flat: {
-        ...noteScaleText5.flat,
+        ...noteScaleText6.flat,
     },
     doubleSharp: {
-        ...noteScaleText5.doubleSharp,
+        ...noteScaleText6.doubleSharp,
     },
     doubleFlat: {
-        ...noteScaleText5.doubleFlat,
+        ...noteScaleText6.doubleFlat,
     },
 });
 
-export default PitchNameDisplay5;
+export default PitchNameDisplay6;

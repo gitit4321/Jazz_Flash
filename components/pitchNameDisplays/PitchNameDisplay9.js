@@ -1,11 +1,11 @@
-import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
-import { getScaleBass, getScaleTreble } from '../pitch_data/pitchHandlers';
-import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
+import SelectedPitchDataContext from '../../contexts/selected-pitch-data-context';
+import { getScaleTreble, getScaleBass } from '../../pitch_data/pitchHandlers';
+import { parseSharpsOrFlats } from '../../utils/parseSharpsOrFlats';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { noteScaleText7 } from '../styles/index';
+import { noteScaleText9 } from '../../styles/index';
 import React, { useContext } from 'react';
 
-const PitchNameDisplay7 = () => {
+const PitchNameDisplay9 = () => {
     const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
 
     const noteData =
@@ -47,7 +47,7 @@ const PitchNameDisplay7 = () => {
                 return (
                     // each noteName's container
                     <View
-                        key={'5pitchPair' + key.toString()}
+                        key={'8pitchPair' + key.toString()}
                         style={
                             isFirstPitchAccdidental == true
                                 ? styles.noteNameAccidentalOffsetContainer
@@ -71,28 +71,28 @@ const PitchNameDisplay7 = () => {
                                     styles.flat,
                                     styles.firstPitchAccidentalAdjust,
                                 ]}
-                                source={require('../assets/images/flat.png')}
+                                source={require('../../assets/images/flat.png')}
                             ></Image>
                         )}
                         {pitchPair.accidental === 1 && (
                             <Image
                                 key={'sharp' + key.toString()}
                                 style={styles.sharp}
-                                source={require('../assets/images/sharp.png')}
+                                source={require('../../assets/images/sharp.png')}
                             ></Image>
                         )}
                         {pitchPair.accidental === -2 && (
                             <Image
                                 key={'doubleFlat' + key.toString()}
                                 style={styles.doubleFlat}
-                                source={require('../assets/images/double_flat.png')}
+                                source={require('../../assets/images/double_flat.png')}
                             ></Image>
                         )}
                         {pitchPair.accidental === 2 && (
                             <Image
                                 key={'doubleSharp' + key.toString()}
                                 style={styles.doubleSharp}
-                                source={require('../assets/images/double_sharp.png')}
+                                source={require('../../assets/images/double_sharp.png')}
                             ></Image>
                         )}
                     </View>
@@ -104,32 +104,32 @@ const PitchNameDisplay7 = () => {
 
 const styles = StyleSheet.create({
     allNotesContainer: {
-        ...noteScaleText7.allNotesContainer,
+        ...noteScaleText9.allNotesContainer,
     },
     allNotesAccidentalOffsetContainer: {
-        ...noteScaleText7.allNotesAccidentalOffsetContainer,
+        ...noteScaleText9.allNotesAccidentalOffsetContainer,
     },
     noteNameContainer: {
-        ...noteScaleText7.noteNameContainer,
+        ...noteScaleText9.noteNameContainer,
     },
     noteNameAccidentalOffsetContainer: {
-        ...noteScaleText7.noteNameAccidentalOffsetContainer,
+        ...noteScaleText9.noteNameAccidentalOffsetContainer,
     },
     pitchNames: {
-        ...noteScaleText7.pitchNames,
+        ...noteScaleText9.pitchNames,
     },
     sharp: {
-        ...noteScaleText7.sharp,
+        ...noteScaleText9.sharp,
     },
     flat: {
-        ...noteScaleText7.flat,
+        ...noteScaleText9.flat,
     },
     doubleSharp: {
-        ...noteScaleText7.doubleSharp,
+        ...noteScaleText9.doubleSharp,
     },
     doubleFlat: {
-        ...noteScaleText7.doubleFlat,
+        ...noteScaleText9.doubleFlat,
     },
 });
 
-export default PitchNameDisplay7;
+export default PitchNameDisplay9;
