@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { getFirstInternalScaleName } from '../pitch_data/pitchHandlers';
 import { StyleSheet, View, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import { getFirstInternalScaleName } from '../pitch_data/pitchHandlers';
-import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import React, { useContext } from 'react';
 
 const PickerBar = () => {
     const selectedPitchDataCtx = useContext(SelectedPitchDataContext);

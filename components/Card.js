@@ -1,19 +1,19 @@
-import React, { useContext } from 'react';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
 import SharpFlatRadioBtns from './SharpFlatRadioBtns';
-import ChordSpelling from './ChordSpelling';
-import ChordScale from './ChordScale';
-import GrandStaff from './GrandStaff';
-import ListenBtn from './ListenBtn';
-import PickerBar from './PickerBar';
-import ScalePicker from './ScalePicker';
 import PitchNameDisplay5 from './PitchNameDisplay5';
 import PitchNameDisplay6 from './PitchNameDisplay6';
 import PitchNameDisplay7 from './PitchNameDisplay7';
 import PitchNameDisplay8 from './PitchNameDisplay8';
 import PitchNameDisplay9 from './PitchNameDisplay9';
-import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
-import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
+import ChordSpelling from './ChordSpelling';
+import ScalePicker from './ScalePicker';
+import ChordScale from './ChordScale';
+import GrandStaff from './GrandStaff';
+import ListenBtn from './ListenBtn';
+import PickerBar from './PickerBar';
+import React, { useContext } from 'react';
 
 const Card = () => {
     const selectedPitchDataCtx = useContext(SelectedPitchDataContext);

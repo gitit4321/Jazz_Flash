@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
 import { StyleSheet, View, Text } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
-import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import React, { useState, useContext } from 'react';
 
 const ScalePicker = () => {
     const selectedPitchDataCtx = useContext(SelectedPitchDataContext);

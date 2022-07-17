@@ -1,18 +1,22 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
 import { containerStyles } from '../styles/index';
+import { View, StyleSheet, Text, Button } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import Card from './Card';
-import { SelectedPitchDataContextProvider } from '../contexts/selected-pitch-data-context';
+import PianoKeyboard from './PianoKeyboard';
 
 const Main = () => {
-    return (
-        <View style={styles.cardContainer}>
-            <SelectedPitchDataContextProvider>
-                <Card />
-            </SelectedPitchDataContextProvider>
-        </View>
-    );
+    return <PianoKeyboard first="c4" last="f5" />;
 };
+
+// const Main = () => {
+//     return (
+//         <View style={styles.cardContainer}>
+//             <SelectedPitchDataContextProvider>
+//                 <Card />
+//             </SelectedPitchDataContextProvider>
+//         </View>
+//     );
+// };
 
 const styles = StyleSheet.create({
     cardContainer: {

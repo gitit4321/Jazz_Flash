@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { getScaleTreble, getScaleBass } from '../pitch_data/pitchHandlers';
-import { noteScaleText6 } from '../styles/index';
 import SelectedPitchDataContext from '../contexts/selected-pitch-data-context';
+import { getScaleTreble, getScaleBass } from '../pitch_data/pitchHandlers';
 import { parseSharpsOrFlats } from '../utils/parseSharpsOrFlats';
+import { View, Text, Image, StyleSheet } from 'react-native';
+import { noteScaleText6 } from '../styles/index';
+import React, { useContext } from 'react';
 
 const PitchNameDisplay6 = () => {
     const selectedPitchDataCtx = useContext(SelectedPitchDataContext);
